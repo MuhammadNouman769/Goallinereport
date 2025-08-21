@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Goal Line Report{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron bg-light p-5 rounded">
+            <h1 class="display-4">Welcome to Goal Line Report</h1>
+            <p class="lead">Your comprehensive solution for tracking and analyzing goal progress.</p>
+            <hr class="my-4">
+            <p>Get started by exploring our features and creating your first report.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Get Started</a>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">📊 Reports</h5>
+                <p class="card-text">Generate detailed reports and analytics for your goals.</p>
+                <a href="#" class="btn btn-outline-primary">View Reports</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">🎯 Goals</h5>
+                <p class="card-text">Set, track, and manage your personal and professional goals.</p>
+                <a href="#" class="btn btn-outline-primary">Manage Goals</a>
+            </div>
+        </div>
+    </div>
+                <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">📈 Analytics</h5>
+                        <p class="card-text">Get insights and analytics to improve your performance.</p>
+                        <a href="{% url 'reports' %}" class="btn btn-outline-primary">View Analytics</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">📖 Stories</h5>
+                        <p class="card-text">Share your journey and read inspiring stories from others.</p>
+                        <a href="{% url 'stories' %}" class="btn btn-outline-primary">Read Stories</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">💬 Community</h5>
+                        <p class="card-text">Connect with others and share your experiences.</p>
+                        <a href="{% url 'about' %}" class="btn btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+</div>
+{% endblock %}

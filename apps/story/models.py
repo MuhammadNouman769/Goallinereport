@@ -17,11 +17,10 @@ class Story(CoreModel):
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='stories')
     status = models.CharField(max_length=20, choices=StoryStatus.choices, default=StoryStatus.DRAFT)
+    tags = models.ManyToManyField("StoryTag", related_name='stories', blank=True)
     
     # Story metadata
     summary = models.TextField(blank=True, help_text="Brief summary of the story")
-    tags = models.CharField(max_length=500, blank=True, help_text="Comma-separated tags")
-    
     published_at = models.DateTimeField(null=True, blank=True)
     
     # Engagement metrics
@@ -57,6 +56,8 @@ class StoryChapter(CoreModel):
     story = models.ForeignKey(Story, on_delete=models.CASCADE, related_name='chapters')
     title = models.CharField(max_length=200)
     content = models.TextField()
+    image = models.ImageField(upload_to='story_chapters/', null=True, blank=True)
+    video = models.FileField(upload_to='story_chapters/', null=True, blank=True)
     order = models.PositiveIntegerField(default=0)
     
     
@@ -89,3 +90,17 @@ class StoryView(CoreModel):
     
     def __str__(self):
         return f'View of {self.story.title} at {self.created_at}'
+
+
+
+class StoryTag(CoreModel):
+    """Model for tags for stories"""
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(unique=True, blank=True)
+
+    class Meta:
+        ordering = ['name']
+        verbose_name_plural = 'Story Tags'
+
+    def __str__(self):
+        return self.name

@@ -3,66 +3,130 @@
 {% block title %}Home - Goal Line Report{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-12">
-        <div class="jumbotron bg-light p-5 rounded">
-            <h1 class="display-4">Welcome to Goal Line Report</h1>
-            <p class="lead">Your comprehensive solution for tracking and analyzing goal progress.</p>
-            <hr class="my-4">
-            <p>Get started by exploring our features and creating your first report.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Get Started</a>
+<!-- Hero Banner Section -->
+<div class="hero-banner mb-5">
+    <div class="hero-content text-center text-white">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-4">Welcome to Goal Line Report</h1>
+            <p class="lead mb-4">Your comprehensive solution for tracking and analyzing goal progress with inspiring stories and insights.</p>
+            <div class="hero-buttons">
+                <a href="{% url 'main:stories' %}" class="btn btn-primary btn-lg me-3">Read Stories</a>
+                <a href="{% url 'main:reports' %}" class="btn btn-outline-light btn-lg">View Reports</a>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="row mt-5">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">📊 Reports</h5>
-                <p class="card-text">Generate detailed reports and analytics for your goals.</p>
-                <a href="#" class="btn btn-outline-primary">View Reports</a>
-            </div>
+<!-- Featured Stories Section -->
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="section-title text-center mb-5">Featured Stories</h2>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">🎯 Goals</h5>
-                <p class="card-text">Set, track, and manage your personal and professional goals.</p>
-                <a href="#" class="btn btn-outline-primary">Manage Goals</a>
-            </div>
-        </div>
-    </div>
-                <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">📈 Analytics</h5>
-                        <p class="card-text">Get insights and analytics to improve your performance.</p>
-                        <a href="{% url 'reports' %}" class="btn btn-outline-primary">View Analytics</a>
+    
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card story-card h-100">
+                <div class="card-img-top story-image">
+                    <div class="story-overlay">
+                        <span class="badge bg-primary">Featured</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">My Journey to Success</h5>
+                    <p class="card-text">An inspiring story about overcoming challenges and achieving personal goals through dedication and perseverance.</p>
+                    <div class="story-meta">
+                        <small class="text-muted">
+                            <i class="fas fa-user"></i> John Doe
+                            <i class="fas fa-calendar ms-3"></i> 2 days ago
+                        </small>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{% url 'story:story_detail' pk=1 %}" class="btn btn-outline-primary btn-sm">Read More</a>
+                    <div class="float-end">
+                        <small class="text-muted">
+                            <i class="fas fa-eye"></i> 1.2k
+                            <i class="fas fa-heart ms-2"></i> 45
+                        </small>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div class="row mt-4">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">📖 Stories</h5>
-                        <p class="card-text">Share your journey and read inspiring stories from others.</p>
-                        <a href="{% url 'stories' %}" class="btn btn-outline-primary">Read Stories</a>
+        <div class="col-md-4 mb-4">
+            <div class="card story-card h-100">
+                <div class="card-img-top story-image">
+                    <div class="story-overlay">
+                        <span class="badge bg-success">New</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Building Better Habits</h5>
+                    <p class="card-text">Learn how to develop positive habits that stick and transform your daily routine for better productivity.</p>
+                    <div class="story-meta">
+                        <small class="text-muted">
+                            <i class="fas fa-user"></i> Jane Smith
+                            <i class="fas fa-calendar ms-3"></i> 1 week ago
+                        </small>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{% url 'story:story_detail' pk=2 %}" class="btn btn-outline-primary btn-sm">Read More</a>
+                    <div class="float-end">
+                        <small class="text-muted">
+                            <i class="fas fa-eye"></i> 856
+                            <i class="fas fa-heart ms-2"></i> 32
+                        </small>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">💬 Community</h5>
-                        <p class="card-text">Connect with others and share your experiences.</p>
-                        <a href="{% url 'about' %}" class="btn btn-outline-primary">Learn More</a>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card story-card h-100">
+                <div class="card-img-top story-image">
+                    <div class="story-overlay">
+                        <span class="badge bg-warning">Popular</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Goal Setting Strategies</h5>
+                    <p class="card-text">Discover proven strategies for setting and achieving meaningful goals in both personal and professional life.</p>
+                    <div class="story-meta">
+                        <small class="text-muted">
+                            <i class="fas fa-user"></i> Mike Johnson
+                            <i class="fas fa-calendar ms-3"></i> 3 days ago
+                        </small>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{% url 'story:story_detail' pk=3 %}" class="btn btn-outline-primary btn-sm">Read More</a>
+                    <div class="float-end">
+                        <small class="text-muted">
+                            <i class="fas fa-eye"></i> 2.1k
+                            <i class="fas fa-heart ms-2"></i> 78
+                        </small>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    
+    <!-- Call to Action -->
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <div class="cta-section p-5 bg-light rounded">
+                <h3>Ready to Share Your Story?</h3>
+                <p class="lead">Join our community and inspire others with your journey.</p>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'story:story_create' %}" class="btn btn-primary btn-lg">Write Your Story</a>
+                {% else %}
+                    <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#signupModal">Join Now</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

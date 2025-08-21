@@ -107,4 +107,70 @@ $(document).ready(function() {
         showNotification: showNotification,
         makeAjaxCall: makeAjaxCall
     };
+    
+    // Modal form handling
+    $('#loginModal form, #signupModal form').on('submit', function(e) {
+        var $form = $(this);
+        var $submitBtn = $form.find('button[type="submit"]');
+        var originalText = $submitBtn.text();
+        
+        // Show loading state
+        $submitBtn.text('Processing...').prop('disabled', true);
+        
+        // Submit form via AJAX
+        $.ajax({
+            url: $form.attr('action'),
+            method: 'POST',
+            data: $form.serialize(),
+            success: function(response) {
+                if (response.success) {
+                    // Show success message and redirect
+                    goalLineReport.showNotification(response.message, 'success');
+                    setTimeout(function() {
+                        window.location.href = response.redirect_url || '/';
+                    }, 1500);
+                } else {
+                    // Show error message
+                    goalLineReport.showNotification(response.message || 'An error occurred', 'error');
+                    $submitBtn.text(originalText).prop('disabled', false);
+                }
+            },
+            error: function(xhr) {
+                // Handle form errors
+                if (xhr.responseJSON && xhr.responseJSON.errors) {
+                    var errorHtml = '<ul class="mb-0">';
+                    for (var field in xhr.responseJSON.errors) {
+                        xhr.responseJSON.errors[field].forEach(function(error) {
+                            errorHtml += '<li>' + error + '</li>';
+                        });
+                    }
+                    errorHtml += '</ul>';
+                    goalLineReport.showNotification(errorHtml, 'error');
+                } else {
+                    goalLineReport.showNotification('An error occurred. Please try again.', 'error');
+                }
+                $submitBtn.text(originalText).prop('disabled', false);
+            }
+        });
+        
+        e.preventDefault();
+    });
+    
+    // Clear modal forms when closed
+    $('.modal').on('hidden.bs.modal', function() {
+        $(this).find('form')[0].reset();
+        $(this).find('.alert').remove();
+    });
+    
+    // Switch between login and signup modals
+    $('.modal-switch').on('click', function(e) {
+        e.preventDefault();
+        var currentModal = $(this).closest('.modal');
+        var targetModal = $($(this).data('bs-target'));
+        
+        currentModal.modal('hide');
+        setTimeout(function() {
+            targetModal.modal('show');
+        }, 500);
+    });
 });

@@ -1,0 +1,280 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ story.title }} - Goal Line Report{% endblock %}
+
+{% block content %}
+<!-- Story Header -->
+<div class="story-header mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'main:home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'story:story_list' %}">Stories</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ story.title }}</li>
+                    </ol>
+                </nav>
+                
+                <div class="story-meta mb-3">
+                    <span class="badge bg-success">{{ story.get_status_display }}</span>
+                    <small class="text-white ms-3">
+                        <i class="fas fa-user"></i> {{ story.author.username }}
+                        <i class="fas fa-calendar ms-3"></i> {{ story.created_at|date:"F j, Y" }}
+                        {% if story.published_at %}
+                            <i class="fas fa-clock ms-3"></i> Published {{ story.published_at|date:"F j, Y" }}
+                        {% endif %}
+                    </small>
+                </div>
+                
+                <h1 class="story-title mb-3">{{ story.title }}</h1>
+                
+                {% if story.summary %}
+                    <div class="story-summary mb-4">
+                        <p class="lead">{{ story.summary }}</p>
+                    </div>
+                {% endif %}
+                
+                {% if story.tag_list %}
+                    <div class="story-tags mb-4">
+                        {% for tag in story.tag_list %}
+                            <span class="badge bg-light text-dark me-2">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
+                <div class="story-stats d-flex justify-content-between align-items-center">
+                    <div class="stats-left">
+                        <span class="me-3 text-white"><i class="fas fa-eye"></i> {{ story.views_count }} views</span>
+                        <span class="me-3 text-white"><i class="fas fa-heart"></i> {{ story.likes_count }} likes</span>
+                        <span class="text-white"><i class="fas fa-comment"></i> {{ story.comments.count }} comments</span>
+                    </div>
+                    <div class="stats-right">
+                        {% if user.is_authenticated %}
+                            <button class="btn btn-outline-primary btn-sm like-btn" data-story-id="{{ story.id }}" data-liked="{{ user_liked|yesno:'true,false' }}">
+                                <i class="fas fa-heart {% if user_liked %}text-danger{% endif %}"></i>
+                                <span class="like-text">{% if user_liked %}Unlike{% else %}Like{% endif %}</span>
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Story Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Main Story Content -->
+            <div class="story-content mb-5">
+                <div class="card">
+                    <div class="card-body">
+                        {{ story.content|linebreaks }}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chapters Section -->
+            {% if chapters %}
+                <div class="chapters-section mb-5">
+                    <h3 class="section-title mb-4">Chapters</h3>
+                    <div class="accordion" id="chaptersAccordion">
+                        {% for chapter in chapters %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="chapter{{ chapter.id }}">
+                                    <button class="accordion-button {% if not forloop.first %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ chapter.id }}">
+                                        Chapter {{ chapter.order }}: {{ chapter.title }}
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ chapter.id }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" data-bs-parent="#chaptersAccordion">
+                                    <div class="accordion-body">
+                                        {% if chapter.image %}
+                                            <img src="{{ chapter.image.url }}" class="img-fluid mb-3 rounded" alt="{{ chapter.title }}">
+                                        {% endif %}
+                                        {% if chapter.video %}
+                                            <video controls class="w-100 mb-3 rounded">
+                                                <source src="{{ chapter.video.url }}" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        {% endif %}
+                                        {{ chapter.content|linebreaks }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            
+            <!-- Comments Section -->
+            <div class="comments-section">
+                <h3 class="section-title mb-4">Comments ({{ story.comments.count }})</h3>
+                
+                <!-- Add Comment Form -->
+                {% if user.is_authenticated %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <form id="commentForm" data-story-id="{{ story.id }}">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="commentText" class="form-label">Add a comment</label>
+                                    <textarea class="form-control" id="commentText" rows="3" placeholder="Share your thoughts..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Post Comment</button>
+                            </form>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i> Please <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">login</a> to leave a comment.
+                    </div>
+                {% endif %}
+                
+                <!-- Comments List -->
+                <div id="commentsList">
+                    {% for comment in story.comments.all %}
+                        {% if not comment.parent %}
+                            <div class="comment-item mb-3" data-comment-id="{{ comment.id }}">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <div class="comment-author">
+                                                <strong>{{ comment.author.username }}</strong>
+                                                <small class="text-muted ms-2">{{ comment.created_at|timesince }} ago</small>
+                                            </div>
+                                            {% if user == comment.author %}
+                                                <div class="comment-actions">
+                                                    <button class="btn btn-sm btn-outline-secondary edit-comment-btn" data-comment-id="{{ comment.id }}">Edit</button>
+                                                    <button class="btn btn-sm btn-outline-danger delete-comment-btn" data-comment-id="{{ comment.id }}">Delete</button>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="comment-text">{{ comment.text|linebreaks }}</div>
+                                        <div class="comment-actions mt-2">
+                                            <button class="btn btn-sm btn-outline-primary like-comment-btn" data-comment-id="{{ comment.id }}">
+                                                <i class="fas fa-heart"></i> <span class="like-count">{{ comment.likes.count }}</span>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary reply-btn" data-comment-id="{{ comment.id }}">Reply</button>
+                                        </div>
+                                        
+                                        <!-- Replies -->
+                                        {% for reply in comment.replies.all %}
+                                            <div class="reply-item mt-3 ms-4" data-comment-id="{{ reply.id }}">
+                                                <div class="card bg-light">
+                                                    <div class="card-body">
+                                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                                            <div class="comment-author">
+                                                                <strong>{{ reply.author.username }}</strong>
+                                                                <small class="text-muted ms-2">{{ reply.created_at|timesince }} ago</small>
+                                                            </div>
+                                                            {% if user == reply.author %}
+                                                                <div class="comment-actions">
+                                                                    <button class="btn btn-sm btn-outline-secondary edit-comment-btn" data-comment-id="{{ reply.id }}">Edit</button>
+                                                                    <button class="btn btn-sm btn-outline-danger delete-comment-btn" data-comment-id="{{ reply.id }}">Delete</button>
+                                                                </div>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="comment-text">{{ reply.text|linebreaks }}</div>
+                                                        <div class="comment-actions mt-2">
+                                                            <button class="btn btn-sm btn-outline-primary like-comment-btn" data-comment-id="{{ reply.id }}">
+                                                                <i class="fas fa-heart"></i> <span class="like-count">{{ reply.likes.count }}</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% empty %}
+                        <div class="text-center text-muted py-4">
+                            <i class="fas fa-comments fa-3x mb-3"></i>
+                            <p>No comments yet. Be the first to share your thoughts!</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Like story functionality
+    $('.like-btn').on('click', function() {
+        var $btn = $(this);
+        var storyId = $btn.data('story-id');
+        var isLiked = $btn.data('liked');
+        
+        $.ajax({
+            url: `/stories/${storyId}/like/`,
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': $('[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(response) {
+                if (response.action === 'liked') {
+                    $btn.find('i').addClass('text-danger');
+                    $btn.find('.like-text').text('Unlike');
+                    $btn.data('liked', true);
+                } else {
+                    $btn.find('i').removeClass('text-danger');
+                    $btn.find('.like-text').text('Like');
+                    $btn.data('liked', false);
+                }
+                
+                // Update like count in stats
+                $('.story-stats .stats-left span:nth-child(2)').html(`<i class="fas fa-heart"></i> ${response.likes_count} likes`);
+            }
+        });
+    });
+    
+    // Add comment functionality
+    $('#commentForm').on('submit', function(e) {
+        e.preventDefault();
+        var $form = $(this);
+        var storyId = $form.data('story-id');
+        var commentText = $('#commentText').val();
+        
+        $.ajax({
+            url: '/comments/add/',
+            method: 'POST',
+            data: {
+                story_id: storyId,
+                text: commentText,
+                csrfmiddlewaretoken: $('[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(response) {
+                if (response.status === 'success') {
+                    $('#commentText').val('');
+                    location.reload(); // Refresh to show new comment
+                }
+            }
+        });
+    });
+    
+    // Like comment functionality
+    $('.like-comment-btn').on('click', function() {
+        var $btn = $(this);
+        var commentId = $btn.data('comment-id');
+        
+        $.ajax({
+            url: `/comments/like/${commentId}/`,
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': $('[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(response) {
+                $btn.find('.like-count').text(response.likes_count);
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

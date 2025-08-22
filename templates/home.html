@@ -27,7 +27,7 @@
     
     <div class="row">
         <div class="col-md-4 mb-4">
-            <div class="card story-card h-100">
+            <div class="card story-card h-100 clickable-card" data-href="{% url 'story:story_detail' slug='my-journey-to-success-from-zero-to-hero' %}">
                 <div class="card-img-top story-image">
                     <div class="story-overlay">
                         <span class="badge bg-primary">Featured</span>
@@ -44,19 +44,21 @@
                     </div>
                 </div>
                 <div class="card-footer bg-transparent">
-                    <a href="{% url 'story:story_detail' pk=1 %}" class="btn btn-outline-primary btn-sm">Read More</a>
-                    <div class="float-end">
-                        <small class="text-muted">
-                            <i class="fas fa-eye"></i> 1.2k
-                            <i class="fas fa-heart ms-2"></i> 45
-                        </small>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-primary fw-bold">Read Full Story →</span>
+                        <div>
+                            <small class="text-muted">
+                                <i class="fas fa-eye"></i> 1.2k
+                                <i class="fas fa-heart ms-2"></i> 45
+                            </small>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
         <div class="col-md-4 mb-4">
-            <div class="card story-card h-100">
+            <div class="card story-card h-100 clickable-card" data-href="{% url 'story:story_detail' slug='building-a-business-empire-lessons-learned' %}">
                 <div class="card-img-top story-image">
                     <div class="story-overlay">
                         <span class="badge bg-success">New</span>
@@ -73,19 +75,21 @@
                     </div>
                 </div>
                 <div class="card-footer bg-transparent">
-                    <a href="{% url 'story:story_detail' pk=2 %}" class="btn btn-outline-primary btn-sm">Read More</a>
-                    <div class="float-end">
-                        <small class="text-muted">
-                            <i class="fas fa-eye"></i> 856
-                            <i class="fas fa-heart ms-2"></i> 32
-                        </small>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-primary fw-bold">Read Full Story →</span>
+                        <div>
+                            <small class="text-muted">
+                                <i class="fas fa-eye"></i> 856
+                                <i class="fas fa-heart ms-2"></i> 32
+                            </small>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
         <div class="col-md-4 mb-4">
-            <div class="card story-card h-100">
+            <div class="card story-card h-100 clickable-card" data-href="{% url 'story:story_detail' slug='fitness-transformation-how-i-lost-50-pounds' %}">
                 <div class="card-img-top story-image">
                     <div class="story-overlay">
                         <span class="badge bg-warning">Popular</span>
@@ -102,12 +106,14 @@
                     </div>
                 </div>
                 <div class="card-footer bg-transparent">
-                    <a href="{% url 'story:story_detail' pk=3 %}" class="btn btn-outline-primary btn-sm">Read More</a>
-                    <div class="float-end">
-                        <small class="text-muted">
-                            <i class="fas fa-eye"></i> 2.1k
-                            <i class="fas fa-heart ms-2"></i> 78
-                        </small>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-primary fw-bold">Read Full Story →</span>
+                        <div>
+                            <small class="text-muted">
+                                <i class="fas fa-eye"></i> 2.1k
+                                <i class="fas fa-heart ms-2"></i> 78
+                            </small>
+                        </div>
                     </div>
                 </div>
             </div>

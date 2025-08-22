@@ -162,15 +162,35 @@ $(document).ready(function() {
         $(this).find('.alert').remove();
     });
     
-    // Switch between login and signup modals
-    $('.modal-switch').on('click', function(e) {
-        e.preventDefault();
-        var currentModal = $(this).closest('.modal');
-        var targetModal = $($(this).data('bs-target'));
-        
-        currentModal.modal('hide');
-        setTimeout(function() {
-            targetModal.modal('show');
-        }, 500);
-    });
+                    // Switch between login and signup modals
+                $('.modal-switch').on('click', function(e) {
+                    e.preventDefault();
+                    var currentModal = $(this).closest('.modal');
+                    var targetModal = $($(this).data('bs-target'));
+
+                    currentModal.modal('hide');
+                    setTimeout(function() {
+                        targetModal.modal('show');
+                    }, 500);
+                });
+
+                // Clickable story cards
+                $('.clickable-card').on('click', function(e) {
+                    // Don't trigger if clicking on interactive elements
+                    if ($(e.target).is('a, button, input, textarea') || $(e.target).closest('a, button, input, textarea').length) {
+                        return;
+                    }
+                    
+                    var href = $(this).data('href');
+                    if (href) {
+                        window.location.href = href;
+                    }
+                });
+
+                // Add hover effect for clickable cards
+                $('.clickable-card').on('mouseenter', function() {
+                    $(this).addClass('hovered');
+                }).on('mouseleave', function() {
+                    $(this).removeClass('hovered');
+                });
 });

@@ -34,8 +34,18 @@
                         <a class="nav-link" href="{% url 'main:reports' %}">Reports</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:stories' %}">Stories</a>
+                        <a class="nav-link" href="{% url 'story:story_list' %}">Stories</a>
                     </li>
+                    {% if user.is_authenticated and user.profile.is_editor %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'story:my_stories' %}">My Stories</a>
+                        </li>
+                    {% endif %}
+                    {% if user.is_authenticated and user.profile.is_chief_editor %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'story:review_stories' %}">Review</a>
+                        </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'main:about' %}">About</a>
                     </li>

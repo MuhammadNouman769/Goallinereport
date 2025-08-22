@@ -13,18 +13,27 @@ def add_comment(request):
     """Add a new comment to a story"""
     if request.method == 'POST':
         try:
-            data = json.loads(request.body)
-            story_id = data.get('story_id')
+            # Handle both JSON and form data
+            if request.content_type == 'application/json':
+                data = json.loads(request.body)
+            else:
+                data = request.POST
+            
+            story_slug = data.get('story_slug') or data.get('story_id')
             text = data.get('text')
             parent_id = data.get('parent_id')
             
-            if not all([story_id, text]):
+            if not all([story_slug, text]):
                 return JsonResponse({
                     'status': 'error',
                     'message': 'Missing required fields'
                 }, status=400)
             
-            story = get_object_or_404(Story, id=story_id)
+            # Try to find story by slug first, then by ID
+            try:
+                story = get_object_or_404(Story, slug=story_slug)
+            except:
+                story = get_object_or_404(Story, id=story_slug)
             parent = None
             if parent_id:
                 parent = get_object_or_404(Comment, id=parent_id)

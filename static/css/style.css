@@ -515,10 +515,12 @@ footer {
 
 .footer ul li a {
     transition: color 0.3s ease;
+    color: #fff;
 }
 
 .footer ul li a:hover {
     color: #667eea !important;
+    text-decoration: none;
 }
 
 .contact-info .fas {

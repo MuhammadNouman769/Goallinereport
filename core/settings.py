@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.accounts',
     'apps.comments',
     'apps.story',
+    'apps.rss_feeds',
 ]
 
 MIDDLEWARE = [
@@ -299,5 +300,29 @@ JAZZMIN_UI_TWEAKS = {
         "primary": "btn-primary",
         "secondary": "btn-secondary",
         "informational": "btn-info",
+    },
+}
+
+# Celery Configuration
+CELERY_BROKER_URL = config('CELERY_BROKER_URL', default='redis://localhost:6379/0')
+CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND', default='redis://localhost:6379/0')
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
+
+# Celery Beat Schedule
+CELERY_BEAT_SCHEDULE = {
+    'fetch-rss-feeds-every-30-minutes': {
+        'task': 'apps.rss_feeds.tasks.fetch_all_feeds_task',
+        'schedule': 1800.0,  # 30 minutes
+    },
+    'cleanup-old-feeds-daily': {
+        'task': 'apps.rss_feeds.tasks.cleanup_old_feeds_task',
+        'schedule': 86400.0,  # 24 hours
+    },
+    'health-check-every-hour': {
+        'task': 'apps.rss_feeds.tasks.health_check_task',
+        'schedule': 3600.0,  # 1 hour
     },
 }

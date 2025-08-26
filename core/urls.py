@@ -25,6 +25,7 @@ urlpatterns = [
     path('accounts/', include('apps.accounts.urls')),
     path('comments/', include('apps.comments.urls')),
     path('stories/', include('apps.story.urls')),
+    path('rss/', include('apps.rss_feeds.urls')),
 ]
 
 # Serve static and media files during development

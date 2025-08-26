@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Home - Goal Line Report{% endblock %}
 
 {% block content %}
@@ -26,20 +26,32 @@
     </div>
     
     <div class="row">
+        {% for story in page_obj %}
         <div class="col-md-4 mb-4">
-            <div class="card story-card h-100 clickable-card" data-href="{% url 'story:story_detail' slug='my-journey-to-success-from-zero-to-hero' %}">
+            <div class="card story-card h-100 clickable-card" data-href="{% url 'story:story_detail' story.slug %}">
                 <div class="card-img-top story-image">
+                    {% if story.image %}
+                        <img src="{{ story.image.url }}" class="img-fluid rounded-top" alt="{{ story.title }}">
+                    {% else %}
+                        <img src="{% static 'images/default.jpg' %}" class="img-fluid rounded-top" alt="{{ story.title }}">
+                    {% endif %}
                     <div class="story-overlay">
-                        <span class="badge bg-primary">Featured</span>
+                        {% if forloop.first %}
+                            <span class="badge bg-primary">Featured</span>
+                        {% elif forloop.counter == 2 %}
+                            <span class="badge bg-success">New</span>
+                        {% else %}
+                            <span class="badge bg-warning">Popular</span>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">My Journey to Success</h5>
-                    <p class="card-text">An inspiring story about overcoming challenges and achieving personal goals through dedication and perseverance.</p>
+                    <h5 class="card-title">{{ story.title }}</h5>
+                    <p class="card-text">{{ story.description|truncatewords:20 }}</p>
                     <div class="story-meta">
                         <small class="text-muted">
-                            <i class="fas fa-user"></i> John Doe
-                            <i class="fas fa-calendar ms-3"></i> 2 days ago
+                            <i class="fas fa-user"></i> {{ story.author }}
+                            <i class="fas fa-calendar ms-3"></i> {{ story.published_at|date:"M d, Y" }}
                         </small>
                     </div>
                 </div>
@@ -48,78 +60,46 @@
                         <span class="text-primary fw-bold">Read Full Story →</span>
                         <div>
                             <small class="text-muted">
-                                <i class="fas fa-eye"></i> 1.2k
-                                <i class="fas fa-heart ms-2"></i> 45
+                                <i class="fas fa-eye"></i> {{ story.views.count }}
+                                <i class="fas fa-heart ms-2"></i> {{ story.likes.count }}
                             </small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="col-md-4 mb-4">
-            <div class="card story-card h-100 clickable-card" data-href="{% url 'story:story_detail' slug='building-a-business-empire-lessons-learned' %}">
-                <div class="card-img-top story-image">
-                    <div class="story-overlay">
-                        <span class="badge bg-success">New</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Building Better Habits</h5>
-                    <p class="card-text">Learn how to develop positive habits that stick and transform your daily routine for better productivity.</p>
-                    <div class="story-meta">
-                        <small class="text-muted">
-                            <i class="fas fa-user"></i> Jane Smith
-                            <i class="fas fa-calendar ms-3"></i> 1 week ago
-                        </small>
-                    </div>
-                </div>
-                <div class="card-footer bg-transparent">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-primary fw-bold">Read Full Story →</span>
-                        <div>
-                            <small class="text-muted">
-                                <i class="fas fa-eye"></i> 856
-                                <i class="fas fa-heart ms-2"></i> 32
-                            </small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4 mb-4">
-            <div class="card story-card h-100 clickable-card" data-href="{% url 'story:story_detail' slug='fitness-transformation-how-i-lost-50-pounds' %}">
-                <div class="card-img-top story-image">
-                    <div class="story-overlay">
-                        <span class="badge bg-warning">Popular</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Goal Setting Strategies</h5>
-                    <p class="card-text">Discover proven strategies for setting and achieving meaningful goals in both personal and professional life.</p>
-                    <div class="story-meta">
-                        <small class="text-muted">
-                            <i class="fas fa-user"></i> Mike Johnson
-                            <i class="fas fa-calendar ms-3"></i> 3 days ago
-                        </small>
-                    </div>
-                </div>
-                <div class="card-footer bg-transparent">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-primary fw-bold">Read Full Story →</span>
-                        <div>
-                            <small class="text-muted">
-                                <i class="fas fa-eye"></i> 2.1k
-                                <i class="fas fa-heart ms-2"></i> 78
-                            </small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        {% empty %}
+        <p class="text-center">No stories available yet.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div class="row mt-4">
+        <div class="col-12 d-flex justify-content-center">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                        </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
         </div>
     </div>
-    
+
     <!-- Call to Action -->
     <div class="row mt-5">
         <div class="col-12 text-center">

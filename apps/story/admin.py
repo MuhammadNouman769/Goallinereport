@@ -9,7 +9,7 @@ class StoryChapterInline(admin.TabularInline):
 
 @admin.register(Story)
 class StoryAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'status', 'created_at', 'published_at', 'reviewed_by', 'views_count', 'likes_count']
+    list_display = ['title', 'author', 'image', 'status', 'created_at', 'published_at', 'reviewed_by', 'views_count', 'likes_count']
     list_filter = ['status', 'created_at', 'published_at', 'reviewed_by']
     search_fields = ['title', 'content', 'summary', 'author__username', 'review_notes']
     date_hierarchy = 'created_at'
@@ -19,7 +19,7 @@ class StoryAdmin(admin.ModelAdmin):
     
     fieldsets = (
         ('Basic Information', {
-            'fields': ('title', 'slug', 'content', 'summary', 'author', 'status')
+            'fields': ('title', 'slug',  'image', 'content', 'summary', 'author', 'status')
         }),
         ('Tags', {
             'fields': ('tags',),

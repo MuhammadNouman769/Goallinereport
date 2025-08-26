@@ -17,6 +17,7 @@ class Story(CoreModel):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
     content = models.TextField()
+    image = models.ImageField(blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='stories')
     status = models.CharField(max_length=20, choices=StoryStatus.choices, default=StoryStatus.DRAFT)
     tags = models.ManyToManyField("StoryTag", related_name='stories', blank=True)

@@ -39,7 +39,7 @@ def story_list(request):
         stories = stories.filter(tags__name__icontains=tag)
     
     # Pagination
-    paginator = Paginator(stories, 10)
+    paginator = Paginator(stories, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     

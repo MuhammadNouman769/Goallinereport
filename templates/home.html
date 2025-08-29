@@ -4,64 +4,89 @@
 
 {% block content %}
 <!-- Hero Banner Section -->
-<div class="hero-banner mb-5">
+<div class="hero-banner mb-4">
+     <div class="container">
     <div class="hero-content text-center text-white">
-        <div class="container">
-            <h1 class="display-3 fw-bold mb-4">Welcome to Goal Line Report</h1>
-            <p class="lead mb-4">Your comprehensive solution for tracking and analyzing goal progress with inspiring stories and insights.</p>
+        <div>
+            <h1 class="display-3 fw-bold mb-4 text-center">Welcome to Goal Line Report</h1>
+            <p class="lead mb-4 text-center">
+                Your comprehensive solution for tracking and analyzing goal progress with inspiring stories and insights.
+            </p>
             <div class="hero-buttons">
                 <a href="{% url 'main:stories' %}" class="btn btn-primary btn-lg me-3">Read Stories</a>
                 <a href="{% url 'main:reports' %}" class="btn btn-outline-light btn-lg">View Reports</a>
             </div>
         </div>
     </div>
+     </div>
 </div>
 
-<!-- Featured Stories Section -->
 <div class="container">
     <div class="row mb-5">
         <div class="col-12">
             <h2 class="section-title text-center mb-5">Featured Stories</h2>
         </div>
     </div>
-    
+
+    <!-- Optional: Filtered Tag Message -->
+    {% if tag %}
+    <div class="row mb-3">
+        <div class="col-12 text-center">
+            <p class="lead">Showing stories for tag: <strong>{{ tag }}</strong></p>
+            <a href="{% url 'main:stories' %}" class="btn btn-sm btn-outline-secondary">Clear Filter</a>
+        </div>
+    </div>
+    {% endif %}
+
     <div class="row">
         {% for story in page_obj %}
         <div class="col-md-4 mb-4">
-            <div class="card story-card h-100 clickable-card" data-href="{% url 'story:story_detail' story.slug %}">
-                <div class="card-img-top story-image">
+            <div class="card story-card h-100">
+                
+                <!-- Story Image -->
+                <div class="card-img-top story-image position-relative">
                     {% if story.image %}
-                        <img src="{{ story.image.url }}" class="img-fluid rounded-top" alt="{{ story.title }}">
-                    {% else %}
-                        <img src="{% static 'images/default.jpg' %}" class="img-fluid rounded-top" alt="{{ story.title }}">
+                        <img src="{{ story.image.url }}" height="200" class="img-fluid rounded w-100" alt="{{ story.title }}">
                     {% endif %}
-                    <div class="story-overlay">
-                        {% if forloop.first %}
-                            <span class="badge bg-primary">Featured</span>
-                        {% elif forloop.counter == 2 %}
-                            <span class="badge bg-success">New</span>
-                        {% else %}
-                            <span class="badge bg-warning">Popular</span>
-                        {% endif %}
-                    </div>
                 </div>
+                
+                <!-- Card Body -->
                 <div class="card-body">
+                    <small class="text-muted d-block mb-2">
+                        <i class="fas fa-user"></i> {{ story.author }} |
+                        <i class="fa fa-clock-o ms-1"></i> {{ story.published_at|date:"d M Y, H:i" }}
+                    </small>
+
+                    <!-- Story Tags (clickable for filtering) -->
+                    {% if story.tags.exists %}
+                        <div class="mb-2">
+                           {% for t in story.tags.all %}                               
+<a href="{% url 'main:stories' %}?tag={{ t.name }}" class="badge bg-secondary text-decoration-none tag-hover">{{ t.name }}
+                              
+
+
+                                   </a>
+                           {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <!-- Title -->
                     <h5 class="card-title">{{ story.title }}</h5>
-                    <p class="card-text">{{ story.description|truncatewords:20 }}</p>
-                    <div class="story-meta">
-                        <small class="text-muted">
-                            <i class="fas fa-user"></i> {{ story.author }}
-                            <i class="fas fa-calendar ms-3"></i> {{ story.published_at|date:"M d, Y" }}
-                        </small>
-                    </div>
+
+                    <!-- Summary / Content -->
+                    <p class="card-text">{{ story.summary|default:story.content|truncatewords:20 }}</p>
                 </div>
+
+                <!-- Card Footer -->
                 <div class="card-footer bg-transparent">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-primary fw-bold">Read Full Story →</span>
+                        <a href="{% url 'story:story_detail' story.slug %}" class="text-primary fw-bold">
+                            Read Full Story →
+                        </a>
                         <div>
                             <small class="text-muted">
-                                <i class="fas fa-eye"></i> {{ story.views.count }}
-                                <i class="fas fa-heart ms-2"></i> {{ story.likes.count }}
+                                <i class="fas fa-eye"></i> {{ story.story_views.count }}
+                                <i class="fas fa-heart ms-2"></i> {{ story.story_likes.count }}
                             </small>
                         </div>
                     </div>
@@ -80,19 +105,19 @@
                 <ul class="pagination">
                     {% if page_obj.has_previous %}
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if tag %}&tag={{ tag }}{% endif %}">Previous</a>
                         </li>
                     {% endif %}
 
                     {% for num in page_obj.paginator.page_range %}
                         <li class="page-item {% if page_obj.number == num %}active{% endif %}">
-                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            <a class="page-link" href="?page={{ num }}{% if tag %}&tag={{ tag }}{% endif %}">{{ num }}</a>
                         </li>
                     {% endfor %}
 
                     {% if page_obj.has_next %}
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if tag %}&tag={{ tag }}{% endif %}">Next</a>
                         </li>
                     {% endif %}
                 </ul>

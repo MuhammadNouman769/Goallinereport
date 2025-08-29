@@ -47,6 +47,17 @@ body {
     letter-spacing: 0.5px;
 }
 
+/* Tag hover effect */
+.tag-hover {
+    transition: all 0.3s ease;
+}
+
+.tag-hover:hover {
+    background-color: #0d6efd; /* Bootstrap primary color */
+    color: #fff !important;
+    transform: scale(1.05);
+}
+
 /* Story Cards */
 .story-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -211,8 +222,8 @@ body {
 }
 
 .story-image {
-    height: 200px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    max-height: fit-content;
     background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');
     background-size: cover;
     background-position: center;
@@ -621,3 +632,5 @@ footer {
         margin-bottom: 2rem;
     }
 }
+
+

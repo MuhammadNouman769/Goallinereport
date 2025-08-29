@@ -1,153 +1,171 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Stories - Goal Line Report{% endblock %}
 
 {% block content %}
 <!-- Page Header -->
 <div class="page-header mb-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="page-title">Stories</h1>
-                <p class="page-subtitle">Discover inspiring stories from our community</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Search and Filter Section -->
-<div class="container mb-5">
+  <div class="container">
     <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <form method="get" class="row g-3">
-                        <div class="col-md-6">
-                            <label for="q" class="form-label">Search Stories</label>
-                            <input type="text" class="form-control" id="q" name="q" value="{{ query }}" placeholder="Search by title, content, or author...">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="tag" class="form-label">Filter by Tag</label>
-                            <select class="form-select" id="tag" name="tag">
-                                <option value="">All Tags</option>
-                                <option value="success" {% if tag == 'success' %}selected{% endif %}>Success</option>
-                                <option value="motivation" {% if tag == 'motivation' %}selected{% endif %}>Motivation</option>
-                                <option value="goals" {% if tag == 'goals' %}selected{% endif %}>Goals</option>
-                                <option value="inspiration" {% if tag == 'inspiration' %}selected{% endif %}>Inspiration</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">&nbsp;</label>
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Search</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+      <div class="col-12">
+        <h1 class="page-title">Stories</h1>
+        <p class="page-subtitle">Discover inspiring stories from our community</p>
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- Stories Grid -->
-<div class="container">
-    {% if page_obj %}
-        <div class="row">
-            {% for story in page_obj %}
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card story-card h-100 clickable-card" data-href="{% url 'story:story_detail' slug=story.slug %}">
-                        <div class="card-img-top story-image">
-                            <div class="story-overlay">
-                                <span class="badge bg-success">{{ story.get_status_display }}</span>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ story.title }}</h5>
-                            <p class="card-text">
-                                {% if story.summary %}
-                                    {{ story.summary|truncatewords:20 }}
-                                {% else %}
-                                    {{ story.content|truncatewords:20 }}
-                                {% endif %}
-                            </p>
-                            <div class="story-meta">
-                                <small class="text-muted">
-                                    <i class="fas fa-user"></i> {{ story.author.username }}
-                                    <i class="fas fa-calendar ms-3"></i> {{ story.created_at|timesince }} ago
-                                </small>
-                            </div>
-                        </div>
-                        <div class="card-footer bg-transparent">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="text-primary fw-bold">Read Full Story →</span>
-                                <div>
-                                    <small class="text-muted">
-                                        <i class="fas fa-eye"></i> {{ story.views_count }}
-                                        <i class="fas fa-heart ms-2"></i> {{ story.likes_count }}
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-        
-        <!-- Pagination -->
-        {% if page_obj.has_other_pages %}
-            <div class="row">
-                <div class="col-12">
-                    <nav aria-label="Stories pagination">
-                        <ul class="pagination justify-content-center">
-                            {% if page_obj.has_previous %}
-                                <li class="page-item">
-                                    <a class="page-link" href="?page=1{% if query %}&q={{ query }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}">First</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}">Previous</a>
-                                </li>
-                            {% endif %}
-                            
-                            {% for num in page_obj.paginator.page_range %}
-                                {% if page_obj.number == num %}
-                                    <li class="page-item active">
-                                        <span class="page-link">{{ num }}</span>
-                                    </li>
-                                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                                    <li class="page-item">
-                                        <a class="page-link" href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}">{{ num }}</a>
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
-                            
-                            {% if page_obj.has_next %}
-                                <li class="page-item">
-                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}">Next</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}">Last</a>
-                                </li>
-                            {% endif %}
-                        </ul>
-                    </nav>
-                </div>
+<!-- Search & Filter (ONE unified form) -->
+<div class="container mb-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <form method="get" class="row g-3 align-items-end">
+            <!-- Search -->
+            <div class="col-md-6">
+              <label for="search" class="form-label">Search Stories (Title) </label>
+              <input
+                type="text"
+                id="search"
+                name="search"
+                class="form-control"
+                placeholder="Search by title,  tag..."
+                value="{{ search_query|default:'' }}"
+              />
             </div>
-        {% endif %}
-    {% else %}
-        <div class="row">
-            <div class="col-12 text-center">
-                <div class="empty-state py-5">
-                    <i class="fas fa-book-open fa-4x text-muted mb-4"></i>
-                    <h3>No Stories Found</h3>
-                    <p class="text-muted">{% if query or tag %}Try adjusting your search criteria.{% else %}Be the first to share your story!{% endif %}</p>
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'story:story_create' %}" class="btn btn-primary">Write Your First Story</a>
-                    {% else %}
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal" class="btn btn-primary">Join and Share Your Story</a>
-                    {% endif %}
-                </div>
+
+            <!-- Dropdown -->
+            <div class="col-md-4">
+              <label for="tag" class="form-label">Quick Select</label>
+              <select id="tag" name="tag" class="form-select" onchange="this.form.submit()">
+                {% for t in tags %}
+                  <option value="{{ t }}"
+                    {% if tag_query and tag_query|lower == t|lower %}selected{% endif %}>
+                    {{ t }}
+                  </option>
+                {% endfor %}
+              </select>
             </div>
+
+            <!-- Submit -->
+            <div class="col-md-2 d-grid">
+              <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+
+            <!-- Active filter chips -->
+            <div class="col-12">
+              {% if search_query or tag_query or title_keyword %}
+                <div class="mt-2">
+                  {% if search_query %}
+                    <span class="badge bg-primary me-2">Search: {{ search_query }}</span>
+                  {% endif %}
+                  {% if tag_query %}
+                    <span class="badge bg-secondary me-2">Tag: {{ tag_query }}</span>
+                  {% endif %}
+                  {% if title_keyword %}
+                    <span class="badge bg-info me-2">Title contains: {{ title_keyword }}</span>
+                  {% endif %}
+                  <a class="btn btn-sm btn-outline-secondary ms-1" href="{% url 'main:stories' %}">Clear</a>
+                </div>
+              {% endif %}
+            </div>
+          </form>
         </div>
-    {% endif %}
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- Stories List -->
+<div class="container">
+  {% if stories %}
+    {% for story in stories %}
+      <div class="story-item mb-5 pb-4 border-bottom">
+        <!-- Image -->
+        <img
+          src="{% if story.image %}{{ story.image.url }}{% else %}{% static 'images/default.jpg' %}{% endif %}"
+          alt="{{ story.title }}"
+          class="img-fluid w-100 rounded mb-3"
+          style="max-height: 420px; object-fit: cover;"
+        />
+
+        <!-- Title -->
+        <h2 class="h4 mb-2">
+          <a href="{% url 'story:story_detail' slug=story.slug %}" class="text-decoration-none">
+            {{ story.title }}
+          </a>
+        </h2>
+
+        <!-- Meta -->
+        <p class="text-muted small mb-2">
+          <i class="fas fa-user"></i> {{ story.author.username }}
+          <i class="fas fa-calendar ms-3"></i> {{ story.created_at|date:"F j, Y" }}
+          <i class="fas fa-eye ms-3"></i> {{ story.views_count }}
+          <i class="fas fa-heart ms-2"></i> {{ story.likes_count }}
+        </p>
+
+        <!-- Tag badges (click → ?tag=NAME so it title-filters) -->
+        {% with story.tags.all as tag_list %}
+          {% if tag_list %}
+            <div class="mb-2">
+              {% for t in tag_list %}
+                <a href="{% url 'main:stories' %}?tag={{ t.name }}"
+                   class="badge bg-secondary text-decoration-none tag-hover me-1 mb-1">
+                  {{ t.name }}
+                </a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <!-- Excerpt -->
+        <p class="mb-3">
+          {% if story.summary %}
+            {{ story.summary|truncatewords:40 }}
+          {% else %}
+            {{ story.content|truncatewords:40 }}
+          {% endif %}
+        </p>
+
+        <!-- Read more -->
+        <a href="{% url 'story:story_detail' slug=story.slug %}" class="btn btn-outline-primary btn-sm">
+          Read Full Story →
+        </a>
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="row">
+      <div class="col-12 text-center">
+        <div class="empty-state py-5">
+          <i class="fas fa-book-open fa-4x text-muted mb-4"></i>
+          <h3>No Stories Found</h3>
+          <p class="text-muted">
+            Try adjusting your search or choose a different tag.
+          </p>
+          {% if user.is_authenticated %}
+            <a href="{% url 'story:story_create' %}" class="btn btn-primary">Write Your First Story</a>
+          {% else %}
+            <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal" class="btn btn-primary">
+              Join and Share Your Story
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+<!-- Hover effect CSS -->
+<style>
+  .tag-hover {
+    transition: all 0.2s ease;
+  }
+  .tag-hover:hover {
+    background-color: #0d6efd;
+    color: #fff !important;
+    transform: translateY(-1px);
+  }
+</style>
 {% endblock %}

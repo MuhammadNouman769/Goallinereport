@@ -2,13 +2,15 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
-from apps.story.models import Story
+from apps.story.models import Story, StoryTag
 import json
 
+
 def home(request):
-    """Home page view showing featured stories with pagination"""
+    """Home page view showing featured stories with tags and pagination"""
     stories = Story.objects.filter(status='published').order_by('-published_at')
-    
+    tags = StoryTag.objects.all().order_by('name')
+
     # Pagination: 6 stories per page
     paginator = Paginator(stories, 6)
     page_number = request.GET.get('page')
@@ -17,7 +19,8 @@ def home(request):
     context = {
         'title': 'Home',
         'page_title': 'Goal Line Report - Dashboard',
-        'page_obj': page_obj,  # pass page_obj to template
+        'page_obj': page_obj,   # stories with pagination
+        'tags': tags,           # all tags
     }
     return render(request, 'home.html', context)
 

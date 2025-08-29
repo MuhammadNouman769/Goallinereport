@@ -11,6 +11,7 @@ class CommentAdmin(admin.ModelAdmin):
     
     def is_reply(self, obj):
         return obj.is_reply
+    
     is_reply.boolean = True
     is_reply.short_description = 'Is Reply'
 

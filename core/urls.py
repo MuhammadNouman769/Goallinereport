@@ -20,13 +20,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('apps.main.urls')),
+    path('stories/', include('apps.story.urls')),
     path('accounts/', include('apps.accounts.urls')),
     path('comments/', include('apps.comments.urls')),
-    path('stories/', include('apps.story.urls')),
+    path('admin/', admin.site.urls),
     path('rss/', include('apps.rss_feeds.urls')),
-]
+    path('', include('apps.main.urls')),
+] 
 
 # Serve static and media files during development
 if settings.DEBUG:

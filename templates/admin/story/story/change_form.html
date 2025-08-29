@@ -1,0 +1,22 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+{% block submit_buttons_bottom %}
+  {{ block.super }}
+
+  {% if is_editor %}
+    {% if original.status == original.StoryStatus.DRAFT %}
+      <input type="submit" value="💾 Save as Draft" name="_saveasdraft" class="default">
+      <input type="submit" value="📤 Request to Publish" name="_requestpublish" class="default">
+    {% endif %}
+  {% endif %}
+
+  {% if is_chief_editor %}
+    {% if original.status == original.StoryStatus.REVIEW %}
+      <input type="submit" value="✅ Publish" name="_publish" class="default">
+      <input type="submit" value="❌ Reject" name="_reject" class="deletelink">
+      <input type="submit" value="🔄 Cancel" name="_cancel" class="default">
+    {% endif %}
+    <input type="submit" value="🗑 Delete" name="_delete" class="deletelink">
+  {% endif %}
+{% endblock %}

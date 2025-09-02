@@ -17,6 +17,9 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 # Load task modules from all registered Django apps.
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
+# Import tasks explicitly to ensure they are registered
+import apps.rss_feeds.tasks
+
 # Celery Configuration
 app.conf.update(
     # Broker settings
@@ -38,22 +41,22 @@ app.conf.update(
     # Beat settings (for periodic tasks)
     beat_schedule={
         'fetch-rss-feeds-every-30-minutes': {
-            'task': 'apps.rss_feeds.tasks.fetch_all_feeds_task',
+            'task': 'rss_feeds.fetch_all_feeds',
             'schedule': 1800.0,  # 30 minutes
         },
         'cleanup-old-feeds-daily': {
-            'task': 'apps.rss_feeds.tasks.cleanup_old_feeds_task',
+            'task': 'rss_feeds.cleanup_old_feeds',
             'schedule': 86400.0,  # 24 hours
         },
         'health-check-every-hour': {
-            'task': 'apps.rss_feeds.tasks.health_check_task',
+            'task': 'rss_feeds.health_check',
             'schedule': 3600.0,  # 1 hour
         },
     },
     
     # Task routing
     task_routes={
-        'apps.rss_feeds.*': {'queue': 'rss_feeds'},
+        'rss_feeds.*': {'queue': 'rss_feeds'},
         '*': {'queue': 'goallinereport'},
     },
     

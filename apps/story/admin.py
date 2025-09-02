@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils import timezone
-from .models import Story, StoryChapter, StoryLike, StoryView
+from .models import Story, StoryChapter, StoryLike, StoryView, StoryTag
 
 class StoryChapterInline(admin.TabularInline):
     model = StoryChapter
@@ -68,3 +68,15 @@ class StoryViewAdmin(admin.ModelAdmin):
     list_filter = ['created_at']
     search_fields = ['story__title', 'user__username', 'ip_address']
     date_hierarchy = 'created_at'
+
+@admin.register(StoryTag)
+class StoryTagAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug', 'stories_count', 'created_at']
+    list_filter = ['created_at']
+    search_fields = ['name', 'slug']
+    prepopulated_fields = {'slug': ('name',)}
+    ordering = ['name']
+    
+    def stories_count(self, obj):
+        return obj.stories.count()
+    stories_count.short_description = 'Stories Count'

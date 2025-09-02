@@ -1,0 +1,371 @@
+/* Custom Sidebar Styling for Better Readability */
+
+/* Dark background ONLY for section titles */
+.eblog-right-sidebar .eblog-right-side-post p.title {
+    background: #1a1a1a;
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    padding: 12px 15px;
+}
+
+/* Dark theme colors - replacing light green with dark shades */
+:root {
+    --color-primary: #2d5a3d;
+    --color-primary-2: #1e3d2a;
+    --color-primary-3: #4a7c59;
+    --color-primary-4: #3d6b4a;
+}
+
+/* Browse Category Image Height and Overlay Fix */
+.eblog-right-sidebar .eblog-right-side-post .category-area .category-wrapper li .image-area {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.eblog-right-sidebar .eblog-right-side-post .category-area .category-wrapper li .image-area img {
+    height: 80px;
+    object-fit: cover;
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.eblog-right-sidebar .eblog-right-side-post .category-area .category-wrapper li .image-area::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 100%);
+    z-index: 1;
+    border-radius: 8px;
+}
+
+.eblog-right-sidebar .eblog-right-side-post .category-area .category-wrapper li .image-area .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.eblog-right-sidebar .eblog-right-side-post .category-area .category-wrapper li .image-area .text a {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 15px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Social area styling */
+.eblog-right-sidebar .eblog-right-side-post .social-area .social-wrapper {
+    gap: 12px;
+    padding: 0 10px;
+}
+
+.eblog-right-sidebar .eblog-right-side-post .social-area .social-wrapper li a {
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    width: 45px;
+    height: 45px;
+    line-height: 41px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.eblog-right-sidebar .eblog-right-side-post .social-area .social-wrapper li a svg {
+    width: 20px;
+    height: 20px;
+    fill: #00C89A;
+    transition: fill 0.3s ease;
+}
+
+.eblog-right-sidebar .eblog-right-side-post .social-area .social-wrapper li a:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.eblog-right-sidebar .eblog-right-side-post .social-area .social-wrapper li a:hover svg {
+    fill: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .eblog-right-sidebar .eblog-right-side-post .category-area .category-wrapper li .image-area img {
+        height: 60px;
+    }
+    
+    .eblog-right-sidebar .eblog-right-side-post .social-area .social-wrapper li a {
+        width: 40px;
+        height: 40px;
+        line-height: 36px;
+    }
+    
+    .eblog-right-sidebar .eblog-right-side-post .social-area .social-wrapper li a svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Blog Tags Section Styling */
+.blog-tags-section {
+    margin-bottom: 20px;
+    padding: 15px 0;
+}
+
+.blog-tags-section .tags-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.blog-tags-section .tags-label {
+    font-weight: 600;
+    color: var(--color-heading-1, #1E1E1E);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.blog-tags-section .tags-list {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.blog-tags-section .tag-item {
+    display: inline-block;
+    padding: 6px 16px;
+    background: var(--color-primary, #2d5a3d);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid var(--color-primary, #2d5a3d);
+}
+
+.blog-tags-section .tag-item:hover {
+    background: #ffffff;
+    color: var(--color-primary, #2d5a3d);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments for tags */
+@media (max-width: 768px) {
+    .blog-tags-section .tags-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .blog-tags-section .tags-list {
+        gap: 8px;
+    }
+    
+    .blog-tags-section .tag-item {
+        padding: 5px 14px;
+        font-size: 12px;
+    }
+}
+
+/* Comment Preview Section Styling */
+.comment-preview-wrapper {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.comment-preview-wrapper label {
+    font-weight: 600;
+    color: var(--color-heading-1, #1E1E1E);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.comment-preview-content {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 15px;
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.preview-author {
+    font-weight: 600;
+    color: var(--color-primary, #2d5a3d);
+    font-size: 14px;
+}
+
+.preview-time {
+    color: #6c757d;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.preview-text {
+    color: #495057;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* Preview Button Styling */
+.preview-btn {
+    background: #6c757d;
+    border-color: #6c757d;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.preview-btn:hover {
+    background: #5a6268;
+    border-color: #5a6268;
+    transform: translateY(-1px);
+}
+
+/* Comment Form Improvements */
+.post-comment-box .form-inner .single-input-wrapper textarea {
+    min-height: 120px;
+    resize: vertical;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 12px 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    transition: border-color 0.3s ease;
+}
+
+.post-comment-box .form-inner .single-input-wrapper textarea:focus {
+    border-color: var(--color-primary, #2d5a3d);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.1);
+}
+
+.post-comment-box .form-inner .single-input-wrapper textarea::placeholder {
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Responsive adjustments for comment preview */
+@media (max-width: 768px) {
+    .comment-preview-wrapper {
+        padding: 15px;
+    }
+    
+    .comment-preview-content {
+        padding: 12px;
+    }
+    
+    .preview-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .preview-btn {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    
+    .subscribe-btn {
+        width: 100%;
+    }
+}
+
+/* Search Topic Heading Styling */
+.search-topic-heading {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    padding: 40px 0;
+    margin-bottom: 0;
+    border-bottom: 3px solid var(--color-primary, #00C89A);
+}
+
+.search-topic-inner {
+    color: white;
+}
+
+.search-topic-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.search-topic-subtitle {
+    font-size: 1.1rem;
+    color: #cccccc;
+    margin: 0;
+    font-weight: 400;
+}
+
+.search-topic-title span {
+    color: var(--color-primary, #00C89A);
+    font-weight: 800;
+}
+
+/* Highlight search terms in post titles */
+.eblog-featured-news .heading-title a mark {
+    background-color: var(--color-primary, #00C89A);
+    color: white;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+/* Responsive design for search topic heading */
+@media (max-width: 768px) {
+    .search-topic-title {
+        font-size: 2rem;
+    }
+    
+    .search-topic-subtitle {
+        font-size: 1rem;
+    }
+    
+    .search-topic-heading {
+        padding: 30px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-topic-title {
+        font-size: 1.5rem;
+    }
+    
+    .search-topic-heading {
+        padding: 25px 0;
+    }
+}

@@ -1,401 +1,146 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'glrdesign/base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Blog and Magazine HTML Template</title>
-    <link rel="shortcut icon" href="static/img/logo/fav.png" type="image/x-icon">
+{% block title %}Coming Soon - Personal Blog and Magazine HTML Template{% endblock %}
 
-    <link rel="stylesheet preload" href="static/css/fontawesome-5.css" as="style">
-    <link rel="stylesheet preload" href="static/css/bootstrap.min.css" as="style">
-    <link rel="stylesheet preload" href="static/css/swiper.css" as="style">
-    <link rel="stylesheet preload" href="static/css/metismenu.css" as="style">
-    <link rel="stylesheet preload" href="static/css/fonts.css" as="style">
-    <link rel="stylesheet preload" href="static/css/magnific-popup.css" as="style">
-    <link rel="stylesheet preload" href="static/css/style.css" as="style">
-</head>
-
-<body class="home-inner">
-    <!-- Start Header Area -->
-
-    <!-- Start Top Header Area -->
-    <header class="eblog-header-area header--sticky">
-        <div class="eblog-home-1-menu">
-            <div class="eblog-site-main-logo-menu-social">
-                <div class="container">
-                    <div class="row align-items-center plr_md--30 plr_sm--30 plr--10">
-                        <div class="col-xl-2 col-lg-2 col-md-7 col-sm-7 col-7 p-0">
-                            <div class="eblog-site-logo">
-                                <a class="logo-light" href="index.html"><img src="static/img/logo/logo-04.svg" alt="eblog"></a>
-                            </div>
-                        </div>
-                        <div class="col-xl-8 col-lg-8 d-none d-lg-block">
-                            <nav>
-                                <div class="eblog-home-1-menu">
-                                    <ul class="list-unstyled eblog-desktop-menu">
-                                        <li class="menu-item eblog-has-dropdown">
-                                            <a href="#" class="eblog-dropdown-main-element active">Home</a>
-                                            <!-- Start Dropdown Menu -->
-                                            <ul class="eblog-submenu list-unstyled menu-home">
-                                                <li class="nav-item"><a href="index.html">Home 01 - Technology</a></li>
-                                                <li class="nav-item"><a href="index-two.html">Home 02 - Life Style</a></li>
-                                                <li class="nav-item"><a href="index-three.html">Home 03 - Travel</a></li>
-                                                <li class="nav-item"><a href="index-four.html">Home 04 - Food</a></li>
-                                                <li class="nav-item"><a href="index-five.html">Home 05 - Sports</a></li>
-                                            </ul>
-                                            <!-- End Dropdown Menu -->
-                                        </li>
-                                        <li class="menu-item eblog-has-dropdown">
-                                            <a href="#" class="eblog-dropdown-main-element">Post</a>
-                                            <ul class="eblog-submenu list-unstyled menu-pages">
-                                                <li class="nav-item"><a href="column-layout.html">Post Column</a></li>
-                                                <li class="nav-item"><a href="column-layout-grid.html">Post Grid</a></li>
-                                                <li class="nav-item"><a href="column-layout-right-sidebar.html">Post Right Sidebar</a></li>
-                                                <li class="nav-item"><a href="column-layout-left-sidebar.html">Post Left Sidebar</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item eblog-has-dropdown">
-                                            <a href="#" class="eblog-dropdown-main-element">Post Details</a>
-                                            <ul class="eblog-submenu list-unstyled menu-pages">
-                                                <li class="nav-item"><a href="blog-details.html">Post Details</a></li>
-                                                <li class="nav-item"><a href="blog-details-2.html">Post Details 2</a></li>
-                                                <li class="nav-item"><a href="blog-details-3.html">Post Details 3</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item eblog-has-dropdown">
-                                            <a href="#" class="eblog-dropdown-main-element">Pages</a>
-                                            <ul class="eblog-submenu list-unstyled menu-pages">
-                                                <li class="nav-item"><a href="author.html">Author</a></li>
-                                                <li class="nav-item"><a href="sign-in.html">Sign In</a></li>
-                                                <li class="nav-item"><a href="sign-up.html">Sign Up</a></li>
-                                                <li class="nav-item"><a href="reset-password.html">Reset Password</a></li>
-                                                <li class="nav-item"><a href="coming-soon.html">Comming Soon</a></li>
-                                                <li class="nav-item"><a href="error.html">Error 404</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item"><a href="index-two.html" class="eblog-dropdown-main-element">Life Style</a></li>
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-5 col-sm-5 col-5 p-0">
-                            <div class="eblog-header-top-social-media">
-                                <a href="#" id="search" class="eblog-header-top-search-btn search-icon action-item icon">
-                                    <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18.1256 16.1458L13.4056 11.7888C14.5398 10.5319 15.1053 8.91973 14.9847 7.28771C14.864 5.65568 14.0663 4.12943 12.7576 3.02647C11.4488 1.9235 9.72983 1.32874 7.95814 1.3659C6.18645 1.40306 4.49849 2.06929 3.2454 3.226C1.9923 4.3827 1.27055 5.94082 1.23029 7.57622C1.19003 9.21162 1.83436 10.7984 3.02924 12.0064C4.22412 13.2145 5.87756 13.9508 7.64558 14.0622C9.41361 14.1736 11.1601 13.6516 12.5218 12.6046L17.2418 16.9616L18.1256 16.1458ZM2.50064 7.73083C2.50064 6.70389 2.83054 5.70001 3.44862 4.84614C4.0667 3.99227 4.94521 3.32676 5.97304 2.93376C7.00088 2.54077 8.13188 2.43795 9.22302 2.63829C10.3142 2.83864 11.3164 3.33316 12.1031 4.05931C12.8898 4.78547 13.4255 5.71065 13.6426 6.71786C13.8596 7.72507 13.7482 8.76907 13.3225 9.71784C12.8967 10.6666 12.1757 11.4775 11.2507 12.0481C10.3257 12.6186 9.23816 12.9231 8.12564 12.9231C6.6343 12.9216 5.20452 12.3741 4.14999 11.4007C3.09545 10.4272 2.50229 9.10745 2.50064 7.73083Z" fill="#1E1E1E" />
-                                    </svg>
-                                </a>
-                                <div class="search-input-area">
-                                    <div class="container">
-                                        <div class="search-input-inner">
-                                            <div class="input-div">
-                                                <input id="searchInput1" class="search-input" type="text" placeholder="Search by keyword or #">
-                                            </div>
-                                            <div class="search-close-icon"><i class="fa-regular fa-xmark-large rt-xmark"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="eblog-header-top-menu-bar menu-btn">
-                                    <a href="javascript:void(0)">
-                                        <div class="line small"></div>
-                                        <div class="line big"></div>
-                                        <div class="line small"></div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Home-1 Menu & Site Logo & Social Media -->
-    </header>
-    <!-- End Top Header Area -->
-
-    <!-- side bar for desktop -->
-    <div id="side-bar" class="side-bar header-one">
-        <div class="inner">
-            <button class="close-icon-menu"><i class="far fa-times"></i></button>
-            <!-- inner menu area desktop start -->
-            <div class="inner-main-wrapper-desk d-none d-lg-block">
-                <div class="thumbnail">
-                    <img src="static/img/logo/logo-01-w.svg" alt="eblog">
-                </div>
-                <div class="inner-content">
-                    <div class="newsletter-form">
-                        <div class="form-inner">
-                            <div class="content">
-                                <h3 class="title mb--20">Get Newsletter</h3>
-                            </div>
-                            <form action="#">
-                                <div class="input-div">
-                                    <input type="email" placeholder="Your email..." required>
-                                </div>
-                                <button type="submit" class="subscribe-btn">Subscribe Now</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- mobile menu area start -->
-        <div class="mobile-menu d-block d-lg-none">
-            <nav class="nav-main mainmenu-nav mt--30">
-                <ul class="mainmenu" id="mobile-menu-active">
-                    <li class="has-droupdown">
-                        <a href="#" class="main">Home</a>
-                        <ul class="submenu">
-                            <li><a class="mobile-menu-link" href="index.html">Home 01 - Technology</a></li>
-                            <li><a class="mobile-menu-link" href="index-two.html">Home 02 - Life Style</a></li>
-                            <li><a class="mobile-menu-link" href="index-three.html">Home 03 - Travel</a></li>
-                            <li><a class="mobile-menu-link" href="index-four.html">Home 04 - Food</a></li>
-                            <li><a class="mobile-menu-link" href="index-five.html">Home 05 - Sports</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-droupdown">
-                        <a href="#" class="main">Post</a>
-                        <ul class="submenu">
-                            <li><a class="mobile-menu-link" href="column-layout.html">Post Column</a></li>
-                            <li><a class="mobile-menu-link" href="column-layout-grid.html">Post Grid</a></li>
-                            <li><a class="mobile-menu-link" href="column-layout-right-sidebar.html">Post Right Sidebar</a></li>
-                            <li><a class="mobile-menu-link" href="column-layout-left-sidebar.html">Post Left Sidebar</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-droupdown">
-                        <a href="#" class="main">Post Details</a>
-                        <ul class="submenu">
-                            <li><a class="mobile-menu-link" href="blog-details.html">Post Details</a></li>
-                            <li><a class="mobile-menu-link" href="blog-details-2.html">Post Details 2</a></li>
-                            <li><a class="mobile-menu-link" href="blog-details-3.html">Post Details 3</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-droupdown">
-                        <a href="#" class="main">Pages</a>
-                        <ul class="submenu">
-                            <li><a class="mobile-menu-link" href="author.html">Author</a></li>
-                            <li><a class="mobile-menu-link" href="sign-in.html">Sign In</a></li>
-                            <li><a class="mobile-menu-link" href="sign-up.html">Sign Up</a></li>
-                            <li><a class="mobile-menu-link" href="reset-password.html">Reset Password</a></li>
-                            <li><a class="mobile-menu-link" href="coming-soon.html">Coming Soon</a></li>
-                            <li><a class="mobile-menu-link" href="error.html">Error 404</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item"><a class="main mobile-menu-link" href="index-two.html">Life Style</a></li>
-                </ul>
-            </nav>
-        </div>
-        <!-- mobile menu area end -->
-    </div>
-    <!-- header style two End -->
-
-    <!-- Start Subscribe Popup Box -->
-    <div class="eblog-popup-model" id="id01">
-        <div class="eblog-popup-transition">
-            <div class="model-content animate-subscribe-popup">
-                <a href="javascript:void(0)" onclick="document.getElementById('id01').style.display='none'"><i class="fa-regular fa-xmark"></i></a>
-                <div class="eblog-p-flexing">
-                    <div class="form">
-                        <div class="eblog-p-sub-heading">
-                            <p>Weekly Updates</p>
-                        </div>
-                        <div class="eblog-p-sub-heading">
-                            <h3>Let's join our newsletter!</h3>
-                        </div>
-                        <form method="POST">
-                            <input type="email" required placeholder="Enter Your Email..">
-                            <button type="submit">Submit</button>
-                        </form>
-                        <div class="eblog-bottom-popup">
-                            <p>Do not worry we don't spam!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Subscribe Popup Box -->
-    <!-- End Header Area -->
-    <!-- Start Breadcrumb Area -->
-    <!-- rts breadcrumba area start -->
-    <div class="eblog-breadcrumb-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- bread crumb inner wrapper -->
-                    <div class="breadcrumb-inner text-center">
-                        <div class="meta">
-                            <a href="#" class="prev">Home</a>
-                            <img src="static/img/icon/chevron-right.svg" alt="">
-                            <a href="#" class="last">Coming Soon</a>
-                        </div>
-                    </div>
-                    <!-- bread crumb inner wrapper end -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- rts breadcrumba area end -->
-    <!-- End Breadcrumb Area -->
-
-    <!-- Start Sign Up Area -->
-    <section class="eblog-coming-soon-area tp-section-gap">
+{% block content %}
+    <!-- Start Coming Soon Area -->
+    <section class="eblog-coming-soon-area">
         <div class="container">
             <div class="section-inner">
                 <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-8">
-                        <h2 class="heading-title text-center">Coming soon!</h2>
-                        <div class="eblog-countdown-area">
-                            <div class="countdown">
-                                <div class="countdown-el days-c">
-                                    <span class="value" id="days"></span>
-                                </div>
-                                <span class="letter">:</span>
-                                <div class="countdown-el hours-c">
-                                    <span class="value" id="hours"></span>
-                                </div>
-                                <span class="letter">:</span>
-                                <div class="countdown-el mins-c">
-                                    <span class="value" id="mins"></span>
-                                </div>
-                                <span class="letter">:</span>
-                                <div class="countdown-el seconds-c">
-                                    <span class="value" id="seconds"></span>
+                    <div class="col-lg-8">
+                        <div class="coming-soon-content text-center">
+                            <div class="logo-area mb--50">
+                                <img src="{% static 'img/logo/logo-01-w.svg' %}" alt="eblog">
+                            </div>
+                            
+                            <h1 class="title">Coming Soon</h1>
+                            <p class="desc">We're working hard to bring you something amazing. Stay tuned!</p>
+                            
+                            <!-- Countdown Timer -->
+                            <div class="countdown-timer mb--50">
+                                <div class="row">
+                                    <div class="col-md-3 col-6">
+                                        <div class="timer-item">
+                                            <div class="number" id="days">00</div>
+                                            <div class="label">Days</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <div class="timer-item">
+                                            <div class="number" id="hours">00</div>
+                                            <div class="label">Hours</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <div class="timer-item">
+                                            <div class="number" id="minutes">00</div>
+                                            <div class="label">Minutes</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <div class="timer-item">
+                                            <div class="number" id="seconds">00</div>
+                                            <div class="label">Seconds</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            
+                            <!-- Newsletter Form -->
+                            <div class="newsletter-form">
+                                <h3>Get Notified When We Launch</h3>
+                                <form action="#" class="form-inner">
+                                    <div class="single-input-wrapper">
+                                        <input type="email" name="email" placeholder="Enter your email address" required>
+                                    </div>
+                                    <div class="single-input-wrapper">
+                                        <button type="submit" class="subscribe-btn tp-btn btn-primary">Notify Me</button>
+                                    </div>
+                                </form>
+                                <p class="note">We'll never share your email with anyone else.</p>
+                            </div>
+                            
+                            <!-- Social Links -->
+                            <div class="social-links mt--50">
+                                <h4>Follow Us</h4>
+                                <ul class="social-wrapper">
+                                    <li>
+                                        <a href="#">
+                                            <svg width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12.3166 2.21191H2.98031C2.82634 2.21306 2.67901 2.27473 2.57013 2.38361C2.46125 2.49248 2.39958 2.63982 2.39844 2.79379V12.13C2.39958 12.284 2.46125 12.4313 2.57013 12.5402C2.67901 12.6491 2.82634 12.7108 2.98031 12.7119H8.00719V8.65191H6.64219V7.06379H8.00719V5.89566C8.00719 4.53941 8.83406 3.80004 10.0503 3.80004C10.4572 3.80004 10.8641 3.80004 11.2709 3.86129V5.27441H10.4353C9.77469 5.27441 9.64781 5.58941 9.64781 6.04879V7.05941H11.2228L11.0172 8.64754H9.64781V12.7119H12.3166C12.4705 12.7108 12.6179 12.6491 12.7267 12.5402C12.8356 12.4313 12.8973 12.284 12.8984 12.13V2.79379C12.8973 2.63982 12.8356 2.49248 12.7267 2.38361C12.6179 2.27473 12.4705 2.21306 12.3166 2.21191Z" fill="#00C89A" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <svg width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.76988 3.1885C9.21631 3.16321 9.05023 3.15788 7.64844 3.15788V3.15783C6.24664 3.15783 6.08057 3.16321 5.527 3.18846C5.19408 3.19242 4.86432 3.25357 4.55212 3.36923C4.32571 3.4566 4.12009 3.59039 3.94849 3.762C3.77689 3.9336 3.64311 4.13922 3.55576 4.36564C3.44009 4.67784 3.37894 5.0076 3.37498 5.34052C3.34969 5.89409 3.34436 6.06016 3.34436 7.46196C3.34436 8.86375 3.34974 9.02983 3.37498 9.5834C3.37894 9.91631 3.44009 10.2461 3.55576 10.5583C3.64312 10.7847 3.7769 10.9903 3.9485 11.1619C4.1201 11.3335 4.32571 11.4673 4.55212 11.5546C4.86432 11.6703 5.19408 11.7315 5.527 11.7354C6.08052 11.7607 6.24651 11.766 7.64844 11.766C9.05036 11.766 9.21635 11.7607 9.76988 11.7354C10.1028 11.7315 10.4326 11.6703 10.7448 11.5546C10.9712 11.4673 11.1768 11.3335 11.3484 11.1619C11.52 10.9903 11.6538 10.7847 11.7411 10.5583C11.8568 10.2461 11.9179 9.91631 11.9219 9.5834C11.9472 9.02983 11.9525 8.86375 11.9525 7.46196C11.9525 6.06016 11.9471 5.89409 11.9219 5.34052C11.9179 5.0076 11.8568 4.67784 11.7411 4.36564C11.6538 4.13923 11.52 3.93362 11.3484 3.76202C11.1768 3.59042 10.9712 3.45664 10.7448 3.36928C10.4326 3.25361 10.1028 3.19246 9.76988 3.1885ZM5.48386 2.2435C6.04382 2.21795 6.22263 2.21191 7.64844 2.21191C9.07425 2.21191 9.25306 2.21795 9.81279 2.24372C10.2483 2.25244 10.6792 2.33496 11.0872 2.48776C11.436 2.62262 11.7527 2.82886 12.0172 3.09326C12.2816 3.35767 12.4879 3.6744 12.6228 4.02316C12.7756 4.43104 12.8581 4.86187 12.8668 5.29734C12.8924 5.8573 12.8984 6.0361 12.8984 7.46191C12.8984 8.88773 12.8924 9.06653 12.8671 9.62627C12.8583 10.0618 12.7758 10.4927 12.623 10.9007C12.4881 11.2495 12.2819 11.5662 12.0174 11.8307C11.753 12.0951 11.4362 12.3014 11.0874 12.4363C10.6795 12.5891 10.2486 12.6716 9.81301 12.6803C9.25306 12.7059 9.07425 12.7119 7.64844 12.7119C6.22263 12.7119 6.04382 12.7059 5.48408 12.6805C5.04854 12.6718 4.61764 12.5893 4.20969 12.4365C3.86088 12.3016 3.54411 12.0953 3.27967 11.8309C3.01522 11.5665 2.80895 11.2497 2.67406 10.9009C2.52126 10.4929 2.43875 10.062 2.43002 9.62649C2.40447 9.06653 2.39844 8.88773 2.39844 7.46191C2.39844 6.0361 2.40447 5.8573 2.43002 5.29756C2.43874 4.86202 2.52126 4.43111 2.67406 4.02316C2.80895 3.67436 3.01522 3.35759 3.27967 3.09314C3.54411 2.8287 3.86088 2.62243 4.20969 2.48754C4.61757 2.33476 5.0484 2.25224 5.48386 2.2435ZM10.4509 5.28942C10.7988 5.28942 11.0809 5.00736 11.0809 4.65942C11.0809 4.31148 10.7988 4.02942 10.4509 4.02942C10.1029 4.02942 9.82088 4.31148 9.82088 4.65942C9.82088 5.00736 10.1029 5.28942 10.4509 5.28942ZM7.64842 4.76599C7.11521 4.76599 6.59398 4.92411 6.15063 5.22034C5.70728 5.51658 5.36173 5.93763 5.15768 6.43025C4.95363 6.92288 4.90024 7.46494 5.00426 7.98791C5.10829 8.51088 5.36505 8.99125 5.74209 9.36829C6.11913 9.74532 6.5995 10.0021 7.12247 10.1061C7.64543 10.2101 8.1875 10.1567 8.68013 9.9527C9.17275 9.74865 9.5938 9.4031 9.89004 8.95975C10.1863 8.5164 10.3444 7.99516 10.3444 7.46195C10.3444 6.74694 10.0603 6.06121 9.55476 5.55562C9.04917 5.05003 8.36344 4.76599 7.64842 4.76599ZM7.64842 9.21195C7.30231 9.21195 6.96396 9.10932 6.67618 8.91703C6.38839 8.72473 6.16409 8.45142 6.03164 8.13165C5.89918 7.81188 5.86453 7.46001 5.93205 7.12055C5.99957 6.78108 6.16625 6.46926 6.41099 6.22452C6.65573 5.97977 6.96755 5.8131 7.30702 5.74558C7.64648 5.67806 7.99835 5.71271 8.31812 5.84516C8.63789 5.97762 8.9112 6.20192 9.1035 6.48971C9.29579 6.77749 9.39843 7.11584 9.39843 7.46195C9.39843 7.92608 9.21405 8.3712 8.88586 8.69939C8.55767 9.02758 8.11255 9.21195 7.64842 9.21195Z" fill="white" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <svg width="15" height="15" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_4219_1416)">
+                                                    <path d="M6.57925 4.69623L10.2219 0.461914H9.35873L6.19579 4.13851L3.66956 0.461914H0.755859L4.57601 6.02158L0.755859 10.4619H1.61911L4.95925 6.5793L7.62713 10.4619H10.5408L6.57904 4.69623H6.57925ZM5.39691 6.07056L5.00985 5.51695L1.93015 1.11175H3.25604L5.7414 4.66688L6.12846 5.2205L9.35913 9.84163H8.03324L5.39691 6.07078V6.07056Z" fill="white" />
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_4219_1416">
+                                                        <rect width="10" height="10" fill="white" transform="translate(0.648438 0.461914)" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <svg width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M7.64775 1.33691C6.22774 1.34658 4.8552 1.84936 3.76495 2.75924C2.67469 3.66912 1.93446 4.92956 1.67089 6.32493C1.40732 7.7203 1.63679 9.16391 2.32003 10.4088C3.00328 11.6537 4.09785 12.6224 5.4165 13.1494C5.32788 12.5694 5.32788 11.9794 5.4165 11.3994L6.13838 8.33691C6.02414 8.05956 5.96757 7.76184 5.97213 7.46191C5.97213 6.61316 6.4665 5.97441 7.079 5.97441C7.18996 5.97275 7.29997 5.99508 7.40149 6.03989C7.50302 6.0847 7.59365 6.15092 7.6672 6.23402C7.74074 6.31712 7.79546 6.41514 7.82759 6.52136C7.85973 6.62757 7.86852 6.73948 7.85338 6.84941C7.85338 7.37441 7.52088 8.16191 7.34588 8.88816C7.30821 9.0236 7.30373 9.16612 7.33282 9.30366C7.36191 9.44119 7.42371 9.5697 7.51298 9.67829C7.60226 9.78688 7.71639 9.87236 7.8457 9.9275C7.97502 9.98263 8.11571 10.0058 8.25588 9.99504C9.34088 9.99504 10.1809 8.84441 10.1809 7.19066C10.1918 6.85461 10.1325 6.51998 10.0069 6.20811C9.88125 5.89623 9.69199 5.61397 9.45117 5.37933C9.21036 5.14469 8.92328 4.96282 8.60825 4.84532C8.29322 4.72783 7.95716 4.67728 7.6215 4.69691C7.26314 4.68152 6.90539 4.73901 6.56989 4.86589C6.2344 4.99276 5.92813 5.1864 5.66964 5.43508C5.41115 5.68375 5.20581 5.98229 5.06604 6.31263C4.92627 6.64297 4.85499 6.99823 4.8565 7.35691C4.85164 7.8566 5.00476 8.34505 5.294 8.75254C5.31503 8.77592 5.33002 8.80409 5.33764 8.8346C5.34527 8.8651 5.34531 8.89701 5.33775 8.92754C5.28963 9.12004 5.18463 9.54004 5.16713 9.62316C5.14963 9.70629 5.07525 9.75879 4.9615 9.70629C4.19588 9.34754 3.719 8.23191 3.719 7.33066C3.719 5.40129 5.12338 3.62504 7.76588 3.62504C9.88775 3.62504 11.5415 5.13879 11.5415 7.16441C11.5415 9.27316 10.229 10.9707 8.36088 10.9707C8.08701 10.9802 7.8151 10.9212 7.56985 10.7989C7.32459 10.6767 7.11376 10.4951 6.9565 10.2707L6.57588 11.7275C6.39342 12.2937 6.13748 12.8335 5.81463 13.3332C6.40953 13.509 7.02746 13.5945 7.64775 13.5869C9.2722 13.5869 10.8301 12.9416 11.9788 11.7929C13.1274 10.6443 13.7728 9.08637 13.7728 7.46191C13.7728 5.83746 13.1274 4.27955 11.9788 3.13088C10.8301 1.98222 9.2722 1.33691 7.64775 1.33691Z" fill="white" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <p class="desc">Comeback again when we’re live! <br>
-                            Thank you for understanding and patience!</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- End Sign Up Area -->
-
-    <!-- Start Newsletter Area -->
-    <section class="eblog-newsletter-area tp-section-gap">
-        <div class="container">
-            <div class="section-inner">
-                <p class="sub-title">Weekly updates</p>
-                <h2 class="section-title">Join our newsletter for <br>
-                    latest updates!</h2>
-                <p class="desc">Nisi dignissim tortor sed quam sed ipsum ut. <br>
-                    Montes, morbi euismod elit.</p>
-                <form action="#" class="newsletter-form">
-                    <div class="form-inner">
-                        <div class="single-input-wrapper">
-                            <input type="email" name="email" placeholder="Your email address" required>
-                        </div>
-                        <div class="single-input-wrapper">
-                            <button type="submit" class="subscribe-btn tp-btn btn-primary">Subscribe</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-    <!-- End Newsletter Area -->
-
-    <!-- Start Footer Area -->
-    <footer class="eblog-footer-area footer-inner tp-section-top-100" id="footer">
-        <div class="container">
-            <div class="eblog-footer-inner">
-                <div class="social-area">
-                    <p class="tag">Follow us on:</p>
-                    <ul class="social-wrapper">
-                        <li>
-                            <a href="#">
-                                <svg width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12.3166 2.21191H2.98031C2.82634 2.21306 2.67901 2.27473 2.57013 2.38361C2.46125 2.49248 2.39958 2.63982 2.39844 2.79379V12.13C2.39958 12.284 2.46125 12.4313 2.57013 12.5402C2.67901 12.6491 2.82634 12.7108 2.98031 12.7119H8.00719V8.65191H6.64219V7.06379H8.00719V5.89566C8.00719 4.53941 8.83406 3.80004 10.0503 3.80004C10.4572 3.80004 10.8641 3.80004 11.2709 3.86129V5.27441H10.4353C9.77469 5.27441 9.64781 5.58941 9.64781 6.04879V7.05941H11.2228L11.0172 8.64754H9.64781V12.7119H12.3166C12.4705 12.7108 12.6179 12.6491 12.7267 12.5402C12.8356 12.4313 12.8973 12.284 12.8984 12.13V2.79379C12.8973 2.63982 12.8356 2.49248 12.7267 2.38361C12.6179 2.27473 12.4705 2.21306 12.3166 2.21191Z" fill="#00C89A" />
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <svg width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.76988 3.1885C9.21631 3.16321 9.05023 3.15788 7.64844 3.15788V3.15783C6.24664 3.15783 6.08057 3.16321 5.527 3.18846C5.19408 3.19242 4.86432 3.25357 4.55212 3.36923C4.32571 3.4566 4.12009 3.59039 3.94849 3.762C3.77689 3.9336 3.64311 4.13922 3.55576 4.36564C3.44009 4.67784 3.37894 5.0076 3.37498 5.34052C3.34969 5.89409 3.34436 6.06016 3.34436 7.46196C3.34436 8.86375 3.34974 9.02983 3.37498 9.5834C3.37894 9.91631 3.44009 10.2461 3.55576 10.5583C3.64312 10.7847 3.7769 10.9903 3.9485 11.1619C4.1201 11.3335 4.32571 11.4673 4.55212 11.5546C4.86432 11.6703 5.19408 11.7315 5.527 11.7354C6.08052 11.7607 6.24651 11.766 7.64844 11.766C9.05036 11.766 9.21635 11.7607 9.76988 11.7354C10.1028 11.7315 10.4326 11.6703 10.7448 11.5546C10.9712 11.4673 11.1768 11.3335 11.3484 11.1619C11.52 10.9903 11.6538 10.7847 11.7411 10.5583C11.8568 10.2461 11.9179 9.91631 11.9219 9.5834C11.9472 9.02983 11.9525 8.86375 11.9525 7.46196C11.9525 6.06016 11.9471 5.89409 11.9219 5.34052C11.9179 5.0076 11.8568 4.67784 11.7411 4.36564C11.6538 4.13923 11.52 3.93362 11.3484 3.76202C11.1768 3.59042 10.9712 3.45664 10.7448 3.36928C10.4326 3.25361 10.1028 3.19246 9.76988 3.1885ZM5.48386 2.2435C6.04382 2.21795 6.22263 2.21191 7.64844 2.21191C9.07425 2.21191 9.25306 2.21795 9.81279 2.24372C10.2483 2.25244 10.6792 2.33496 11.0872 2.48776C11.436 2.62262 11.7527 2.82886 12.0172 3.09326C12.2816 3.35767 12.4879 3.6744 12.6228 4.02316C12.7756 4.43104 12.8581 4.86187 12.8668 5.29734C12.8924 5.8573 12.8984 6.0361 12.8984 7.46191C12.8984 8.88773 12.8924 9.06653 12.8671 9.62627C12.8583 10.0618 12.7758 10.4927 12.623 10.9007C12.4881 11.2495 12.2819 11.5662 12.0174 11.8307C11.753 12.0951 11.4362 12.3014 11.0874 12.4363C10.6795 12.5891 10.2486 12.6716 9.81301 12.6803C9.25306 12.7059 9.07425 12.7119 7.64844 12.7119C6.22263 12.7119 6.04382 12.7059 5.48408 12.6805C5.04854 12.6718 4.61764 12.5893 4.20969 12.4365C3.86088 12.3016 3.54411 12.0953 3.27967 11.8309C3.01522 11.5665 2.80895 11.2497 2.67406 10.9009C2.52126 10.4929 2.43875 10.062 2.43002 9.62649C2.40447 9.06653 2.39844 8.88773 2.39844 7.46191C2.39844 6.0361 2.40447 5.8573 2.43002 5.29756C2.43874 4.86202 2.52126 4.43111 2.67406 4.02316C2.80895 3.67436 3.01522 3.35759 3.27967 3.09314C3.54411 2.8287 3.86088 2.62243 4.20969 2.48754C4.61757 2.33476 5.0484 2.25224 5.48386 2.2435ZM10.4509 5.28942C10.7988 5.28942 11.0809 5.00736 11.0809 4.65942C11.0809 4.31148 10.7988 4.02942 10.4509 4.02942C10.1029 4.02942 9.82088 4.31148 9.82088 4.65942C9.82088 5.00736 10.1029 5.28942 10.4509 5.28942ZM7.64842 4.76599C7.11521 4.76599 6.59398 4.92411 6.15063 5.22034C5.70728 5.51658 5.36173 5.93763 5.15768 6.43025C4.95363 6.92288 4.90024 7.46494 5.00426 7.98791C5.10829 8.51088 5.36505 8.99125 5.74209 9.36829C6.11913 9.74532 6.5995 10.0021 7.12247 10.1061C7.64543 10.2101 8.1875 10.1567 8.68013 9.9527C9.17275 9.74865 9.5938 9.4031 9.89004 8.95975C10.1863 8.5164 10.3444 7.99516 10.3444 7.46195C10.3444 6.74694 10.0603 6.06121 9.55476 5.55562C9.04917 5.05003 8.36344 4.76599 7.64842 4.76599ZM7.64842 9.21195C7.30231 9.21195 6.96396 9.10932 6.67618 8.91703C6.38839 8.72473 6.16409 8.45142 6.03164 8.13165C5.89918 7.81188 5.86453 7.46001 5.93205 7.12055C5.99957 6.78108 6.16625 6.46926 6.41099 6.22452C6.65573 5.97977 6.96755 5.8131 7.30702 5.74558C7.64648 5.67806 7.99835 5.71271 8.31812 5.84516C8.63789 5.97762 8.9112 6.20192 9.1035 6.48971C9.29579 6.77749 9.39843 7.11584 9.39843 7.46195C9.39843 7.92608 9.21405 8.3712 8.88586 8.69939C8.55767 9.02758 8.11255 9.21195 7.64842 9.21195Z" fill="white" />
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <svg width="15" height="15" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#clip0_4219_1416)">
-                                        <path d="M6.57925 4.69623L10.2219 0.461914H9.35873L6.19579 4.13851L3.66956 0.461914H0.755859L4.57601 6.02158L0.755859 10.4619H1.61911L4.95925 6.5793L7.62713 10.4619H10.5408L6.57904 4.69623H6.57925ZM5.39691 6.07056L5.00985 5.51695L1.93015 1.11175H3.25604L5.7414 4.66688L6.12846 5.2205L9.35913 9.84163H8.03324L5.39691 6.07078V6.07056Z" fill="white" />
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_4219_1416">
-                                            <rect width="10" height="10" fill="white" transform="translate(0.648438 0.461914)" />
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <svg width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M7.64775 1.33691C6.22774 1.34658 4.8552 1.84936 3.76495 2.75924C2.67469 3.66912 1.93446 4.92956 1.67089 6.32493C1.40732 7.7203 1.63679 9.16391 2.32003 10.4088C3.00328 11.6537 4.09785 12.6224 5.4165 13.1494C5.32788 12.5694 5.32788 11.9794 5.4165 11.3994L6.13838 8.33691C6.02414 8.05956 5.96757 7.76184 5.97213 7.46191C5.97213 6.61316 6.4665 5.97441 7.079 5.97441C7.18996 5.97275 7.29997 5.99508 7.40149 6.03989C7.50302 6.0847 7.59365 6.15092 7.6672 6.23402C7.74074 6.31712 7.79546 6.41514 7.82759 6.52136C7.85973 6.62757 7.86852 6.73948 7.85338 6.84941C7.85338 7.37441 7.52088 8.16191 7.34588 8.88816C7.30821 9.0236 7.30373 9.16612 7.33282 9.30366C7.36191 9.44119 7.42371 9.5697 7.51298 9.67829C7.60226 9.78688 7.71639 9.87236 7.8457 9.9275C7.97502 9.98263 8.11571 10.0058 8.25588 9.99504C9.34088 9.99504 10.1809 8.84441 10.1809 7.19066C10.1918 6.85461 10.1325 6.51998 10.0069 6.20811C9.88125 5.89623 9.69199 5.61397 9.45117 5.37933C9.21036 5.14469 8.92328 4.96282 8.60825 4.84532C8.29322 4.72783 7.95716 4.67728 7.6215 4.69691C7.26314 4.68152 6.90539 4.73901 6.56989 4.86589C6.2344 4.99276 5.92813 5.1864 5.66964 5.43508C5.41115 5.68375 5.20581 5.98229 5.06604 6.31263C4.92627 6.64297 4.85499 6.99823 4.8565 7.35691C4.85164 7.8566 5.00476 8.34505 5.294 8.75254C5.31503 8.77592 5.33002 8.80409 5.33764 8.8346C5.34527 8.8651 5.34531 8.89701 5.33775 8.92754C5.28963 9.12004 5.18463 9.54004 5.16713 9.62316C5.14963 9.70629 5.07525 9.75879 4.9615 9.70629C4.19588 9.34754 3.719 8.23191 3.719 7.33066C3.719 5.40129 5.12338 3.62504 7.76588 3.62504C9.88775 3.62504 11.5415 5.13879 11.5415 7.16441C11.5415 9.27316 10.229 10.9707 8.36088 10.9707C8.08701 10.9802 7.8151 10.9212 7.56985 10.7989C7.32459 10.6767 7.11376 10.4951 6.9565 10.2707L6.57588 11.7275C6.39342 12.2937 6.13748 12.8335 5.81463 13.3332C6.40953 13.509 7.02746 13.5945 7.64775 13.5869C9.2722 13.5869 10.8301 12.9416 11.9788 11.7929C13.1274 10.6443 13.7728 9.08637 13.7728 7.46191C13.7728 5.83746 13.1274 4.27955 11.9788 3.13088C10.8301 1.98222 9.2722 1.33691 7.64775 1.33691Z" fill="white" />
-                                </svg>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer-logo-area">
-                    <a href="index.html" class="logo"><img src="static/img/logo/logo-04.svg" alt=""></a>
-                    <p class="desc">Nisi dignissim tortor sed quam sed ipsum ut tortor <br> sed dignissim montes, morbi euismod elit.</p>
-                </div>
-                <div class="footer-newsletter-area">
-                    <p class="tag">Join my newsletter:</p>
-                    <form action="#">
-                        <div class="form-inner">
-                            <div class="single-input-wrapper">
-                                <input type="email" name="email" placeholder="Your mail address" required>
-                            </div>
-                            <div class="single-input-wrapper">
-                                <button type="submit" class="subscribe-btn tp-btn btn-primary">Subscribe</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="eblog-footer-copyright-area">
-            <div class="copyright-content">
-                <p class="title">2024 © All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-    <!-- End Footer Area -->
-    <!-- End Footer Area -->
-
-    <!-- Start Scricpt Area -->
-
-    <!--scroll top button-->
-    <button class="scroll-top-btn">
-        <i class="fa-regular fa-angles-up"></i>
-    </button>
-    <!--scroll top button end-->
-
-    <div id="anywhere-home"></div>
-
-    <script src="static/js/jquery.min.js" defer></script>
-    <script src="static/js/audio.js" defer></script>
-    <script src="static/js/bootstrap.min.js" defer></script>
-    <script src="static/js/swiper.js" defer></script>
-    <script src="static/js/timer.js" defer></script>
-    <script src="static/js/metisMenu.min.js" defer></script>
-    <script src="static/js/audio.js" defer></script>
-    <script src="static/js/magnific-popup.js" defer></script>
-    <script src="static/js/contact-form.js" defer></script>
-    <script src="static/js/resize-sensor.min.js" defer></script>
-    <script src="static/js/theia-sticky-sidebar.min.js" defer></script>
-
-    <!-- main js file -->
-    <script src="static/js/main.js" defer></script>
-    <!-- End Footer Area -->
-
-</body>
-
-</html>
+    <!-- End Coming Soon Area -->
+    
+    <!-- Countdown Timer Script -->
+    <script>
+        // Set the date we're counting down to (30 days from now)
+        const countDownDate = new Date().getTime() + (30 * 24 * 60 * 60 * 1000);
+        
+        // Update the countdown every 1 second
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Display the result
+            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+            
+            // If the countdown is finished, display a message
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                document.getElementById("seconds").innerHTML = "00";
+            }
+        }, 1000);
+    </script>
+{% endblock %}

@@ -15,3 +15,5 @@ urlpatterns = [
     path('<slug:slug>/review/', views.review_story, name='review_story'),
     path('<slug:slug>/submit-review/', views.submit_for_review, name='submit_for_review'),
 ]
+
+

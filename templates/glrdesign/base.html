@@ -1,0 +1,303 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- =========================
+         HEAD: META & CSS
+    ========================= -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Goal Line Report{% endblock %}</title>
+
+    <!-- Primary meta -->
+    <meta name="description" content="{% block meta_description %}News, articles and stories about sports and more.{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}news, blog, sports, football{% endblock %}">
+    <meta name="author" content="{% block meta_author %}Goal Line Report{% endblock %}">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
+
+    <!-- Fonts -->
+    <link rel="preload" href="{% static 'fonts/your-font.woff2' %}" as="font" type="font/woff2" crossorigin>
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome-5.css' %}">
+    <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
+    <link rel="stylesheet" href="{% static 'css/metismenu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+    <!-- Project CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom-sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- =========================
+         HEADER: TOP BAR
+    ========================= -->
+    <header class="eblog-header-area header--sticky">
+        <div class="eblog-header-top">
+            <div class="container">
+                <div class="eblog-full-header-top">
+                    <div class="row align-items-center plr_md--30">
+
+                        <!-- Social Icons Left -->
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-7 col-8">
+                            <div class="eblog-header-top-social">
+                                <p class="tag">Follow Us :</p>
+                                <ul class="social-wrapper">
+                                    <li><a href="https://www.facebook.com/" target="_blank"><img src="{% static 'img/icon/facebook.svg' %}" alt="facebook" width="15"></a></li>
+                                    <li><a href="https://www.instagram.com/" target="_blank"><img src="{% static 'img/icon/instagram.svg' %}" alt="instagram" width="15"></a></li>
+                                    <li><a href="https://x.com/" target="_blank"><img src="{% static 'img/icon/x.svg' %}" alt="x" width="11"></a></li>
+                                    <li><a href="https://www.youtube.com/" target="_blank"><img src="{% static 'img/icon/youtube.svg' %}" alt="youtube" width="15"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Trending / Center -->
+                        <div class="col-xl-4 col-lg-4 d-none d-lg-block text-center">
+                            <div class="eblog-meta-total-jobs">
+                                <div class="eblog-meta-jobs-icons d-inline-block align-middle">
+                                    <img src="{% static 'img/icon/bolt.svg' %}" width="11" alt="bolt">
+                                </div>
+                                <div class="eblog-meta-jobs-text d-inline-block align-middle ml-2">
+                                    <div class="swiper tp-treding-slider10">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide"><span>Apple opens its iPhone ecosystem in the EU</span></div>
+                                            <div class="swiper-slide"><span>Top transfer rumours and confirmed deals</span></div>
+                                            <div class="swiper-slide"><span>Match reports and tactical analysis</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Subscribe / Login Right -->
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-5 col-4 text-right">
+                            <div class="eblog-header-top-subs-social-menu">
+                                <a href="#" class="eblog-py-btn" onclick="document.getElementById('subscribeModal')?.style.display='block'">Subscribe</a>
+                                <a href="#" class="eblog-login-btn ml-2">Login</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================
+             HEADER: NAVIGATION
+        ========================= -->
+        <div class="eblog-home-1-menu">
+            <div class="container">
+                <div class="row align-items-center plr_md--30 plr_sm--30 plr--10">
+
+                    <!-- Logo -->
+                    <div class="col-xl-2 col-lg-2 col-md-7 col-sm-7 col-7 p-0">
+                        <div class="eblog-site-logo">
+                            <a class="logo-light" href="{% url 'index' %}">
+                                <img src="{% static 'img/logo/logo-01.svg' %}" alt="Goal Line Report">
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Menu -->
+                    <div class="col-xl-8 col-lg-8 d-none d-lg-block">
+                        <nav>
+                            <ul class="eblog-desktop-menu list-unstyled">
+                                <li class="menu-item eblog-has-dropdown">
+                                    <a href="#" class="eblog-dropdown-main-element active">News</a>
+                                    <ul class="eblog-submenu list-unstyled menu-pages">
+                                        <li><a href="#">Latest News</a></li>
+                                        <li><a href="#">Transfer News</a></li>
+                                        <li><a href="#">Match Reports</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item eblog-has-dropdown">
+                                    <a href="#" class="eblog-dropdown-main-element">Fixtures & Results</a>
+                                    <ul class="eblog-submenu list-unstyled menu-pages">
+                                        <li><a href="#">Today's Matches</a></li>
+                                        <li><a href="#">Upcoming Fixtures</a></li>
+                                        <li><a href="#">Past Results</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item eblog-has-dropdown">
+                                    <a href="#" class="eblog-dropdown-main-element">Leagues</a>
+                                    <ul class="eblog-submenu list-unstyled menu-pages">
+                                        <li><a href="#">🏴 Premier League</a></li>
+                                        <li><a href="#">🇪🇸 La Liga</a></li>
+                                        <li><a href="#">🇮🇹 Serie A</a></li>
+                                        <li><a href="#">🇩🇪 Bundesliga</a></li>
+                                        <li><a href="#">🇫🇷 Ligue 1</a></li>
+                                        <li><a href="#">🏆 Champions League</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item eblog-has-dropdown">
+                                    <a href="#" class="eblog-dropdown-main-element">Teams</a>
+                                    <ul class="eblog-submenu list-unstyled menu-pages">
+                                        <li><a href="#">Team List</a></li>
+                                        <li><a href="#">Team Profiles</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item eblog-has-dropdown">
+                                    <a href="#" class="eblog-dropdown-main-element">Players</a>
+                                    <ul class="eblog-submenu list-unstyled menu-pages">
+                                        <li><a href="#">Top Players</a></li>
+                                        <li><a href="#">Player Profiles</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item eblog-has-dropdown">
+                                    <a href="#" class="eblog-dropdown-main-element">About</a>
+                                    <ul class="eblog-submenu list-unstyled menu-pages">
+                                        <li><a href="{% url 'glr_author' %}">About Us</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <!-- Search & Mobile Menu -->
+                    <div class="col-xl-2 col-lg-2 col-md-5 col-sm-5 col-5 p-0 text-right">
+                        <div class="eblog-header-top-social-media">
+                            <a href="javascript:void(0)" id="searchToggle" class="search-icon action-item icon">🔍</a>
+                            <div class="search-input-area d-none" id="searchArea">
+                                <div class="container">
+                                    <div class="search-input-inner">
+                                        <div class="input-div">
+                                            <form method="get" action="{% url 'index' %}">
+                                                <input id="searchInput1" name="q" class="search-input" type="text" placeholder="Search by keyword or #">
+                                            </form>
+                                        </div>
+                                        <div class="search-close-icon"><a href="javascript:void(0)" id="searchClose">✕</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eblog-header-top-menu-bar menu-btn d-inline-block ml-2">
+                                <a href="javascript:void(0)" id="mobileMenuToggle">☰</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- =========================
+         MOBILE MENU (OFF-CANVAS)
+    ========================= -->
+    <div id="mobileMenu" class="mobile-menu d-none">
+        <div class="mobile-menu-inner">
+            <a href="javascript:void(0)" id="mobileMenuClose" class="mobile-close">✕</a>
+            <ul class="mobile-nav">
+                <li><a href="{% url 'index' %}">News</a></li>
+                <li><a href="#">Fixtures & Results</a></li>
+                <li><a href="#">Leagues</a></li>
+                <li><a href="#">Teams</a></li>
+                <li><a href="#">Players</a></li>
+                <li><a href="{% url 'glr_author' %}">About</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+    <main id="mainContent">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top py-5">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="footer-about">
+                            <a href="{% url 'index' %}"><img src="{% static 'img/logo/logo-01.svg' %}" alt="Goal Line Report" style="max-width:140px"></a>
+                            <p class="mt-3">Goal Line Report brings you latest news, match reports and in-depth analysis.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li><a href="#">Teams</a></li>
+                            <li><a href="#">Players</a></li>
+                            <li><a href="{% url 'glr_author' %}">About</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Contact</h5>
+                        <p>Email: info@example.com</p>
+                        <p>Address: 123 Sports Avenue, City</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom py-3 text-center">
+                <p class="mb-0">© {% now "Y" %} Goal Line Report. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================
+         BACK TO TOP
+    ========================= -->
+    <a href="#top" id="backToTop" class="back-to-top" style="display:none;">↑</a>
+
+    <!-- =========================
+         JS FILES
+    ========================= -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/metisMenu.min.js' %}"></script>
+    <script src="{% static 'js/resize-sensor.min.js' %}"></script>
+    <script src="{% static 'js/swiper.js' %}"></script>
+    <script src="{% static 'js/magnific-popup.js' %}"></script>
+    <script src="{% static 'js/theia-sticky-sidebar.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- =========================
+         INLINE HELPERS (SEARCH, MOBILE, BACK-TO-TOP)
+    ========================= -->
+    <script>
+        (function () {
+            // Search toggle
+            const searchToggle = document.getElementById('searchToggle');
+            const searchArea = document.getElementById('searchArea');
+            const searchClose = document.getElementById('searchClose');
+            if (searchToggle && searchArea) {
+                searchToggle.addEventListener('click', () => {
+                    searchArea.classList.toggle('d-none');
+                    document.getElementById('searchInput1')?.focus();
+                });
+            }
+            if (searchClose) searchClose.addEventListener('click', () => searchArea.classList.add('d-none'));
+
+            // Mobile menu toggle
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileClose = document.getElementById('mobileMenuClose');
+            if (mobileToggle && mobileMenu) mobileToggle.addEventListener('click', () => mobileMenu.classList.toggle('d-none'));
+            if (mobileClose) mobileClose.addEventListener('click', () => mobileMenu.classList.add('d-none'));
+
+            // Back to top
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (backToTop) backToTop.style.display = (window.pageYOffset > 300) ? 'block' : 'none';
+            });
+        })();
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

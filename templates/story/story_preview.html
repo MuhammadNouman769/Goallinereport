@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+
+{% block title %}Preview: {{ story.title }} - Goal Line Report{% endblock %}
+
+{% block content %}
+<style>
+/* ===== Preview Banner ===== */
+.preview-banner {
+    background-color: #ffc107;
+    color: #212529;
+    padding: 12px 18px;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* Story/Chapter images */
+.story-image img,
+.chapter-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Story title */
+.story-header .story-title { color: #fff; }
+
+/* Card shadow */
+.card.shadow-sm { box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+
+/* Disabled preview buttons */
+.preview-disabled { cursor: not-allowed; opacity: .85; }
+</style>
+
+<div class="container">
+
+    <!-- Preview Banner -->
+    <div class="preview-banner">
+        <i class="fas fa-eye"></i> You are previewing this story. It is <u>not published yet</u>.
+        {% if user.is_staff %}
+            &nbsp;|&nbsp; <a class="ms-2" href="{% url 'admin:story_story_change' story.pk %}">Back to Admin Edit</a>
+        {% endif %}
+    </div>
+
+    <!-- Story Header -->
+    <div class="story-header mb-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'main:home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'story:story_list' %}">Stories</a></li>
+                    </ol>
+                </nav>
+
+                <!-- Meta info -->
+                <div class="story-meta mb-3">
+                    <span class="badge bg-success">{{ story.get_status_display }}</span>
+                    <small class="text-muted ms-3">
+                        <i class="fas fa-user"></i> {{ story.author.username }}
+                        <i class="fas fa-calendar ms-3"></i> {{ story.created_at|timesince }} ago
+                        {% if story.published_at %}
+                            <i class="fas fa-clock ms-3"></i> Published {{ story.published_at|timesince }} ago
+                        {% endif %}
+                    </small>
+                </div>
+
+                <!-- Story Image -->
+                {% if story.image %}
+                    <div class="story-image mb-3">
+                        <img src="{{ story.image.url }}" alt="{{ story.title }}">
+                    </div>
+                {% endif %}
+
+                <!-- Story Title -->
+                <h1 class="story-title mb-3">{{ story.title }}</h1>
+
+                <!-- Story Summary -->
+                {% if story.summary %}
+                    <div class="story-summary mb-4">
+                        <p class="lead">{{ story.summary }}</p>
+                    </div>
+                {% endif %}
+
+                <!-- Tags -->
+                {% if tags %}
+                    <div class="story-tags mt-4">
+                        {% for tag in tags %}
+                            <a href="{% url 'story:story_list' %}?tag={{ tag.name }}" class="badge bg-secondary">
+                                #{{ tag.name }}
+                            </a>
+                        {% empty %}
+                            <span>No tags</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <!-- Stats -->
+                <div class="story-stats d-flex justify-content-between align-items-center mt-3">
+                    <div class="stats-left">
+                        <span class="me-3"><i class="fas fa-eye"></i> {{ story.views_count }} views</span>
+                        <span class="me-3"><i class="fas fa-heart"></i> {{ story.likes_count }} likes</span>
+                        <span><i class="fas fa-comment"></i> {% if story.comments %}{{ story.comments.count }}{% else %}0{% endif %} comments</span>
+                    </div>
+                    <div class="stats-right">
+                        {% if user.is_authenticated %}
+                            <button class="btn btn-outline-primary btn-sm preview-disabled" title="Preview mode — liking disabled">
+                                <i class="fas fa-heart {% if user_liked %}text-danger{% endif %}"></i>
+                                <span>{% if user_liked %}Unlike{% else %}Like{% endif %}</span>
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Story Content -->
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="story-content mb-5">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        {{ story.content|safe }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapters -->
+            {% for chapter in chapters %}
+                <div class="chapter-section mb-5">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="chapter-title mb-0">
+                                <i class="fas fa-book-open me-2"></i>
+                                {{ chapter.order }}. {{ chapter.title }}
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            {% if chapter.image %}
+                                <div class="chapter-image mb-4 text-center">
+                                    <img src="{{ chapter.image.url }}" alt="{{ chapter.title }}">
+                                </div>
+                            {% endif %}
+                            {% if chapter.video %}
+                                <div class="chapter-video mb-4">
+                                    <video controls class="w-100 rounded shadow">
+                                        <source src="{{ chapter.video.url }}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            {% endif %}
+                            <div class="chapter-content">
+                                {{ chapter.content|safe }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <!-- Comments Disabled in Preview -->
+            <div class="comments-section mt-5">
+                <h3 class="section-title mb-4">Comments ({% if story.comments %}{{ story.comments.count }}{% else %}0{% endif %})</h3>
+                <div class="alert alert-info">
+                    Comments are disabled in preview mode.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Disable like buttons in preview
+    document.querySelectorAll('.preview-disabled').forEach(function(btn){
+        btn.addEventListener('click', function(e){
+            e.preventDefault();
+            alert('Preview mode — liking is disabled.');
+        });
+    });
+});
+</script>
+{% endblock %}

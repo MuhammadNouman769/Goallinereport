@@ -1,196 +1,317 @@
-// Main JavaScript file for Goal Line Report
+(function ($) {
+  'use strict';
 
-$(document).ready(function() {
-    console.log('Goal Line Report - Application loaded');
-    
-    // Auto-hide alerts after 5 seconds
-    setTimeout(function() {
-        $('.alert').fadeOut('slow');
-    }, 5000);
-    
-    // Smooth scrolling for anchor links
-    $('a[href^="#"]').on('click', function(event) {
-        var target = $(this.getAttribute('href'));
-        if (target.length) {
-            event.preventDefault();
-            $('html, body').stop().animate({
-                scrollTop: target.offset().top - 70
-            }, 1000);
-        }
-    });
-    
-    // Add loading animation to buttons
-    $('.btn').on('click', function() {
-        var $btn = $(this);
-        var originalText = $btn.text();
-        
-        // Only add loading state if it's not already loading
-        if (!$btn.hasClass('loading')) {
-            $btn.addClass('loading').text('Loading...');
-            
-            // Reset after 2 seconds (for demo purposes)
-            setTimeout(function() {
-                $btn.removeClass('loading').text(originalText);
-            }, 2000);
-        }
-    });
-    
-    // Card hover effects
-    $('.card').hover(
-        function() {
-            $(this).addClass('shadow-lg');
-        },
-        function() {
-            $(this).removeClass('shadow-lg');
-        }
-    );
-    
-    // Form validation example
-    $('form').on('submit', function(e) {
-        var requiredFields = $(this).find('[required]');
-        var isValid = true;
-        
-        requiredFields.each(function() {
-            if (!$(this).val()) {
-                $(this).addClass('is-invalid');
-                isValid = false;
-            } else {
-                $(this).removeClass('is-invalid');
-            }
+  var imJs = {
+      m: function (e) {
+          imJs.d();
+          imJs.methods();
+      },
+      d: function (e) {
+          this._window = $(window),
+          this._document = $(document),
+          this._body = $('body'),
+          this._html = $('html')
+      },
+      methods: function (e) {
+          imJs.swiperActivation();
+          imJs.vedioActivation();
+          imJs.myAudio(); 
+          imJs.metismenu(); 
+          imJs.sideMenu(); 
+          imJs.stickySidebar(); 
+          imJs.searchOpton(); 
+      },
+      swiperActivation: function (){
+        $(document).ready(function() {
+          var swiper = new Swiper(".tp-trendingSlider", {
+            slidesPerView: 4,
+            spaceBetween: 30,
+            speed: 2000,
+            loop: true,
+            grabCursor: true,
+            autoplay: true,
+            pagination: {
+              el: ".swiper-pagination2",
+              clickable:"true",
+            },
+            breakpoints:{
+              1168:{
+                slidesPerView: 4,
+              },
+              992:{
+                slidesPerView: 3,
+              },
+              700:{
+                slidesPerView: 2,
+              },
+              576:{
+                slidesPerView: 1,
+              },
+              0:{
+                slidesPerView: 1,
+              },
+            },
+          });
+        });
+        $(document).ready(function() {
+          var swiper = new Swiper(".tp-trendingSlider2", {
+            slidesPerView: 6,
+            spaceBetween: 30,
+            speed: 2000,
+            loop: true,
+            grabCursor: true,
+            autoplay: true,
+            pagination: {
+              el: ".swiper-pagination",
+              clickable:"true",
+            },
+            breakpoints:{
+              1168:{
+                slidesPerView: 6,
+              },
+              992:{
+                slidesPerView: 4,
+              },
+              768:{
+                slidesPerView: 3,
+              },
+              481:{
+                slidesPerView: 2,
+              },
+              0:{
+                slidesPerView: 1,
+              },
+            },
+          });
+        });
+
+        $(document).ready(function() {
+          var swiper = new Swiper(".tp-bannerSlider", {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            effect: "fade",
+            speed: 2000,
+            loop: true,
+            grabCursor: true,
+            autoplay: true,
+            pagination: {
+              el: ".swiper-pagination",
+              clickable:"true",
+            },
+          });
+        });
+        $(document).ready(function() {
+          var swiper = new Swiper(".tp-bannerSlider2", {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            effect: "fade",
+            speed: 2000,
+            loop: true,
+            grabCursor: true,
+            autoplay: true,
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+              clickable: true
+          },
+          });
+        });
+        $(document).ready(function() {
+          var swiper = new Swiper(".swiper-container", {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            effect: "fade",
+            speed: 1500,
+            loop: true,
+            grabCursor: true,
+            autoplay: false,
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+          });
+        });
+        $(document).ready(function (){
+          const tpTrendingSlider1 = new Swiper(".tp-treding-slider10", {
+            slidesPerView: 1,
+            loop: true,
+            slideToClickedSlide: true,
+            direction: "vertical",
+            autoplay: {
+              delay: 2000,
+            },
+            speed: 800,
+          });
+        });
+
+      }, 
+      vedioActivation: function (e) {
+        $(document).ready(function(){
+          $('.popup-youtube, .popup-vimeo').magnificPopup({
+            disableOn: 700,
+            type: 'iframe',
+            mainClass: 'mfp-fade',
+            removalDelay: 160,
+            preloader: false,
+            fixedContentPos: false
+          });
+        });
+      },
+      myAudio: function (e){
+        $(document).ready (function(){
+          function myFunction() {
+            var x = document.getElementById("myAudio").duration;
+           
+          };
+          $(function() {
+            $('audio').audioPlayer();
         });
         
-        if (!isValid) {
-            e.preventDefault();
-            showNotification('Please fill in all required fields.', 'error');
+        });
+      },
+      // metismenu
+      metismenu:function(){
+        $('#mobile-menu-active').metisMenu();
+      },
+       // side menu desktop
+       sideMenu:function(){
+        $(document).on('click', '.menu-btn', function () {
+          $("#side-bar").addClass("show");
+          $("#anywhere-home").addClass("bgshow");
+        });
+        $(document).on('click', '.close-icon-menu', function () {
+          $("#side-bar").removeClass("show");
+          $("#anywhere-home").removeClass("bgshow");
+        });
+        $(document).on('click', '#anywhere-home', function () {
+          $("#side-bar").removeClass("show");
+          $("#anywhere-home").removeClass("bgshow");
+        });
+        $(document).on('click', '.onepage .mainmenu li a', function () {
+          $("#side-bar").removeClass("show");
+          $("#anywhere-home").removeClass("bgshow");
+        });
+      },
+       // side menu desktop
+      
+      stickySidebar: function () {
+        if (typeof $.fn.theiaStickySidebar !== "undefined") {
+          $(".sticky-coloum-wrap .tp-sticky-column-item").theiaStickySidebar({
+            additionalMarginTop: 130,
+          });
         }
-    });
-    
-    // Notification function
-    function showNotification(message, type) {
-        var alertClass = type === 'error' ? 'alert-danger' : 'alert-success';
-        var notification = $('<div class="alert ' + alertClass + ' alert-dismissible fade show" role="alert">' +
-            message +
-            '<button type="button" class="btn-close" data-bs-dismiss="alert"></button>' +
-            '</div>');
-        
-        $('.container').prepend(notification);
-        
-        // Auto-hide after 5 seconds
-        setTimeout(function() {
-            notification.fadeOut('slow');
-        }, 5000);
+      },
+      // Search Bar show & hide
+      searchOpton:function(){
+        $(document).on('click', '.search-icon', function () {
+          $(".search-input-area").addClass("show");
+        });
+        $(document).on('click', '.search-input-area input', function () {
+          $(".search-input-area").addClass("show");
+        });
+        $(document).on('click', '.search-input-inner before', function () {
+          $(".search-input-area").addClass("show");
+        });
+        $('html').click(function (e) {
+          if (!$(e.target).hasClass('show')) {
+            $(".search-input-area").removeClass("show");
+          }
+          $(document).on('click', '.search-close-icon', function () {
+            $(".search-input-area").removeClass("show");
+          });
+        });
+      },
+      
+  }
+
+  $(window).on("scroll", function() {
+    var ScrollBarPostion = $(window).scrollTop();
+    if (ScrollBarPostion > 150) {
+      $(".eblog-header-area").addClass("header-sticky");      
+    } else {
+      $(".eblog-header-area").removeClass("header-sticky");
+      $(".eblog-header-area .eblog-header-top").removeClass("remove-content");     
     }
-    
-    // Example AJAX call (for future use)
-    function makeAjaxCall(url, data, successCallback) {
-        $.ajax({
-            url: url,
-            method: 'POST',
-            data: data,
-            headers: {
-                'X-CSRFToken': $('[name=csrfmiddlewaretoken]').val()
-            },
-            success: function(response) {
-                if (successCallback) {
-                    successCallback(response);
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('AJAX Error:', error);
-                showNotification('An error occurred. Please try again.', 'error');
-            }
-        });
+  });
+
+  var swiper = new Swiper(".echo-hm2-video-Swiper", {
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+
+  /* magnificPopup img view */
+	$('.gallery-image').magnificPopup({
+		type: 'image',
+		gallery: {
+			enabled: true
+		}
+	});
+
+  // Day 
+  var rts_date = $('#eblog-date');
+  if(rts_date.length){
+    const weekday = ["Sun","Mon","Tues","Wed","Thur","Fri","Sat"];
+    const month = ["Jan","Feb","March","April","May","June","July","August","Sept","Oct","Nov","Dec"];
+    const d = new Date();
+    let day = weekday[d.getUTCDay()];
+    let mdate = d.getDate();
+    const year = d.getFullYear().toString().substr(2, 2);
+    let mname = month[d.getMonth()];
+    document.getElementById("eblog-date").innerHTML = '<strong>'+day+'</strong>'+ ', ' + mdate+ ' ' + mname + '  '+ year ;
+  }
+
+  // stickySidebar
+    if (typeof $.fn.theiaStickySidebar !== "undefined") {
+      $(".sticky-coloum-wrap .sticky-coloum-item").theiaStickySidebar({
+        additionalMarginTop: 130,
+      });
     }
-    
-    // Make functions globally available
-    window.goalLineReport = {
-        showNotification: showNotification,
-        makeAjaxCall: makeAjaxCall
-    };
-    
-    // Modal form handling
-    $('#loginModal form, #signupModal form').on('submit', function(e) {
-        var $form = $(this);
-        var $submitBtn = $form.find('button[type="submit"]');
-        var originalText = $submitBtn.text();
-        
-        // Show loading state
-        $submitBtn.text('Processing...').prop('disabled', true);
-        
-        // Submit form via AJAX
-        $.ajax({
-            url: $form.attr('action'),
-            method: 'POST',
-            data: $form.serialize(),
-            success: function(response) {
-                if (response.success) {
-                    // Show success message and redirect
-                    goalLineReport.showNotification(response.message, 'success');
-                    setTimeout(function() {
-                        window.location.href = response.redirect_url || '/';
-                    }, 1500);
-                } else {
-                    // Show error message
-                    goalLineReport.showNotification(response.message || 'An error occurred', 'error');
-                    $submitBtn.text(originalText).prop('disabled', false);
-                }
-            },
-            error: function(xhr) {
-                // Handle form errors
-                if (xhr.responseJSON && xhr.responseJSON.errors) {
-                    var errorHtml = '<ul class="mb-0">';
-                    for (var field in xhr.responseJSON.errors) {
-                        xhr.responseJSON.errors[field].forEach(function(error) {
-                            errorHtml += '<li>' + error + '</li>';
-                        });
-                    }
-                    errorHtml += '</ul>';
-                    goalLineReport.showNotification(errorHtml, 'error');
-                } else {
-                    goalLineReport.showNotification('An error occurred. Please try again.', 'error');
-                }
-                $submitBtn.text(originalText).prop('disabled', false);
+
+  
+    var tp_light = $('.tp-dark-light');
+        if(tp_light.length){
+        var toggle = document.getElementById("tp-data-toggle");
+        var storedTheme = localStorage.getItem('echo-theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        if (storedTheme)
+            document.documentElement.setAttribute('data-theme', storedTheme)
+            toggle.onclick = function() {
+            var currentTheme = document.documentElement.getAttribute("data-theme");
+            var targetTheme = "light";
+
+            if (currentTheme === "light") {
+                targetTheme = "dark";
             }
-        });
-        
-        e.preventDefault();
-    });
-    
-    // Clear modal forms when closed
-    $('.modal').on('hidden.bs.modal', function() {
-        $(this).find('form')[0].reset();
-        $(this).find('.alert').remove();
-    });
-    
-                    // Switch between login and signup modals
-                $('.modal-switch').on('click', function(e) {
-                    e.preventDefault();
-                    var currentModal = $(this).closest('.modal');
-                    var targetModal = $($(this).data('bs-target'));
+            document.documentElement.setAttribute('data-theme', targetTheme)
+            localStorage.setItem('echo-theme', targetTheme);
+        };
+    }
 
-                    currentModal.modal('hide');
-                    setTimeout(function() {
-                        targetModal.modal('show');
-                    }, 500);
-                });
 
-                // Clickable story cards
-                $('.clickable-card').on('click', function(e) {
-                    // Don't trigger if clicking on interactive elements
-                    if ($(e.target).is('a, button, input, textarea') || $(e.target).closest('a, button, input, textarea').length) {
-                        return;
-                    }
-                    
-                    var href = $(this).data('href');
-                    if (href) {
-                        window.location.href = href;
-                    }
-                });
+  var win=$(window);
+  var totop = $('.scroll-top-btn');    
+  win.on('scroll', function() {
+      if (win.scrollTop() > 150) {
+          totop.fadeIn();
+      } else {
+          totop.fadeOut();
+      }
+  });
+  totop.on('click', function() {
+      $("html,body").animate({
+          scrollTop: 0
+      }, 500)
+  });
 
-                // Add hover effect for clickable cards
-                $('.clickable-card').on('mouseenter', function() {
-                    $(this).addClass('hovered');
-                }).on('mouseleave', function() {
-                    $(this).removeClass('hovered');
-                });
-});
+  // Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+  imJs.m();
+})(jQuery, window)

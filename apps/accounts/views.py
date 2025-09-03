@@ -93,3 +93,5 @@ def logout_view(request):
 def profile_view(request):
     """User profile view"""
     return render(request, 'accounts/profile.html')
+
+

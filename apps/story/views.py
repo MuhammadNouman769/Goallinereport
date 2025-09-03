@@ -348,3 +348,5 @@ def submit_for_review(request, slug):
     
     messages.success(request, 'Story submitted for review successfully.')
     return redirect('story:my_stories')
+
+

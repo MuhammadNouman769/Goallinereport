@@ -10,4 +10,6 @@ urlpatterns = [
     path('column-layout-grid/', views.column_layout_grid, name='column_layout_grid'),
     path('coming-soon/', views.coming_soon, name='coming_soon'),
     path('error/', views.error, name='error'),
+    path('about-us/', views.about_us, name='about_us'),
+    path('policy/', views.policy, name='policy'),
 ]

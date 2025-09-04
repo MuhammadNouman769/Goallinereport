@@ -22358,3 +22358,76 @@ html[data-theme=dark] body.home-two .eblog-footer-area.footer-2 .eblog-get-in-tu
 /* 404 Area Style */
 
 /*# sourceMappingURL=style.css.map */
+
+
+.footer {
+  background: #000000;
+  padding: 40px 0;
+  border-top: 1px solid #eee;
+}
+.footer .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+.footer .logo span {
+  color: #2d5a3d;
+}
+.footer .social-icons a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  color: #ffffff;
+  margin-right: 8px;
+  font-size: 18px;
+}
+.footer .recent-post img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+.footer .subscribe input {
+  border-radius: 0;
+  height: 50px;
+}
+.footer .subscribe button {
+  border-radius: 0;
+  height: 50px;
+  background-color: #2d5a3d;
+  color: #fff;
+  border: none;
+}
+.footer-bottom {
+  border-top: 1px solid #eee;
+  padding: 15px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+.footer .container {
+  color: #ffffff;
+}
+
+.footer .container h5 {
+  color: #ffffff;
+}
+
+.footer .container ul li {
+  color: #ffffff;
+}
+
+.footer .container ul li span {
+  color: #ffffff;
+}
+
+.footer .container ul li a {
+  color: #ffffff;
+}
+
+.footer .container p {
+  color: #ffffff;
+}

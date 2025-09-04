@@ -31,7 +31,7 @@ def index(request):
             }
         ]
     }
-    return render(request, 'glrdesign/index.html', context)
+    return render(request, 'index.html', context)
 
 def author(request):
     """Author page view for the glrdesign app"""
@@ -44,7 +44,7 @@ def author(request):
             'followers': 1200
         }
     }
-    return render(request, 'glrdesign/author.html', context)
+    return render(request, 'author.html', context)
 
 def blog_details(request):
     """Blog details page view for the glrdesign app"""
@@ -57,7 +57,7 @@ def blog_details(request):
             'content': 'This is a sample blog post content...'
         }
     }
-    return render(request, 'glrdesign/blog-details.html', context)
+    return render(request, 'blog-details.html', context)
 
 def column_layout_grid(request):
     """Column layout grid page view for the glrdesign app"""
@@ -69,7 +69,7 @@ def column_layout_grid(request):
             {'title': 'Blog Post Title 3', 'category': 'Lifestyle'},
         ]
     }
-    return render(request, 'glrdesign/column-layout-grid.html', context)
+    return render(request, 'column-layout-grid.html', context)
 
 def coming_soon(request):
     """Coming soon page view for the glrdesign app"""
@@ -77,7 +77,7 @@ def coming_soon(request):
         'page_title': 'Coming Soon - Personal Blog and Magazine',
         'launch_date': '30 days from now'
     }
-    return render(request, 'glrdesign/coming-soon.html', context)
+    return render(request, 'coming-soon.html', context)
 
 def error(request):
     """404 error page view for the glrdesign app"""
@@ -85,4 +85,24 @@ def error(request):
         'page_title': '404 Error - Page Not Found',
         'error_code': '404'
     }
-    return render(request, 'glrdesign/error.html', context)
+    return render(request, 'error.html', context)
+
+def about_us(request):
+    """About us page view for the glrdesign app"""
+    context = {
+        'page_title': 'About Us - Goal Line Report',
+        'company': {
+            'name': 'Goal Line Report',
+            'founded': '2020',
+            'mission': 'Providing comprehensive sports coverage to fans worldwide'
+        }
+    }
+    return render(request, 'about-us.html', context)
+
+def policy(request):
+    """Policy page view for the glrdesign app"""
+    context = {
+        'page_title': 'Policies - Goal Line Report',
+        'last_updated': 'January 15, 2024'
+    }
+    return render(request, 'policy.html', context)

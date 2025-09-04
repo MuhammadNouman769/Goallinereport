@@ -1,0 +1,279 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Policies - Personal Blog and Magazine HTML Template{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about-policy.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!-- side bar for desktop -->
+    <div id="side-bar" class="side-bar header-one">
+        <div class="inner">
+            <button class="close-icon-menu"><i class="far fa-times"></i></button>
+            <!-- inner menu area desktop start -->
+            <div class="inner-main-wrapper-desk d-none d-lg-block">
+                <div class="thumbnail">
+                    <img src="{% static 'img/logo/logo-01-w.svg' %}" alt="eblog">
+                </div>
+                <div class="inner-content">
+                    <div class="newsletter-form">
+                        <div class="form-inner">
+                            <div class="content">
+                                <h3 class="title mb--20">Get Newsletter</h3>
+                            </div>
+                            <form action="#">
+                                <div class="input-div">
+                                    <input type="email" placeholder="Your email..." required>
+                                </div>
+                                <button type="submit" class="subscribe-btn">Subscribe Now</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- mobile menu area start -->
+        <div class="mobile-menu d-block d-lg-none">
+            <nav class="nav-main mainmenu-nav mt--30">
+                <ul class="mainmenu" id="mobile-menu-active">
+                    <li class="has-droupdown">
+                        <a href="#" class="main">News</a>
+                        <ul class="submenu">
+                            <li><a class="mobile-menu-link" href="#">Latest News</a></li>
+                            <li><a class="mobile-menu-link" href="#">Transfer News</a></li>
+                            <li><a class="mobile-menu-link" href="#">Match Reports</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-droupdown">
+                        <a href="#" class="main">Fixtures & Results</a>
+                        <ul class="submenu">
+                            <li><a class="mobile-menu-link" href="#">Today's Matches</a></li>
+                            <li><a class="mobile-menu-link" href="#">Upcoming Fixtures</a></li>
+                            <li><a class="mobile-menu-link" href="#">Past Results</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-droupdown">
+                        <a href="#" class="main">Leagues</a>
+                        <ul class="submenu">
+                            <li><a class="mobile-menu-link" href="#">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</a></li>
+                            <li><a class="mobile-menu-link" href="#">🇪🇸 La Liga</a></li>
+                            <li><a class="mobile-menu-link" href="#">🇮🇹 Serie A</a></li>
+                            <li><a class="mobile-menu-link" href="#">🇩🇪 Bundesliga</a></li>
+                            <li><a class="mobile-menu-link" href="#">🇫🇷 Ligue 1</a></li>
+                            <li><a class="mobile-menu-link" href="#">🏆 Champions League</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-droupdown">
+                        <a href="#" class="main">Teams</a>
+                        <ul class="submenu">
+                            <li><a class="mobile-menu-link" href="#">Team List</a></li>
+                            <li><a class="mobile-menu-link" href="#">Team Profiles</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-droupdown">
+                        <a href="#" class="main">Players</a>
+                        <ul class="submenu">
+                            <li><a class="mobile-menu-link" href="#">Top Players</a></li>
+                            <li><a class="mobile-menu-link" href="#">Player Profiles</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-droupdown">
+                        <a href="#" class="main">About</a>
+                        <ul class="submenu">
+                            <li><a class="mobile-menu-link" href="#">About Us</a></li>
+                            <li><a class="mobile-menu-link" href="#">Contact</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- mobile menu area end -->
+    </div>
+    <!-- header style two End -->
+
+    <!-- Start Breadcrumb Area -->
+    <div class="eblog-breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-inner text-center">
+                        <div class="meta">
+                            <a href="{% url 'main:home' %}" class="prev">Home</a>
+                            <img src="{% static 'img/icon/chevron-right.svg' %}" alt="">
+                            <a href="#" class="last">Policies</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb Area -->
+
+    <!-- Start Policies Area -->
+    <section class="eblog-policies-area tp-section-gap">
+        <div class="container">
+            <div class="section-inner">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="policies-header text-center mb--50">
+                            <h1 class="title mb--30">Our Policies</h1>
+                            <p class="subtitle mb--20">Transparent guidelines that govern our operations and protect your rights</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacy Policy Section -->
+                <div class="policy-section mb--50">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="policy-content">
+                                <h2 class="mb--30">Privacy Policy</h2>
+                                <p class="mb--20">Last updated: January 15, 2024</p>
+                                
+                                <h3 class="mb--20">Information We Collect</h3>
+                                <p class="mb--20">We collect information you provide directly to us, such as when you subscribe to our newsletter, create an account, or contact us. This may include your name, email address, and any other information you choose to provide.</p>
+                                
+                                <h3 class="mb--20">How We Use Your Information</h3>
+                                <p class="mb--20">We use the information we collect to:</p>
+                                <ul class="mb--20">
+                                    <li>Provide, maintain, and improve our services</li>
+                                    <li>Send you newsletters and updates about sports news</li>
+                                    <li>Respond to your comments and questions</li>
+                                    <li>Monitor and analyze trends and usage</li>
+                                    <li>Protect against fraudulent or illegal activity</li>
+                                </ul>
+                                
+                                <h3 class="mb--20">Newsletter and Email Communications</h3>
+                                <p class="mb--20">Our newsletter service is powered by Amazon SES (Simple Email Service), ensuring reliable delivery and professional email management. By subscribing to our newsletter, you agree to receive periodic emails containing sports news, updates, and promotional content.</p>
+                                
+                                <h3 class="mb--20">Unsubscribe Policy</h3>
+                                <p class="mb--20">You can unsubscribe from our newsletters at any time by clicking the unsubscribe link provided in every email. We will process your unsubscribe request within 10 business days. Even after unsubscribing, you may still receive transactional emails related to your account or specific requests.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms of Service Section -->
+                <div class="policy-section mb--50">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="policy-content">
+                                <h2 class="mb--30">Terms of Service</h2>
+                                <p class="mb--20">Last updated: January 15, 2024</p>
+                                
+                                <h3 class="mb--20">Acceptance of Terms</h3>
+                                <p class="mb--20">By accessing and using Goal Line Report, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
+                                
+                                <h3 class="mb--20">Use License</h3>
+                                <p class="mb--20">Permission is granted to temporarily download one copy of the materials (information or software) on Goal Line Report's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
+                                <ul class="mb--20">
+                                    <li>Modify or copy the materials</li>
+                                    <li>Use the materials for any commercial purpose or for any public display</li>
+                                    <li>Attempt to reverse engineer any software contained on the website</li>
+                                    <li>Remove any copyright or other proprietary notations from the materials</li>
+                                </ul>
+                                
+                                <h3 class="mb--20">Content Accuracy</h3>
+                                <p class="mb--20">While we strive to provide accurate and up-to-date information, sports news can change rapidly. We do not guarantee the accuracy, completeness, or timeliness of any information on our website. Users should verify important information independently.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Policy Section -->
+                <div class="policy-section mb--50">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="policy-content">
+                                <h2 class="mb--30">Email and Newsletter Policy</h2>
+                                <p class="mb--20">Last updated: January 15, 2024</p>
+                                
+                                <h3 class="mb--20">Amazon SES Compliance</h3>
+                                <p class="mb--20">We use Amazon SES to deliver our newsletters and email communications. This service helps us maintain high deliverability rates and professional email management while adhering to industry best practices.</p>
+                                
+                                <h3 class="mb--20">Email Frequency</h3>
+                                <p class="mb--20">We typically send newsletters 2-3 times per week, containing the latest sports news, analysis, and updates. We may send additional emails for breaking news or special announcements.</p>
+                                
+                                <h3 class="mb--20">Email Content</h3>
+                                <p class="mb--20">Our emails contain:</p>
+                                <ul class="mb--20">
+                                    <li>Latest sports news and updates</li>
+                                    <li>Match reports and analysis</li>
+                                    <li>Transfer news and rumors</li>
+                                    <li>Exclusive content and insights</li>
+                                    <li>Promotional offers (with clear opt-out options)</li>
+                                </ul>
+                                
+                                <h3 class="mb--20">Spam Prevention</h3>
+                                <p class="mb--20">We are committed to preventing spam and maintaining a clean email list. We:</p>
+                                <ul class="mb--20">
+                                    <li>Only send emails to subscribers who have explicitly opted in</li>
+                                    <li>Include clear unsubscribe links in every email</li>
+                                    <li>Respect unsubscribe requests within 10 business days</li>
+                                    <li>Monitor email engagement and remove inactive subscribers</li>
+                                    <li>Comply with CAN-SPAM Act and other relevant regulations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comment Policy Section -->
+                <div class="policy-section mb--50">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="policy-content">
+                                <h2 class="mb--30">Comment and Community Policy</h2>
+                                <p class="mb--20">Last updated: January 15, 2024</p>
+                                
+                                <h3 class="mb--20">Community Guidelines</h3>
+                                <p class="mb--20">We encourage respectful and constructive discussions in our comment sections. Comments should be relevant to the article topic and contribute to meaningful dialogue.</p>
+                                
+                                <h3 class="mb--20">Prohibited Content</h3>
+                                <p class="mb--20">We do not allow comments that contain:</p>
+                                <ul class="mb--20">
+                                    <li>Hate speech or discriminatory language</li>
+                                    <li>Personal attacks or harassment</li>
+                                    <li>Spam or promotional content</li>
+                                    <li>False or misleading information</li>
+                                    <li>Explicit or inappropriate content</li>
+                                    <li>Copyright violations</li>
+                                </ul>
+                                
+                                <h3 class="mb--20">Moderation</h3>
+                                <p class="mb--20">We reserve the right to moderate, edit, or remove comments that violate our community guidelines. Repeat offenders may have their commenting privileges suspended or revoked.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information Section -->
+                <div class="policy-section">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="policy-content">
+                                <h2 class="mb--30">Contact Information</h2>
+                                <p class="mb--20">If you have any questions about these policies or need to report violations, please contact us:</p>
+                                
+                                <div class="contact-info">
+                                    <p><strong>Email:</strong> privacy@goallinereport.com</p>
+                                    <p><strong>Address:</strong> 123 Sports Street, News City, NC 12345</p>
+                                    <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                                    <p><strong>Response Time:</strong> We aim to respond to all inquiries within 48 hours</p>
+                                </div>
+                                
+                                <div class="policy-updates mt--30">
+                                    <h3 class="mb--20">Policy Updates</h3>
+                                    <p class="mb--20">We may update these policies from time to time. When we make changes, we will notify subscribers via email and update the "Last updated" date at the top of each policy section. Continued use of our services after such changes constitutes acceptance of the updated policies.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Policies Area -->
+{% endblock %}

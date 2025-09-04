@@ -86,7 +86,7 @@ def story_detail(request, slug):
         'user_liked': user_liked,
         'chapters': story.chapters.all(),
     }
-    return render(request, 'story/story_detail.html', context)
+    return render(request, 'story/blog-details.html', context)
 
 @login_required
 @user_passes_test(is_editor)

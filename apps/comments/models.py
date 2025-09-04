@@ -16,7 +16,7 @@ class Comment(CoreModel):
         ordering = ['-created_at']
     
     def __str__(self):
-        return f'Comment by {self.author.username} on {self.story}'
+        return str(self.id)
     
     @property
     def is_reply(self):
@@ -35,4 +35,4 @@ class CommentLike(CoreModel):
         unique_together = ['comment', 'user']
     
     def __str__(self):
-        return f'{self.user.username} likes {self.comment}'
+        return str(self.id)

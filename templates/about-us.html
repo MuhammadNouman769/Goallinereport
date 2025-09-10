@@ -1,0 +1,276 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us - Personal Blog and Magazine HTML Template{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about-policy.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!-- side bar for desktop -->
+    <div id="side-bar" class="side-bar header-one">
+        <div class="inner">
+            <button class="close-icon-menu"><i class="far fa-times"></i></button>
+            <!-- inner menu area desktop start -->
+            <div class="inner-main-wrapper-desk d-none d-lg-block">
+                <div class="thumbnail">
+                    <img src="{% static 'img/logo/logo-01-w.svg' %}" alt="eblog">
+                </div>
+                <div class="inner-content">
+                    <div class="newsletter-form">
+                        <div class="form-inner">
+                            <div class="content">
+                                <h3 class="title mb--20">Get Newsletter</h3>
+                            </div>
+                            <form action="#">
+                                <div class="input-div">
+                                    <input type="email" placeholder="Your email..." required>
+                                </div>
+                                <button type="submit" class="subscribe-btn">Subscribe Now</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- mobile menu area start -->
+        <div class="mobile-menu d-block d-lg-none">
+            <nav class="nav-main mainmenu-nav mt--30">
+                <ul class="mainmenu" id="mobile-menu-active">
+                    <li class="has-droupdown">
+                        <a href="#" class="main">News</a>
+                        <ul class="submenu">
+                            <li><a class="mobile-menu-link" href="#">Latest News</a></li>
+                            <li><a class="mobile-menu-link" href="#">Transfer News</a></li>
+                            <li><a class="mobile-menu-link" href="#">Match Reports</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-droupdown">
+                        <a href="#" class="main">Fixtures & Results</a>
+                        <ul class="submenu">
+                            <li><a class="mobile-menu-link" href="#">Today's Matches</a></li>
+                            <li><a class="mobile-menu-link" href="#">Upcoming Fixtures</a></li>
+                            <li><a class="mobile-menu-link" href="#">Past Results</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-droupdown">
+                        <a href="#" class="main">Leagues</a>
+                        <ul class="submenu">
+                            <li><a class="mobile-menu-link" href="#">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</a></li>
+                            <li><a class="mobile-menu-link" href="#">🇪🇸 La Liga</a></li>
+                            <li><a class="mobile-menu-link" href="#">🇮🇹 Serie A</a></li>
+                            <li><a class="mobile-menu-link" href="#">🇩🇪 Bundesliga</a></li>
+                            <li><a class="mobile-menu-link" href="#">🇫🇷 Ligue 1</a></li>
+                            <li><a class="mobile-menu-link" href="#">🏆 Champions League</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-droupdown">
+                        <a href="#" class="main">Teams</a>
+                        <ul class="submenu">
+                            <li><a class="mobile-menu-link" href="#">Team List</a></li>
+                            <li><a class="mobile-menu-link" href="#">Team Profiles</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-droupdown">
+                        <a href="#" class="main">Players</a>
+                        <ul class="submenu">
+                            <li><a class="mobile-menu-link" href="#">Top Players</a></li>
+                            <li><a class="mobile-menu-link" href="#">Player Profiles</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-droupdown">
+                        <a href="#" class="main">About</a>
+                        <ul class="submenu">
+                            <li><a class="mobile-menu-link" href="#">About Us</a></li>
+                            <li><a class="mobile-menu-link" href="#">Contact</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- mobile menu area end -->
+    </div>
+    <!-- header style two End -->
+
+    <!-- Start Breadcrumb Area -->
+    <div class="eblog-breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-inner text-center">
+                        <div class="meta">
+                            <a href="{% url 'main:home' %}" class="prev">Home</a>
+                            <img src="{% static 'img/icon/chevron-right.svg' %}" alt="">
+                            <a href="#" class="last">About Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb Area -->
+
+    <!-- Start About Us Area -->
+    <section class="eblog-about-us-area tp-section-gap">
+        <div class="container">
+            <div class="section-inner">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="about-content text-center mb--50">
+                            <h1 class="title mb--30">About Goal Line Report</h1>
+                            <p class="subtitle mb--20">Your Premier Source for Sports News and Analysis</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row g-5 align-items-center mb--50">
+                    <div class="col-lg-6">
+                        <div class="about-image">
+                            <img src="{% static 'img/banner/banner-bg-01.jpg' %}" alt="About Us" class="w-100 rounded">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-text">
+                            <h2 class="mb--20">Our Mission</h2>
+                            <p class="mb--20">Goal Line Report is dedicated to providing comprehensive, accurate, and engaging sports coverage to fans worldwide. We believe in the power of sports to unite people and create meaningful connections across cultures and communities.</p>
+                            
+                            <h3 class="mb--15">What We Do</h3>
+                            <p class="mb--20">We deliver real-time sports news, in-depth analysis, match reports, and exclusive content covering major football leagues, international competitions, and emerging sports stories. Our team of experienced journalists and sports enthusiasts work tirelessly to bring you the most relevant and engaging content.</p>
+                            
+                            <div class="stats-row">
+                                <div class="row text-center">
+                                    <div class="col-4">
+                                        <div class="stat-item">
+                                            <h3 class="number">50K+</h3>
+                                            <p>Active Readers</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="stat-item">
+                                            <h3 class="number">1000+</h3>
+                                            <p>Articles Published</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="stat-item">
+                                            <h3 class="number">24/7</h3>
+                                            <p>News Coverage</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-5 mb--50">
+                    <div class="col-lg-4">
+                        <div class="feature-card text-center">
+                            <div class="icon mb--20">
+                                <i class="fas fa-newspaper fa-3x text-primary"></i>
+                            </div>
+                            <h4 class="mb--15">Quality Journalism</h4>
+                            <p>We maintain the highest standards of journalistic integrity, ensuring all our content is fact-checked, well-researched, and professionally written.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="feature-card text-center">
+                            <div class="icon mb--20">
+                                <i class="fas fa-globe fa-3x text-primary"></i>
+                            </div>
+                            <h4 class="mb--15">Global Coverage</h4>
+                            <p>From local leagues to international tournaments, we cover sports stories from around the world, bringing diverse perspectives to our readers.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="feature-card text-center">
+                            <div class="icon mb--20">
+                                <i class="fas fa-users fa-3x text-primary"></i>
+                            </div>
+                            <h4 class="mb--15">Community Focus</h4>
+                            <p>We believe in building a strong community of sports enthusiasts who share our passion for quality sports journalism and meaningful discussions.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="about-text">
+                            <h2 class="mb--20">Our Commitment to Excellence</h2>
+                            <p class="mb--20">At Goal Line Report, we are committed to delivering exceptional value to our readers and subscribers. Our newsletter service, powered by Amazon SES, ensures reliable delivery of our latest content directly to your inbox.</p>
+                            
+                            <h3 class="mb--15">Newsletter Service</h3>
+                            <p class="mb--20">We use Amazon SES (Simple Email Service) to deliver our newsletters, ensuring high deliverability rates and professional email management. This service allows us to maintain consistent communication with our subscribers while adhering to best practices for email marketing.</p>
+                            
+                            <h3 class="mb--15">Privacy and Security</h3>
+                            <p class="mb--20">We take your privacy seriously. All subscriber data is handled securely, and we never share your information with third parties. You can unsubscribe from our newsletters at any time using the unsubscribe link provided in every email.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-image">
+                            <img src="{% static 'img/banner/banner-bg-02.jpg' %}" alt="Our Commitment" class="w-100 rounded">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End About Us Area -->
+
+    <!-- Start Team Section -->
+    <section class="eblog-team-area tp-section-gap bg-light">
+        <div class="container">
+            <div class="section-inner">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-header text-center mb--50">
+                            <h2>Meet Our Team</h2>
+                            <p>Dedicated professionals committed to bringing you the best sports coverage</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-member text-center">
+                            <div class="member-image mb--20">
+                                <img src="{% static 'img/banner/author-1.jpg' %}" alt="Team Member" class="w-100 rounded">
+                            </div>
+                            <h4 class="mb--10">John Smith</h4>
+                            <p class="text-muted">Editor-in-Chief</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-member text-center">
+                            <div class="member-image mb--20">
+                                <img src="{% static 'img/banner/author-2.jpg' %}" alt="Team Member" class="w-100 rounded">
+                            </div>
+                            <h4 class="mb--10">Sarah Johnson</h4>
+                            <p class="text-muted">Senior Sports Writer</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-member text-center">
+                            <div class="member-image mb--20">
+                                <img src="{% static 'img/banner/author-3.jpg' %}" alt="Team Member" class="w-100 rounded">
+                            </div>
+                            <h4 class="mb--10">Mike Davis</h4>
+                            <p class="text-muted">Technical Director</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-member text-center">
+                            <div class="member-image mb--20">
+                                <img src="{% static 'img/banner/author-4.jpg' %}" alt="Team Member" class="w-100 rounded">
+                            </div>
+                            <h4 class="mb--10">Emily Wilson</h4>
+                            <p class="text-muted">Content Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Team Section -->
+{% endblock %}

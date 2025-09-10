@@ -86,3 +86,25 @@ def error(request):
         'error_code': '404'
     }
     return render(request, 'error.html', context)
+
+
+def about_us(request):
+    """About us page view for the glrdesign app"""
+    context = {
+        'page_title': 'About Us - Goal Line Report',
+        'company': {
+            'name': 'Goal Line Report',
+            'founded': '2020',
+            'mission': 'Providing comprehensive sports coverage to fans worldwide'
+        }
+    }
+    return render(request, 'about-us.html', context)
+
+def policy(request):
+    """Policy page view for the glrdesign app"""
+    context = {
+        'page_title': 'Policies - Goal Line Report',
+        'last_updated': 'January 15, 2024'
+    }
+    return render(request, 'policy.html', context)
+

@@ -1,3 +1,5 @@
+from django.contrib.auth.models import User
+from django.shortcuts import render, get_object_or_404
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -6,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+from    apps.story.models import Story
 
 def signup_view(request):
     """User registration view"""
@@ -93,3 +96,17 @@ def logout_view(request):
 def profile_view(request):
     """User profile view"""
     return render(request, 'accounts/profile.html')
+
+
+def author_detail(request, username):
+    # Author ko username se find karein
+    author = get_object_or_404(User, username=username)
+
+    # Sirf us author ki published stories
+    stories = Story.objects.filter(author=author, status="published")
+
+    context = {
+        "author": author,
+        "stories": stories,
+    }
+    return render(request, "author_detail.html", context)

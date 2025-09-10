@@ -15,11 +15,13 @@
                     <!-- bread crumb inner wrapper -->
                     <div class="breadcrumb-inner text-center">
                         <div class="meta">
-                            <a href="#" class="prev">Home</a>
+                            <a href="{% url 'main:home' %}" class="prev">Home</a>
                             <img src="static/img/icon/chevron-right.svg" alt="">
-                            <a href="#" class="next">Blog</a>
+                            <a href="{% url 'story:story_list' %}" class="next">Stories</a>
                             <img src="static/img/icon/chevron-right.svg" alt="">
-                            <a href="#" class="last">Blog Details</a>
+                            <a href="{% url 'story:blog_details' slug=story.slug %}"  class="last">  {{ story.title|truncatewords:4 }} </a>
+                            {% comment %} <a href="#" class="last">Story Details</a> {% endcomment %}
+                           
                         </div>
                     </div>
                     <!-- bread crumb inner wrapper end -->
@@ -40,12 +42,23 @@
                             <div class="eblog-hero-banner">
                                 <div class="image-area">
                                     <a href="#">
+                                        {% if story.image %}
+                                         <img src="{{ story.image.url }}">
+                                        {% else %}
                                        <img src="{% static 'img/blog/158.jpg' %}" alt="blog image">
+                                           {% endif %}
                                     </a>
                                 </div>
                                 <div class="blog-content-area">
                                     <ul class="blog-meta">
-                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
+
+                                     <li class="heading-title">
+                                        <span>By:</span>
+                                        <a href="{% url 'accounts:author_detail' username=story.author.username %}">
+                                             {{ author.get_full_name|default:author.username }}
+                                        </a>
+                                    </li>
+
                                         <li>
                                             <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g clip-path="url(#clip0_4238_1230)">
@@ -57,15 +70,16 @@
                                                     </clipPath>
                                                 </defs>
                                             </svg>
-                                            3 Minute Read
+                                            {{ story.published_at|date:"d M, Y" }}
                                         </li>
                                         <li>
                                             <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
                                                 <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                            </svg>
-                                            1.9k views
+                                           
+                                              <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
+                                            </svg> {{ story.story_views.count }}.views  <svg width="15" height="15" ...>...</svg> {{ story.read_time|default:"3" }} Minute Read
+                                            
                                         </li>
                                     </ul>
                                     <div class="blog-meta eblog-social">
@@ -116,14 +130,16 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <h2 class="heading-title">Vision without Execution is Hallucination</h2>
+                                <h4 class="heading title"><a class= "title-animation">{{ story.title }}
+                                </a>
+                            </h4>
                                 
                                 <!-- Tags Section - Added after heading -->
                                 <div class="blog-tags-section mb--20">
                                     <div class="tags-wrapper">
                                         <span class="tags-label">Tags:</span>
                                         <div class="tags-list">
-                                            <a href="#" class="tag-item">Football</a>
+                                            <a href="https://www.youtube.com/" class="tag-item">Football</a>
                                             <a href="#" class="tag-item">Sports</a>
                                             <a href="#" class="tag-item">Premier League</a>
                                             <a href="#" class="tag-item">Champions League</a>
@@ -131,31 +147,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="desc">About one year ago, my wife and I discovered black mold in our kitchen and it was horrifying. We immediately cleaned & disinfected the everything in the cabinets to make sure that the mold was gone. Two weeks later, all of the mold was back and it was frustrating because we didn’t know where it was coming from. We ended up cleaning it all again, praying that it wouldn’t return.</p>
-                                <p class="desc">A few weeks later, I was throwing our trash away outside and as I walked toward the back of the house, I heard what sounded like water spraying on the ground. I got closer to the sound and realized it was coming from under our house. So I looked through one of the vents under our house and saw that one of our hot water pipes was shooting water under our house.</p>
-                                <div class="row g-5 mt--10 mb--10">
-                                    <div class="col-lg-5">
-                                        <div class="image-area">
-                                             <img src="{% static 'img/blog/159.jpg' %}" alt="blog image">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-7 ">
-                                        <p class="desc">I got super nervous and decided to grab a flashlight to see how bad the damage was. Fearing the worst, I turned on the light and found a lake of steamy, hot water under our house. My heart sank because I now knew the reason why there was mold in our kitchen.</p>
-                                        <p class="desc">My wife, Julie, started dreaming and she had a vision for what she wanted our new kitchen to look like. She knew what color cabinets, what kind of appliances, the layout, the backsplash, the color paint, and even what type of lighting she wanted.</p>
-                                    </div>
-                                </div>
-                                <p class="desc mb--20">I, on the other hand, couldn’t picture this new kitchen because all I saw were giant holes in the walls and dust everywhere. Our house was a giant mess for 6 months! Let’s just say that our family of five ate A LOT of microwaved Dino Chicken Nuggets. All throughout the process, my wife kept encouraging me to trust the process. Even, in my questioning and worry, I knew my wife had a vision for this new kitchen, I just needed to trust her.</p>
-                                <h3 class="heading-title two">There is power when you have vision.</h3>
-                                <p class="desc">Vision is being able to see before and beyond what others can see, while also painting a practical picture of how to get there. At Newbreak, our vision is to “Develop Christ centered leaders who change their world.” </p>
-                                <p class="desc">While we can say those words all day, the reality is this… “Vision without execution is hallucination.” – Thomas Edison
-                                    For example, in our kitchen remodel, all I saw were holes in the walls for months. But then something amazing happened…we started taking steps to add things to our kitchen.</p>
+                                {% comment %} story chapters {% endcomment %}
+                                {% if chapters %}
+                                  {% for chapter in chapters %}
+                              
                                 <div class="image-area mb--30">
-                                       <img src="{% static 'img/blog/154.jpg' %}" alt="blog image">
+                                       <img src="{{ chapter.image.url }}">
+                                         <h3 class="heading-title two"><a class="title-animation">{{ chapter.title }}
+                                         </a>
+                                        </h3>
+                                <p class="desc"> {{ chapter.content|safe }} </p>
                                 </div>
-                                <h3 class="heading-title two">Three ways we'll turn vision into reality.</h3>
-                                <p class="desc">Consecrate means to make something sacred or holy. We do this by giving priority to spiritual things over physical things. The most dangerous Christian is the one who settles for living a “good enough” faith. There is nothing the devil loves more than a Christian who stops living a life of purpose. Whether you have been following Jesus for decades, or you just began your relationship with Him yesterday, we all can take a next step toward Jesus.</p>
-                                <p class="desc">Let this be the year where we consecrate ourselves for the Kingdom of God through prayer and studying God’s word. We are going to be a church that prays first in all things. We are going to be a church that doesn’t just try to get through the Bible in a year, but a church that gets the Bible through us this year.</p>
-                                <p class="desc last">As we take steps of faith this year, it’s going to require a lot of courage. We believe God is going to ask us to step out of our comfort zone to make an impact this year. It may be scary serving, loving, and leading others but that is a good place to be. God promises to be with us through the highs and lows of life. Let’s take steps of courage as a church this year!</p>
+                                 {% endfor %}
+                                 {%endif%}
+                            
                                 <div class="bottom-area">
                                     <div class="blog-actions">
                                         <div class="tag-area">
@@ -213,12 +218,30 @@
                                     </div>
                                     <div class="author-inner d-flex align-items-center mt--70">
                                         <div class="image-area">
-                                            
+                                             {% if story.author.profile.avatar %}
+                                              <img src="{{ story.author.profile.avatar.url }}">
+                                                {% else %}
                                             <img src="{% static 'img/banner/author-2.jpg' %}" alt="blog image">
+                                            {% endif %}
                                         </div>
-                                        <div class="content-area">
-                                            <h3 class="heading-title">Maria Sipra</h3>
-                                            <p class="desc">When we consecrate our lives, walk in courage, and commit to God’s way of living, He is the one who brings transformation and gives us the power to change the world. When that happens, God’s vision become a reality!</p>
+                                        <div class="content-area" >
+                                           <h3 class="heading-title" >
+                                             {% if story.author.get_full_name %}
+                                           <a href="{% url 'accounts:author_detail' username=story.author.username %}">
+                                             {{ story.author.get_full_name }}
+                                           </a>
+                                           </h3>
+                                           {% else %}
+                                           {{ story.author.username }}
+                                            {% endif %}
+                                            <p class="desc">
+                                                {% if story.author.profile.bio %}
+                                                    {{ story.author.profile.bio }}
+                                                {% else %}
+                                                    No bio available.
+                                                {% endif %}
+                                            </p>
+
                                             <div class="sign mt--20 mb--20"><img src=" static/img/banner/signature.png" alt=""></div>
                                             <div class="social-area">
                                                 <p class="tag">Follow Me-</p>
@@ -238,7 +261,7 @@
                                                                 </g>
                                                                 <defs>
                                                                     <clipPath id="clip0_4219_1420">
-                                                                        <rect width="10" height="10" fill="white" transform="translate(0.648438 0.461914)" />
+                                                                    <rect width="10" height="10" fill="white" transform="translate(0.648438 0.461914"/>
                                                                     </clipPath>
                                                                 </defs>
                                                             </svg>
@@ -262,43 +285,238 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="post-comment-box mt--80">
-                                        <form action="#">
-                                            <h3 class="form-title">Leave A Reply</h3>
-                                            <p class="desc mb--40">You must be logged in to comment. Required fields are marked*</p>
-                                            <div class="form-inner inner">
-                                                <div class="single-input-wrapper">
-                                                    <label for="comment">Comment*</label>
-                                                    <textarea name="comment" id="comment" required="" placeholder="Enter your comment here..."></textarea>
+                                  <!-- Comment Form -->
+                                 <div class="post-comment-box mt--80">
+                                <form id="mainCommentForm" method="post" action="{% url 'comments:add_comment' %}">
+                                {% csrf_token %}
+                                <h3 class="form-title">Leave A Reply</h3>
+                                <p class="desc mb--40">You must be logged in to comment. Required fields are marked*</p>
+                                <div class="form-inner inner">
+                                <input type="hidden" name="story_slug" value="{{ story.slug }}">
+
+                                <div class="single-input-wrapper">
+                                    <label for="text">Comment* (<span id="mainCommentCount">{{ story.comments.count }}</span>)</label>
+                                    <textarea name="text" id="text" required placeholder="Enter your comment here..."></textarea>
+                                </div>
+
+                                {% if user.is_authenticated %}
+                                <div class="single-input-wrapper">
+                                    <button type="submit" class="subscribe-btn tp-btn btn-primary">Post A Comment</button>
+                                </div>
+                                {% else %}
+                                <p class="desc">Please <a href="{% url 'login' %}">login</a> to post a comment.</p>
+                                {% endif %}
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Comments List -->
+                    <div class="comments-list mt--40" id="commentsContainer">
+                        <h4 class="form-title">All Comments (<span id="commentCount">{{ story.comments.count }}</span>)</h4>
+
+                        {% for comment in story.comments.all %}
+                        <div class="single-comment d-flex justify-content-between align-items-start" id="comment-{{ comment.id }}">
+                            <div>
+                                <p class="d-flex align-items-center gap-2">
+                                    {% if comment.author.profile.avatar %}
+                                        <img src="{{ comment.author.profile.avatar.url }}" alt="{{ comment.author.username }}" class="comment-avatar">
+                                    {% else %}
+                                        <img src="{% static 'img/default-avatar.png' %}" alt="default avatar" class="comment-avatar">
+                                    {% endif %}
+                                    {% if comment.author.first_name or comment.author.last_name %}
+                                        <strong>{{ comment.author.first_name }} {{ comment.author.last_name }}</strong>
+                                    {% else %}
+                                        <strong>{{ comment.author.username }}</strong>
+                                    {% endif %}
+                                    - {{ comment.created_at|date:"M d, Y H:i" }}
+                                </p>
+
+                                <p class="comment-text" id="text-{{ comment.id }}">{{ comment.text }}</p>
+                            </div>
+
+                            {% if user == comment.author %}
+                            <!-- Dropdown buttons -->
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-light" data-bs-toggle="dropdown">
+                                <img src="{% static 'img/icon/oading-dots.svg' %}" width="11" alt="eblog"> 
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a href="#" class="dropdown-item edit-comment-btn" data-id="{{ comment.id }}">
+                                      <img src="{% static 'img/icon/edit-message-svg.svg' %}" width="11" alt="eblog"> 
+                                    </a></li>
+                                    <li><a href="#" class="dropdown-item delete-comment-btn" data-id="{{ comment.id }}">
+                                         <img src="{% static 'img/icon/delete-svg.svg' %}" width="11" alt="eblog">                                      
+                                            </a>
+                                        </li>
+                                    </ul>
+                                   </div>
+                                <!-- Update/Cancel (hidden by default) -->
+                                </div>
+                            <!-- Update/Cancel (hidden by default) -->
+                            <div class="comment-update" id="update-actions-{{ comment.id }}" style="display: none;">
+                                <button class="update-btn" onclick="updateComment({{ comment.id }})">Update</button>
+                                <button class="cancel-btn" onclick="cancelEdit({{ comment.id }})">Cancel</button>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+         </div>
+      </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const commentForm = document.getElementById("mainCommentForm");
+        const commentsContainer = document.getElementById("commentsContainer");
+        const commentCount = document.getElementById("commentCount");
+        const mainCommentCount = document.getElementById("mainCommentCount");
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+       // ---------------- Add Comment ----------------
+                        if (commentForm) {
+                            commentForm.addEventListener("submit", function (e) {
+                                e.preventDefault();
+                                const formData = new FormData(commentForm);
+
+                                fetch(commentForm.action, {
+                                    method: "POST",
+                                    body: formData,
+                                    headers: { "X-Requested-With": "XMLHttpRequest" }
+                                })
+                                .then(res => res.json())
+                                .then(data => {
+                                    if (data.status === "success") {
+                                        const newComment = `
+                                            <div class="single-comment d-flex justify-content-between align-items-start" id="comment-${data.comment.id}">
+                                                <div>
+                                                    <p class="d-flex align-items-center gap-2">
+                                                        <img src="${data.comment.avatar}" alt="${data.comment.author}" class="comment-avatar">
+                                                        <strong>${data.comment.author}</strong> - Just now
+                                                    </p>
+                                                    <p class="comment-text" id="text-${data.comment.id}">${data.comment.text}</p>
                                                 </div>
-                                                
-                                                <!-- Comment Preview Section -->
-                                                <div class="single-input-wrapper comment-preview-wrapper" style="display: none;">
-                                                    <label>Comment Preview</label>
-                                                    <div class="comment-preview-content">
-                                                        <div class="preview-header">
-                                                            <span class="preview-author">Your Comment</span>
-                                                            <span class="preview-time">Just now</span>
-                                                        </div>
-                                                        <div class="preview-text" id="commentPreviewText"></div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="single-input-wrapper check">
-                                                    <input type="checkbox" id="terms" name="terms" value="terms of use">
-                                                    <label for="terms">I agree to the terms and conditions</label><br>
-                                                </div>
-                                                <div class="single-input-wrapper">
-                                                    <button type="button" class="preview-btn tp-btn btn-secondary" onclick="previewComment()">Preview Comment</button>
-                                                    <button type="submit" class="subscribe-btn tp-btn btn-primary">Post A Comment</button>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-sm btn-light" data-bs-toggle="dropdown">⋮</button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><a href="#" class="dropdown-item edit-comment-btn" data-id="${data.comment.id}">Edit</a></li>
+                                                        <li><a href="#" class="dropdown-item delete-comment-btn" data-id="${data.comment.id}">Delete</a></li>
+                                                    </ul>
                                                 </div>
                                             </div>
-                                        </form>
+                                        `;
+                                        commentsContainer.insertAdjacentHTML("beforeend", newComment);
+
+                                        commentCount.innerText = parseInt(commentCount.innerText) + 1;
+                                        mainCommentCount.innerText = parseInt(mainCommentCount.innerText) + 1;
+
+                                        commentForm.reset();
+                                        toastr.success("Comment posted successfully!");
+                                    } else {
+                                        toastr.error(data.message || "Something went wrong!");
+                                    }
+                                });
+                            });
+                        }
+
+                        // ---------------- Comment Actions (Edit/Delete) ----------------
+                        commentsContainer.addEventListener("click", function (e) {
+                            const target = e.target;
+
+                            // -------- Delete Comment --------
+                            if (target.classList.contains("delete-comment-btn")) {
+                                e.preventDefault();
+                                const commentId = target.dataset.id;
+
+                                Swal.fire({
+                                    title: "Are you sure?",
+                                    text: "You won't be able to revert this!",
+                                    icon: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#3085d6",
+                                    cancelButtonColor: "#d33",
+                                    confirmButtonText: "Yes, delete it!"
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        fetch(`/comments/${commentId}/delete/`, {
+                                            method: "POST",
+                                            headers: {
+                                                "X-CSRFToken": csrftoken,
+                                                "X-Requested-With": "XMLHttpRequest"
+                                            }
+                                        })
+                                        .then(res => res.json())
+                                        .then(data => {
+                                            if (data.status === "success") {
+                                                document.getElementById(`comment-${commentId}`).remove();
+                                                commentCount.innerText = parseInt(commentCount.innerText) - 1;
+                                                mainCommentCount.innerText = parseInt(mainCommentCount.innerText) - 1;
+                                                Swal.fire("Deleted!", "Your comment has been deleted.", "success");
+                                            } else {
+                                                toastr.error(data.message || "Delete failed!");
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+
+                            // -------- Edit Comment --------
+                            if (target.classList.contains("edit-comment-btn")) {
+                                e.preventDefault();
+                                const commentId = target.dataset.id;
+                                const commentTextEl = document.getElementById(`text-${commentId}`);
+                                const oldText = commentTextEl.innerText;
+
+                                if (document.getElementById(`edit-form-${commentId}`)) return;
+
+                                commentTextEl.outerHTML = `
+                                    <div id="edit-form-${commentId}">
+                                        <textarea class="form-control mb-2" id="edit-text-${commentId}">${oldText}</textarea>
+                                        <button class="btn btn-sm btn-primary save-edit-btn" data-id="${commentId}">Update</button>
+                                        <button class="btn btn-sm btn-secondary cancel-edit-btn" data-id="${commentId}">Cancel</button>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                `;
+                            }
+
+                            // -------- Save Edited Comment --------
+                            if (target.classList.contains("save-edit-btn")) {
+                                e.preventDefault();
+                                const commentId = target.dataset.id;
+                                const newText = document.getElementById(`edit-text-${commentId}`).value;
+
+                                fetch(`/comments/edit/${commentId}/`, {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                        "X-CSRFToken": csrftoken,
+                                        "X-Requested-With": "XMLHttpRequest"
+                                    },
+                                    body: JSON.stringify({ text: newText })
+                                })
+                                .then(res => res.json())
+                                .then(data => {
+                                    if (data.status === "success") {
+                                        document.getElementById(`edit-form-${commentId}`).outerHTML = `
+                                            <p class="comment-text" id="text-${commentId}">${data.comment.text}</p>
+                                        `;
+                                        toastr.success("Comment updated!");
+                                    } else {
+                                        toastr.error(data.message || "Update failed!");
+                                    }
+                                });
+                            }
+
+                            // -------- Cancel Edit --------
+                            if (target.classList.contains("cancel-edit-btn")) {
+                                e.preventDefault();
+                                const commentId = target.dataset.id;
+                                const oldText = document.getElementById(`edit-text-${commentId}`).value;
+                                document.getElementById(`edit-form-${commentId}`).outerHTML = `
+                                    <p class="comment-text" id="text-${commentId}">${oldText}</p>
+                                `;
+                            }
+                        });
+                    });
+                    </script>
+
                     <div class="col-xl-3 tp-sticky-column-item">
                         <div class="eblog-right-sidebar">
                             <div class="eblog-right-side-post feature">

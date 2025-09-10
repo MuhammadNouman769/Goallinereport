@@ -288,7 +288,6 @@
         };
     }
 
-
   var win=$(window);
   var totop = $('.scroll-top-btn');    
   win.on('scroll', function() {
@@ -315,3 +314,4 @@ window.onclick = function(event) {
 }
   imJs.m();
 })(jQuery, window)
+

@@ -50,7 +50,7 @@ def story_list(request):
     }
     return render(request, 'story/story_list.html', context)
 
-def story_detail(request, slug):
+def blog_details(request, slug):
     """Display a single story"""
     story = get_object_or_404(Story, slug=slug)
     
@@ -74,7 +74,7 @@ def story_detail(request, slug):
     
     # Update view count
     story.views_count = story.story_views.count()
-    story.save()
+    story.save(update_fields=["views_count"])
     
     # Check if user liked the story
     user_liked = False
@@ -84,9 +84,10 @@ def story_detail(request, slug):
     context = {
         'story': story,
         'user_liked': user_liked,
+        'author': story.author,
         'chapters': story.chapters.all(),
     }
-    return render(request, 'story/blog-details.html', context)
+    return render(request, 'blog-details.html', context)
 
 @login_required
 @user_passes_test(is_editor)

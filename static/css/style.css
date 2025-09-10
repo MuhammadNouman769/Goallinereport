@@ -15253,6 +15253,37 @@ body.sal-disabled [data-sal|=flip] {
 .eblog-trending-news-area .section-inner {
   padding-bottom: 55px;
 }
+/* Story Card Box */
+.eblog-featured-news {
+    height: 400px;          /* fix card height */
+    width: 100%;
+    overflow: hidden;       /* extra content hide */
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Story Image */
+.eblog-featured-news .image-area img {
+    width: 100% !important;
+    height: 200px !important;          /* fix image height */
+    object-fit: cover !important;      /* image crop ho jaye */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+/* Story Content */
+.eblog-featured-news .blog-content {
+    padding: 10px 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .eblog-trending-news-area .swiper-pagination2 {
   display: flex;
   width: 100px;
@@ -15316,7 +15347,7 @@ body.sal-disabled [data-sal|=flip] {
   }
 }
 .eblog-trending-news-area-2 .eblog-featured-news .image-area .blog-content .heading-title a {
-  font-size: 24px;
+  font-size: 20px;
   line-height: 30px;
   background-size: 201% 1px;
 }
@@ -22358,3 +22389,55 @@ html[data-theme=dark] body.home-two .eblog-footer-area.footer-2 .eblog-get-in-tu
 /* 404 Area Style */
 
 /*# sourceMappingURL=style.css.map */
+.dropdown-menu {
+  display: none;
+  z-index: 100;
+}
+.dropdown.open .dropdown-menu {
+  display: block;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.username {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.comment-avatar {
+    width: 32px; /* Adjusted to match typical profile pic size in the image */
+    height: 32px;
+    border-radius: 50%;
+}
+.edited {
+    display: block; /* Places (Edited) on a new line */
+    color: #888;
+    font-style: italic;
+    font-size: 12px;
+    margin-top: 2px;
+}
+.dropdown-menu .dropdown-item {
+    font-size: 14px;
+}
+.dropdown-menu .dropdown-item i {
+    margin-right: 5px;
+}
+.single-comment {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f8f9fa; /* Light background to match the clean look */
+    border-radius: 5px;
+}
+.comment-text {
+    margin-bottom: 0;
+}
+.btn { padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer; margin-right: 5px; }
+.edit-btn { background: #d0d4d0; color: white; }
+.delete-btn { background: #f44336; color: white; }
+.update-btn { background: #2196f3; color: white; }
+.cancel-btn { background: #9e9e9e; color: white; }

@@ -1,4 +1,4 @@
-{% extends 'glrdesign/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block title %}Author - Personal Blog and Magazine HTML Template{% endblock %}
@@ -32,12 +32,19 @@
     <section class="eblog-author-area tp-section-gap2Top">
         <div class="container">
             <div class="section-inner">
+            
                 <div class="image-area">
+                      {% if author.profile.avatar %}
+                    <img src="{{ author.profile.avatar.url }}" width="307" alt="">
+                     {% else %}
                     <img src="{% static 'img/banner/author.png' %}" width="307" alt="">
+                    {% endif %}
                 </div>
                 <div class="content-area">
-                    <h3 class="heading-title">Maria Sipra</h3>
-                    <p class="desc">When we consecrate our lives, walk in courage, and commit to God's way of living, He is the one who brings transformation and gives us the power to change the world. When that happens, God's vision become a reality!</p>
+                     {{ story.author.get_full_name }}
+                    <h3 class="heading-title">{{ author.get_full_name|default:author.username }}</h3>
+                     {{ story.author.get_full_name }}
+                    <p class="desc">{{ author.profile.bio|default:"No bio available." }}</p>
                     <p class="post">21 Posts</p>
                     <ul class="social-wrapper">
                         <li>
@@ -83,24 +90,54 @@
     <!-- End Author Area -->
 
     <!-- Start Feature Post Area -->
-    <section class="eblog-featured-post-area area-2 tp-section-gap">
-        <div class="container">
-            <div class="section-inner">
-                <div class="row g-5">
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/38.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
+  <!-- Start Feature Post Area -->
+<!-- Start Feature Post Area -->
+<section class="eblog-featured-post-area area-2 tp-section-gap">
+    <div class="container">
+        <div class="section-inner">
+            <div class="row g-5">
+
+                {% for story in stories %}
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="eblog-featured-news style-two small">
+                        
+                        <!-- Story Image -->
+                        <div class="image-area">
+                            {% if story.image %}
+                                <a href="{% url 'story:blog_details' story.slug %}">
+                                    <img src="{{ story.image.url }}" alt="{{ story.title }}">
+                                </a>
+                            {% else %}
+                                <a href="{% url 'story:blog_details' story.slug %}">
+                                    <img src="{% static 'img/blog/38.jpg' %}" alt="No Image">
+                                </a>
+                            {% endif %}
                         </div>
+
+                        <!-- Story Content -->
+                        <div class="blog-content text-left">
+                            <p class="tag mb--15">Fashion</p>
+                            <a href="{% url 'story:blog_details' story.slug %}">
+                                <h5>{{ story.title|truncatechars:60 }}</h5>
+                            </a>
+                            <ul class="blog-meta justify-content-start m--0">
+                                <li class="author">
+                                    <span>by</span>
+                                    {{ story.author.get_full_name|default:story.author.username }}
+                                    - {{ story.published_at|date:"d M, Y" }}
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section>
+{% comment %}                   
                     <div class="col-xl-3 col-lg-4 col-md-6">
                         <div class="eblog-featured-news style-two small">
                             <div class="image-area">
@@ -297,7 +334,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="lg-12">
+                    <div class="lg-12"> {% endcomment %}
                         <div class="button-area">
                             <a href="#" class="tp-btn btn-secondary m-auto">Load More</a>
                         </div>

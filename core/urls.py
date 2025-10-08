@@ -22,11 +22,14 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.main.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('select2/', include('django_select2.urls')),
     # path('glrdesign/', include('apps.glrdesign.urls')),
     path('accounts/', include('apps.accounts.urls')),
     path('comments/', include('apps.comments.urls')),
     path('stories/', include('apps.story.urls')),
     path('rss/', include('apps.rss_feeds.urls')),
+    path('subscriptions', include('apps.subscriptions.urls', namespace='subscriptions')),
     
 ]
 

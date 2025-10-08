@@ -22389,7 +22389,7 @@ html[data-theme=dark] body.home-two .eblog-footer-area.footer-2 .eblog-get-in-tu
 /* 404 Area Style */
 
 /*# sourceMappingURL=style.css.map */
-<<<<<<< HEAD
+
 .dropdown-menu {
   display: none;
   z-index: 100;
@@ -22442,7 +22442,7 @@ html[data-theme=dark] body.home-two .eblog-footer-area.footer-2 .eblog-get-in-tu
 .delete-btn { background: #f44336; color: white; }
 .update-btn { background: #2196f3; color: white; }
 .cancel-btn { background: #9e9e9e; color: white; }
-=======
+
 
 
 .footer {
@@ -22516,4 +22516,84 @@ html[data-theme=dark] body.home-two .eblog-footer-area.footer-2 .eblog-get-in-tu
 .footer .container p {
   color: #ffffff;
 }
->>>>>>> 069501d6f96aaea453ccc01900492d9839dd87e4
+
+/* container must allow overflow so badge can sit slightly below image without changing layout */
+.image-area {
+  position: relative;
+  overflow: visible; /* important so badge visible outside image box */
+}
+
+/* keep image size intact */
+.image-area .card-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* small, elegant pill badge that sits slightly below the image */
+.tag-badge {
+  position: absolute;
+  left: 12px;             /* distance from left edge of image */
+  bottom: -10px;          /* negative -> sits a little below image (does NOT change image size) */
+  z-index: 20;
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.75); /* dark translucent background */
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+/* subtle hover */
+.tag-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+}
+
+/* smaller screens tweak */
+@media (max-width: 576px) {
+  .tag-badge {
+    left: 8px;
+    bottom: -8px;
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+}
+/* Hover dropdown fix */
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* dropdown smoothly open ho */
+}
+
+.dropdown-menu {
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+    padding: 8px 0;
+}
+
+.dropdown-item {
+    padding: 10px 16px;
+    font-size: 15px;
+    transition: background 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background: #f1f1f1;
+}
+.banner-single {
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    position: relative;
+}
+.banner-content {
+    position: relative;
+    z-index: 1;
+}
+/*  banner post color */
+

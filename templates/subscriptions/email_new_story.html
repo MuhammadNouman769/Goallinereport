@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ story.title }}</title>
+
+  <style>
+    /* Reset & base */
+    html,body { margin:0; padding:0; height:100% !important; width:100% !important; }
+    * { -ms-text-size-adjust:100%; -webkit-text-size-adjust:100%; }
+    table, td { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
+    img { border:0; line-height:100%; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic; display:block; max-width:100%; }
+    a { color:inherit; text-decoration:none; }
+
+    /* Container */
+    .email-wrapper { width:100%; background-color:#f2f4f6; padding:20px 0; }
+    .email-content { width:100%; max-width:600px; margin:0 auto; }
+
+    /* Card */
+    .card { background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.06); }
+
+    /* Header */
+    .brand { padding:20px; text-align:center; background:#ffffff; }
+    .brand h1 { margin:0; font-size:20px; color:#111827; font-family:Arial, sans-serif; }
+
+    /* Body */
+    .hero { padding:24px; }
+    .title { font-size:20px; margin:0 0 8px 0; font-family:Arial, sans-serif; color:#111827; }
+    .summary { font-size:15px; line-height:1.5; color:#4b5563; margin:0 0 20px 0; font-family:Arial, sans-serif; }
+
+    /* Button */
+    .btn-wrap { text-align:left; }
+    .btn {
+      display:inline-block;
+      padding:12px 20px;
+      border-radius:6px;
+      background:#007bff;
+      color:#ffffff;
+      font-size:15px;
+      font-family:Arial, sans-serif;
+      text-decoration:none;
+    }
+
+    /* Footer */
+    .footer { padding:16px 24px; font-size:12px; color:#9ca3af; text-align:center; font-family:Arial, sans-serif; }
+    .small-link { color:#6b7280; text-decoration:underline; }
+
+    /* Responsive */
+    @media only screen and (max-width:480px) {
+      .hero { padding:16px; }
+      .brand h1 { font-size:18px; }
+      .title { font-size:18px; }
+      .summary { font-size:14px; }
+      .btn { display:block; width:100%; box-sizing:border-box; text-align:center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- preheader (hidden) -->
+  <div style="display:none; max-height:0; overflow:hidden; mso-hide:all;">
+    {{ story.title }} — Read the full story on Goal Line Report.
+  </div>
+
+  <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+    <tr>
+      <td align="center">
+        <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+          <tr>
+            <td class="brand card" align="center">
+              <!-- You can replace with a logo image: <img src="{{ site_url }}/static/logo.png" width="140" alt="Goal Line Report"> -->
+              <h1>Goal Line Report — New Story</h1>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="card hero">
+              <h2 class="title">{{ story.title }}</h2>
+              <p class="summary">{{ story.summary }}</p>
+
+              <!-- Button with Outlook VML fallback -->
+              <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                <tr>
+                  <td class="btn-wrap">
+                    <!--[if mso]>
+                      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
+                                   href="{{ site_url }}{{ story.get_absolute_url }}"
+                                   style="height:40px; v-text-anchor:middle; width:200px;"
+                                   arcsize="10%" strokecolor="#007bff" fillcolor="#007bff">
+                        <w:anchorlock/>
+                        <center style="color:#ffffff; font-family:Arial, sans-serif; font-size:15px;">Read More</center>
+                      </v:roundrect>
+                    <![endif]-->
+                    <![if !mso]>
+                      <a class="btn" href="{{ site_url }}{{ story.get_absolute_url }}" target="_blank" rel="noopener">Read More</a>
+                    <![endif]>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin-top:16px; font-size:13px; color:#6b7280; font-family:Arial, sans-serif;">
+                If the button doesn't work, copy and paste this link into your browser:
+                <br>
+                <a href="{{ site_url }}{{ story.get_absolute_url }}" class="small-link" target="_blank" rel="noopener">{{ site_url }}{{ story.get_absolute_url }}</a>
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="footer">
+              <p style="margin:0 0 8px 0;">
+                You are receiving this because you subscribed to Goal Line Report.
+              </p>
+              <p style="margin:0;">
+                <a href="{{ site_url }}{% url 'subscriptions:unsubscribe' subscriber_id=subscriber.id %}" class="small-link">Unsubscribe</a>
+                &nbsp;•&nbsp;
+                <a href="{{ site_url }}contact/" class="small-link">Contact Us</a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

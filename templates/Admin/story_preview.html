@@ -1,0 +1,22 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+  <div class="story-preview" style="padding: 20px; background: #fff; color: #333;">
+    <h1>{{ story.title }}</h1>
+    <p><strong>By:</strong> {{ story.author.username }}</p>
+    {% if story.image %}
+      <img src="{{ story.image.url }}" alt="{{ story.title }}" style="max-width: 100%; height: auto;" />
+    {% endif %}
+    <p>{{ story.summary }}</p>
+    <div>{{ story.content|safe }}</div>
+    {% for chapter in chapters %}
+      <h2>Chapter {{ chapter.order }}: {{ chapter.title }}</h2>
+      {% if chapter.image %}
+        <img src="{{ chapter.image.url }}" alt="{{ chapter.title }}" style="max-width: 100%; height: auto;" />
+      {% endif %}
+      {% if chapter.video %}
+        <video controls src="{{ chapter.video.url }}" style="max-width: 100%;"></video>
+      {% endif %}
+      <div>{{ chapter.content|safe }}</div>
+    {% endfor %}
+  </div>
+{% endblock %}

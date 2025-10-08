@@ -7,6 +7,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('reports/', views.reports, name='reports'),
-    path('api/example/', views.api_example, name='api_example'),
-    path('stories/', views.stories, name='stories'),
+    # path('api/example/', views.api_example, name='api_example'),
+    # path('stories/', views.stories, name='stories'),
 ]

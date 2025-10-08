@@ -47,8 +47,27 @@ INSTALLED_APPS = [
     'apps.comments',
     'apps.story',
     'apps.rss_feeds',
-]
+    'ckeditor',
+    'ckeditor_uploader',
+    'crispy_forms',
+    'django_select2',
+    'django_htmx',
+    'django_extensions',
+    'widget_tweaks',
+    'apps.subscriptions.apps.SubscriptionsConfig',
 
+    
+    
+]
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': '100%',
+    },
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -57,6 +76,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_htmx.middleware.HtmxMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -78,6 +98,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
+# settings.py
+LOGIN_REDIRECT_URL = 'story:editor_page'   # login ke baad editor dashboard pe bhej do
+LOGOUT_REDIRECT_URL = 'login'             # logout ke baad login page pe bhej do
+
+LOGIN_URL = "/accounts/login/"
+LOGIN_REDIRECT_URL = "/accounts/profile/"
+LOGOUT_REDIRECT_URL = "/"
+
 
 
 # Database
@@ -89,7 +117,14 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'nomannisar769@gmail.com'  # Aapka Gmail address
+EMAIL_HOST_PASSWORD = 'pqtf bigw phif dlpv'  # Aapka 16-digit App Password
+DEFAULT_FROM_EMAIL = 'Goal Line Report <nomannisar769@gmail.com>'  # Same email
+SITE_URL = 'http://localhost:8000'  # Production mein change karein
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -109,7 +144,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+TIME_ZONE = 'Asia/Karachi'
+USE_TZ = True
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -136,11 +172,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+
+
+# CKEditor upload path
+CKEDITOR_UPLOAD_PATH = "uploads/ckeditor/"
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
+
+# Optional: CKEditor config
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': '100%',
+    },
+}
 # Jazzmin Configuration
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)

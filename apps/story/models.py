@@ -4,7 +4,10 @@ from django.utils import timezone
 from django.urls import reverse
 from django.utils.text import slugify
 from apps.utils.models import CoreModel
+from ckeditor_uploader.fields import RichTextUploadingField
 
+
+""" ----------------- Story Model -----------------"""
 class Story(CoreModel):
     """Model for stories/News"""
     class StoryStatus(models.TextChoices):
@@ -16,17 +19,18 @@ class Story(CoreModel):
 
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
-    content = models.TextField()
+    content = RichTextUploadingField()
     image = models.ImageField(blank=True, null=True)
+    story_banner = models.ImageField(upload_to='story_banner/',blank=True, null=True,
+        help_text="banner image for the story (chief editor only)"
+        )
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='stories')
     status = models.CharField(max_length=20, choices=StoryStatus.choices, default=StoryStatus.DRAFT)
     tags = models.ManyToManyField("StoryTag", related_name='stories', blank=True)
     
-    # Story metadata
     summary = models.TextField(blank=True, help_text="Brief summary of the story")
     published_at = models.DateTimeField(null=True, blank=True)
     
-    # Review workflow
     reviewed_by = models.ForeignKey(
         User, 
         on_delete=models.SET_NULL, 
@@ -37,14 +41,15 @@ class Story(CoreModel):
     reviewed_at = models.DateTimeField(null=True, blank=True)
     review_notes = models.TextField(blank=True, help_text="Review comments from chief editor")
     
-    # Engagement metrics
     views_count = models.PositiveIntegerField(default=0)
     likes_count = models.PositiveIntegerField(default=0)
 
-    
     class Meta:
         ordering = ['-created_at']
         verbose_name_plural = 'Stories'
+    
+    
+    
     
     def __str__(self):
         return self.title
@@ -56,34 +61,36 @@ class Story(CoreModel):
             self.published_at = timezone.now()
         super().save(*args, **kwargs)
     
+
     def can_edit(self, user):
-        """Check if user can edit this story"""
         if not user.is_authenticated:
             return False
-        if user.profile.is_chief_editor:
+        if hasattr(user, "profile") and getattr(user.profile, "is_chief_editor", False):
             return True
-        return self.author == user and user.profile.is_editor
+        return self.author == user and getattr(user.profile, "is_editor", False)
     
     def can_review(self, user):
-        """Check if user can review this story"""
-        return user.is_authenticated and user.profile.is_chief_editor
+        return user.is_authenticated and hasattr(user, "profile") and getattr(user.profile, "is_chief_editor", False)
     
     def can_publish(self, user):
-        """Check if user can publish this story"""
-        return user.is_authenticated and user.profile.is_chief_editor
+        return user.is_authenticated and hasattr(user, "profile") and getattr(user.profile, "is_chief_editor", False)
+    
+    
+    def can_edit_banner(self, user):
+        """Check if user can edit the story_banner field"""
+        return user.is_authenticated and hasattr (user, "profile") and user.profile.is_chief_editor
     
     def can_view(self, user):
-        """Check if user can view this story"""
         if self.status == 'published':
             return True
         if not user.is_authenticated:
             return False
-        if user.profile.is_chief_editor:
+        if hasattr(user, "profile") and getattr(user.profile, "is_chief_editor", False):
             return True
         return self.author == user
     
     def get_absolute_url(self):
-        return reverse('story:story_detail', kwargs={'slug': self.slug})
+        return reverse('story:blog_details', kwargs={'slug': self.slug})
     
     @property
     def is_published(self):
@@ -93,50 +100,55 @@ class Story(CoreModel):
     def tag_list(self):
         return self.tags.all()
 
+
+""" ----------------- Story Chapter -----------------"""
 class StoryChapter(CoreModel):
-    """Model for chapters within a story"""
     story = models.ForeignKey(Story, on_delete=models.CASCADE, related_name='chapters')
     title = models.CharField(max_length=200)
-    content = models.TextField()
+    content = RichTextUploadingField()
     image = models.ImageField(upload_to='story_chapters/', null=True, blank=True)
     video = models.FileField(upload_to='story_chapters/', null=True, blank=True)
     order = models.PositiveIntegerField(default=0)
-    
-    
+
     class Meta:
         ordering = ['order', 'created_at']
-        unique_together = ['story', 'order']
-    
+        constraints = [
+            models.UniqueConstraint(fields=['story', 'order'], name='unique_story_order')
+        ]
+
     def __str__(self):
         return f"{self.story.title} - Chapter {self.order}: {self.title}"
 
+
+"""----------------- Story Like -----------------"""
 class StoryLike(CoreModel):
-    """Model for tracking likes on stories"""
     story = models.ForeignKey(Story, on_delete=models.CASCADE, related_name='story_likes')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    
+
     class Meta:
-        unique_together = ['story', 'user']
-    
+        constraints = [
+            models.UniqueConstraint(fields=['story', 'user'],name='unique_story_user_like')
+        ]
+
     def __str__(self):
         return f'{self.user.username} likes {self.story.title}'
 
+
+""" ----------------- Story View -----------------"""
 class StoryView(CoreModel):
-    """Model for tracking story views"""
     story = models.ForeignKey(Story, on_delete=models.CASCADE, related_name='story_views')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     ip_address = models.GenericIPAddressField(null=True, blank=True)
-    
+
     class Meta:
         ordering = ['-created_at']
-    
+
     def __str__(self):
         return f'View of {self.story.title} at {self.created_at}'
 
 
-
+"""----------------- Story Tag -----------------"""
 class StoryTag(CoreModel):
-    """Model for tags for stories"""
     name = models.CharField(max_length=50)
     slug = models.SlugField(unique=True, blank=True)
 
@@ -151,3 +163,4 @@ class StoryTag(CoreModel):
 
     def __str__(self):
         return self.name
+

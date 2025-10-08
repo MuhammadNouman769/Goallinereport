@@ -118,235 +118,35 @@
                         <div class="blog-content text-left">
                             <p class="tag mb--15">Fashion</p>
                             <a href="{% url 'story:blog_details' story.slug %}">
-                                <h5>{{ story.title|truncatechars:60 }}</h5>
+                                <h5>{{ story.title|truncatechars:20 }}</h5>
                             </a>
                             <ul class="blog-meta justify-content-start m--0">
                                 <li class="author">
                                     <span>by</span>
                                     {{ story.author.get_full_name|default:story.author.username }}
-                                    - {{ story.published_at|date:"d M, Y" }}
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-                {% endfor %}
-
-            </div>
+                                    - {{ story.published_at|date:"M d, Y, g:i A" }}
+                                      </li>
+                                   </ul>
+                                </div>
+                                </div>
+                             </div>
+                          {% endfor %}
+                      </div>
+                   </div>
+                  </div>
+               </section>
+             <div class="button-area">
+            <a href="#" class="tp-btn btn-secondary m-auto">Load More</a>
+            <br>
+         </div>
         </div>
+      </div>
     </div>
-</section>
-{% comment %}                   
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/39.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/40.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/41.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/42.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/43.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/38.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/39.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/40.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/41.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/42.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/38.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/39.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/40.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/41.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="lg-12"> {% endcomment %}
-                        <div class="button-area">
-                            <a href="#" class="tp-btn btn-secondary m-auto">Load More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Feature Post Area -->
-
-    <!-- Start Newsletter Area -->
-    <section class="eblog-newsletter-area tp-section-gap">
+  </div>
+ </section>
+ <!-- End Feature Post Area -->
+ <!-- Start Newsletter Area -->
+<section class="eblog-newsletter-area tp-section-gap">
         <div class="container">
             <div class="section-inner">
                 <p class="sub-title">Weekly updates</p>

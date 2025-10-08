@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load story_tags %}
 {% block title %}Personal Blog and Magazine HTML Template{% endblock %}
 
 {% block content %}
@@ -116,202 +116,122 @@
     </div>
     <!-- End Subscribe Popup Box -->
     <!-- End Header Area -->
-
-    <!-- Start Banner Area -->
-    <section class="eblog-banner-area">
-        <div class="banner-inner">
-            <div class="swiper tp-bannerSlider">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="banner-single banner-bg">
-                            <div class="container">
-                                <div class="banner-content blog-content">
-                                    <p class="sub-title">Freedom</p>
-                                    <h2 class="heading-title"><a class="title-animation" href="#">Apple needs a $250 iPhone to boost <br>
-                                        sales but it doesn't want to make</a></h2>
-                                    <ul class="blog-meta">
-                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                        <li>
-                                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <g clip-path="url(#clip0_4238_1228)">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                </g>
-                                                <defs>
-                                                    <clipPath id="clip0_4238_1228">
-                                                        <rect width="15" height="15" fill="white" />
-                                                    </clipPath>
-                                                </defs>
-                                            </svg>
-                                            3 Minute Read
-                                        </li>
-                                        <li>
-                                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                            </svg>
-                                            1.9k views
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+  <div class="eblog-breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- bread crumb inner wrapper -->
+                    <div class="breadcrumb-inner text-center">
+                        <div class="meta">
+                            <a href="{% url 'main:home' %}" class="prev">Home</a>
+                            <img src="{% static 'img/icon/chevron-right.svg' %}" alt="">
+                             <a href="{% url 'story:column_layout_grid' %}" class="next">Stories</a>
+                            <img src="{% static 'img/icon/chevron-right.svg' %}" alt="">
+                            {% comment %} <a href="#" class="last" id="breadcrumbLast">Column Layout Grid</a> {% endcomment %}
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="banner-single banner-single-2">
-                            <div class="container">
-                                <div class="banner-content blog-content">
-                                    <p class="sub-title">Freedom</p>
-                                    <h2 class="heading-title"><a class="title-animation" href="#">5 Efficient Rules How to Organize <br>
-                                        Your Working Place Relationship</a></h2>
-                                    <ul class="blog-meta">
-                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                        <li>
-                                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <g clip-path="url(#clip0_4238_1229)">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                </g>
-                                                <defs>
-                                                    <clipPath id="clip0_4238_1229">
-                                                        <rect width="15" height="15" fill="white" />
-                                                    </clipPath>
-                                                </defs>
-                                            </svg>
-                                            3 Minute Read
-                                        </li>
-                                        <li>
-                                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                            </svg>
-                                            1.9k views
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="banner-single banner-single-3">
-                            <div class="container">
-                                <div class="banner-content blog-content">
-                                    <p class="sub-title">Freedom</p>
-                                    <h2 class="heading-title"><a class="title-animation" href="#">Apple needs a $250 iPhone to boost <br>
-                                        sales but it doesn't want to make</a></h2>
-                                    <ul class="blog-meta">
-                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                        <li>
-                                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <g clip-path="url(#clip0_4238_1230)">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                </g>
-                                                <defs>
-                                                    <clipPath id="clip0_4238_1230">
-                                                        <rect width="15" height="15" fill="white" />
-                                                    </clipPath>
-                                                </defs>
-                                            </svg>
-                                            3 Minute Read
-                                        </li>
-                                        <li>
-                                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                            </svg>
-                                            1.9k views
-                                        </li>
-                                    </ul>
-                                </div>
+                    <!-- bread crumb inner wrapper end -->
+                </div>
+            </div>
+        </div>
+    </div>
+  
+<!-- Start Banner Area -->
+<section class="eblog-banner-area">
+    <div class="banner-inner">
+        <div class="swiper tp-bannerSlider">
+            <div class="swiper-wrapper">
+                {% for story in banner_stories %}
+                <div class="swiper-slide">
+                    <div class="banner-single"
+                         style="background-image: url('{% if story.story_banner %}{{ story.story_banner.url }}{% else %}{% static "images/default_banner.jpg" %}{% endif %}');">
+                        <div class="container">
+                            <div class="banner-content blog-content">
+                                <p class="sub-title">{{ story.tags.first.name|default:"News" }}</p>
+                                <h2 class="heading-title">
+                                    <a class="title-animation" href="{{ story.get_absolute_url }}">
+                                        {{ story.title }}
+                                    </a>
+                                </h2>
+                                <ul class="blog-meta">
+                                    <li class="author">
+                                        <span>BY</span>
+                                        {{ story.author.get_full_name|default:story.author.username }}
+                                        - {{ story.published_at|date:"M d, Y, g:i A" }}
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            <div class="swiper-pagination"></div>
         </div>
-    </section>
-    <!-- End Banner Area -->
+    </div>
+</section>
 
+    <!-- End Banner Area -->
+<style>
+    .heading-title a {
+    display: inline-block;
+    width: 50%;         /* adjust width to control line length */
+    line-height: 1.2;     /* spacing between lines */
+    word-wrap: break-word; /* wrap long words to next line if needed */
+}
+</style>
     <!-- Start Trending News Area -->
     <section class="eblog-trending-news-area tp-section-gap">
-        <div class="container">
-            <div class="section-title-area">
-                <h3 class="section-title text-center">Trending Now</h3>
-            </div>
-            <div class="section-inner">
-                <div class="swiper tp-trendingSlider">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="trending-news-wrapper">
-                                <div class="image-area">
-                                    <a href="#">
-                                        <img src="{% static 'img/blog/01.jpg' %}" alt="">
-                                    </a>
-                                </div>
-                                <div class="content-area">
-                                    <ul class="blog-meta">
-                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                    </ul>
-                                    <h6 class="title"><a href="#" class="title-animation">Women in AI: Anna Korhonen studies the intersection</a></h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="trending-news-wrapper">
-                                <div class="image-area">
-                                    <a href="#">
-                                        <img src="{% static 'img/blog/02.jpg' %}" alt="">
-                                    </a>
-                                </div>
-                                <div class="content-area">
-                                    <ul class="blog-meta">
-                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                    </ul>
-                                    <h6 class="title"><a href="#" class="title-animation">EU could approve Apple’s ‘tap and go’ payment proposal in</a></h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="trending-news-wrapper">
-                                <div class="image-area">
-                                    <a href="#">
-                                        <img src="{% static 'img/blog/03.jpg' %}" alt="">
-                                    </a>
-                                </div>
-                                <div class="content-area">
-                                    <ul class="blog-meta">
-                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                    </ul>
-                                    <h6 class="title"><a href="#" class="title-animation">Building an Editor by Sharing Code Between Android</a></h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="trending-news-wrapper">
-                                <div class="image-area">
-                                    <a href="#">
-                                        <img src="{% static 'img/blog/04.jpg' %}" alt="">
-                                    </a>
-                                </div>
-                                <div class="content-area">
-                                    <ul class="blog-meta">
-                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                    </ul>
-                                    <h6 class="title"><a href="#" class="title-animation">Google merges Android and Hardware divisions to drive AI </a></h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-pagination2"></div>
-            </div>
+    <div class="container">
+        <div class="section-title-area">
+            <h3 class="section-title text-center">Trending Now</h3>
         </div>
-    </section>
-    <!-- End Trending News Area -->
+        <div class="section-inner">
+            <div class="swiper tp-trendingSlider">
+                <div class="swiper-wrapper">
+                    {% for story in trending_stories %}
+                        <div class="swiper-slide">
+                            <div class="trending-news-wrapper">
+                                <div class="image-area">
+                                    <a href="{{ story.get_absolute_url }}">
+                                        {% if story.image %}
+                                            <img src="{{ story.image.url }}" alt="{{ story.title }}">
+                                        {% else %}
+                                            <img src="{% static 'img/blog/default-trending.jpg' %}" alt="Default Image">
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                <div class="content-area">
+                                    <ul class="blog-meta">
+                                        <li class="author">by - {{ story.author.get_full_name|default:story.author.username }} - {{ story.published_at|date:"M d, Y, g:i A" }}</li>
+                                    </ul>
+                                    <h6 class="title"><a href="{{ story.get_absolute_url }}" class="title-animation">{{ story.title|truncatewords:6 }}</a></h6>
+                                </div>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="swiper-slide">
+                            <div class="trending-news-wrapper">
+                                <div class="image-area">
+                                    <a href="#"><img src="{% static 'img/blog/01.jpg' %}" alt="No Stories"></a>
+                                </div>
+                                <div class="content-area">
+                                    <ul class="blog-meta">
+                                        <li class="author"><span>BY</span>Admin - {{ "now"|date:"d M, Y" }}</li>
+                                    </ul>
+                                    <h6 class="title"><a href="#" class="title-animation">No Trending Stories Available</a></h6>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="swiper-pagination2"></div>
+        </div>
+    </div>
+</section>
+<!-- End Trending News Area -->
 
-    <!-- Start Feature Post Area -->
+    <!-- Start premier leagues Area -->
     <section class="eblog-featured-post-area tp-section-gapBottom">
         <div class="container">
             <div class="section-inner">
@@ -320,18 +240,22 @@
                         <div class="left-side-post-area">
                             <div class="featured-post technology tp-section-gapBottom">
                                 <div class="section-title-area">
-                                    <h3 class="section-title">Technology</h3>
+                                    <h3 class="section-title">
+                                    <a href="{% url 'story:column_layout_grid' %}?category=Premier League">🏴 Premier League</a>
+                                    </h3>
                                 </div>
                                 <div class="post-section-inner">
                                     <div class="big-post">
+                                        {% if premier_league_stories %}
+                                    {% with first_story=premier_league_stories.0 %}
                                         <div class="eblog-featured-news">
                                             <div class="image-area">
-                                                <a href="#"><img src="{% static 'img/blog/05.jpg' %}" width="533" alt=""></a>
-                                                <p class="tag">Technology</p>
+                                               <a href="{{ first_story.get_absolute_url }}"><img src="{% if first_story.image %}{{ first_story.image.url }}{% else %}{% static 'img/blog/05.jpg' %}{% endif %}" width="533" alt=""></a>
+                                                <p class="tag">Premier Leagues</p>
                                                 <div class="blog-content">
-                                                    <h4 class="heading-title"><a class="title-animation" href="#">Cloud journeys: Jeff Barr on <br> inspiring cloud industry leaders</a></h4>
+                                                   <h4 class="heading-title"><a class="title-animation" href="{{ first_story.get_absolute_url }}">{{ first_story.title|truncatewords:10 }}</a></h4>
                                                     <ul class="blog-meta">
-                                                        <li class="author"><span>BY</span>Elon Mask</li>
+                                                        <li class="author"><span>BY</span> {{ first_story.author.get_full_name }}</li>
                                                         <li>
                                                             <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <g clip-path="url(#clip0_4238_1231)">
@@ -343,7 +267,7 @@
                                                                     </clipPath>
                                                                 </defs>
                                                             </svg>
-                                                            3 Minute Read
+                                                         {{ first_story.published_at|date:"M d, Y, g:i A" }}
                                                         </li>
                                                         <li>
                                                             <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -351,446 +275,198 @@
                                                                 <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
                                                                 <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
                                                             </svg>
-                                                            1.9k views
+                                                           {{ first_story.views_count }}
                                                         </li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    {% endwith %}
+                                {% endif %}
                                     <div class="small-post">
+                                        {% for story in premier_league_stories|slice:"1:4" %}
                                         <div class="eblog-post-list-style">
                                             <div class="image-area">
-                                                <a href="#"><img src="{% static 'img/blog/06.jpg' %}" alt=""></a>
+                                               <a href="{{ story.get_absolute_url }}"><img src="{% if story.image %}{{ story.image.url }}{% else %}{% static 'img/blog/06.jpg' %}{% endif %}" alt=""></a>
                                             </div>
                                             <div class="blog-content">
-                                                <p class="sub-title">Technology</p>
-                                                <h4 class="heading-title"><a class="title-animation" href="#">How Can A Wellness Retreat Help Reconnect You to Your</a></h4>
+                                                <p class="sub-title">Premier Leagues</p>
+                                               <h4 class="heading-title"><a class="title-animation" href="{{ story.get_absolute_url }}">{{ story.title|truncatewords:10 }}</a></h4>
                                                 <ul class="blog-meta">
-                                                    <li>
-                                                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <g clip-path="url(#clip0_4238_1232)">
-                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                            </g>
-                                                            <defs>
-                                                                <clipPath id="clip0_4238_1232">
-                                                                    <rect width="15" height="15" fill="white" />
-                                                                </clipPath>
-                                                            </defs>
-                                                        </svg>
-                                                        3 Minute Read
-                                                    </li>
-                                                    <li>
-                                                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                            <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                            <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                                        </svg>
-                                                        1.9k views
-                                                    </li>
+                                                     <li class="author"> by {{ story.author.get_full_name }}<br> at {{ story.published_at|date:"M d, Y, g:i A" }}</li>  
+                                                 </li>
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="eblog-post-list-style">
-                                            <div class="image-area">
-                                                <a href="#"><img src="{% static 'img/blog/07.jpg' %}" alt=""></a>
-                                            </div>
-                                            <div class="blog-content">
-                                                <p class="sub-title">Technology</p>
-                                                <h4 class="heading-title"><a class="title-animation" href="#">Two simple techniques to make your release process</a></h4>
-                                                <ul class="blog-meta">
-                                                    <li>
-                                                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <g clip-path="url(#clip0_4238_1233)">
-                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                            </g>
-                                                            <defs>
-                                                                <clipPath id="clip0_4238_1233">
-                                                                    <rect width="15" height="15" fill="white" />
-                                                                </clipPath>
-                                                            </defs>
-                                                        </svg>
-                                                        3 Minute Read
-                                                    </li>
-                                                    <li>
-                                                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                            <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                            <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                                        </svg>
-                                                        1.9k views
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="eblog-post-list-style">
-                                            <div class="image-area">
-                                                <a href="#"><img src="{% static 'img/blog/08.jpg' %}" alt=""></a>
-                                            </div>
-                                            <div class="blog-content">
-                                                <p class="sub-title">Technology</p>
-                                                <h4 class="heading-title"><a class="title-animation" href="#">How Can A Wellness Retreat Help Reconnect You to Your</a></h4>
-                                                <ul class="blog-meta">
-                                                    <li>
-                                                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <g clip-path="url(#clip0_4238_1234)">
-                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                            </g>
-                                                            <defs>
-                                                                <clipPath id="clip0_4238_1234">
-                                                                    <rect width="15" height="15" fill="white" />
-                                                                </clipPath>
-                                                            </defs>
-                                                        </svg>
-                                                        3 Minute Read
-                                                    </li>
-                                                    <li>
-                                                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                            <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                            <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                                        </svg>
-                                                        1.9k views
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        {% empty %}
+                                   {% endfor %}
                                     </div>
                                 </div>
                             </div>
-                            <div class="featured-post ai tp-section-gapBottom">
-                                <div class="section-title-area">
-                                    <h3 class="section-title">artificial intelligence</h3>
-                                </div>
-                                <div class="post-section-top">
-                                    <div class="row g-5">
+                          <!-- End premier leagues Area -->
+
+                         <!--start  stories area -->
+                        <div class="featured-post ai tp-section-gapBottom">
+                            <div class="section-title-area">
+                                <h3 class="section-title">Stories</h3>
+                            </div>
+                            <div class="post-section-top">
+                                <div class="row g-5">
+                                    {% for story in page_obj|slice:":3" %}
                                         <div class="col-lg-4 col-md-6">
                                             <div class="eblog-featured-news style-sm">
                                                 <div class="image-area">
-                                                    <a href="#"><img src="{% static 'img/blog/09.jpg' %}" alt=""></a>
-                                                    <div class="blog-content">
-                                                        <p class="sub-title">Technology</p>
-                                                        <h4 class="heading-title"><a class="title-animation" href="#">This camera trades pictures for AI poetry</a></h4>
-                                                        <ul class="blog-meta">
-                                                            <li class="author"><span>BY</span>Elon Mask</li>
-                                                            <li>
-                                                                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                                    <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                                    <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                                                </svg>
-                                                                1.9k views
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="eblog-featured-news style-sm">
-                                                <div class="image-area">
-                                                    <a href="#"><img src="{% static 'img/blog/10.jpg' %}" alt=""></a>
-                                                    <div class="blog-content">
-                                                        <p class="sub-title">Technology</p>
-                                                        <h4 class="heading-title"><a class="title-animation" href="#">Earbuds DevOps tools should be learning in 2024 </a></h4>
-                                                        <ul class="blog-meta">
-                                                            <li class="author"><span>BY</span>Elon Mask</li>
-                                                            <li>
-                                                                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                                    <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                                    <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                                                </svg>
-                                                                1.9k views
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="eblog-featured-news style-sm">
-                                                <div class="image-area">
-                                                    <a href="#"><img src="{% static 'img/blog/11.jpg' %}" alt=""></a>
-                                                    <div class="blog-content">
-                                                        <p class="sub-title">Technology</p>
-                                                        <h4 class="heading-title"><a class="title-animation" href="#">Efficient Rules How to Working Place Relationship </a></h4>
-                                                        <ul class="blog-meta">
-                                                            <li class="author"><span>BY</span>Elon Mask</li>
-                                                            <li>
-                                                                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                                    <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                                    <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                                                </svg>
-                                                                1.9k views
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                    <a href="{% url 'story:blog_details' story.slug %}">
+                                                    <img src="{{ story.image.url }}" alt="{{ story.title }}">
+                                                </a>
+                                                <div class="blog-content">
+                                                    <p class="sub-title">{{ story.tags.first.name|default:"General" }}</p>
+                                                    <h4 class="heading-title"><a class="title-animation" href="{% url 'story:blog_details' story.slug %}">{{ story.title|truncatewords:10 }}</a></h4>
+                                                    <ul class="blog-meta">
+                                                        <li class="author"><span>BY</span>{{ story.author.get_full_name|default:story.author.username }}</li>
+                                                        <li>
+                                                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
+                                                                <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
+                                                                <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
+                                                            </svg>
+                                                            {{ story.views_count|default:"0" }} views
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="post-section-bottom">
-                                    <div class="small-post">
+                                {% empty %}
+                                    <div class="col-12">
+                                        <p>No stories available.</p>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            </div>
+                            <div class="post-section-bottom">
+                                <div class="small-post">
+                                    {% for story in page_obj|slice:"2:" %}
                                         <div class="eblog-post-list-style">
                                             <div class="image-area">
-                                                <a href="#"><img src="{% static 'img/blog/08.jpg' %}" alt=""></a>
+                                                <a href="{% url 'story:blog_details' story.slug %}">
+                                                    <img src="{{ story.image.url }}" alt="{{ story.title|truncatewords:10 }}">
+                                                </a>
                                             </div>
                                             <div class="blog-content">
-                                                <p class="sub-title">Technology</p>
-                                                <h4 class="heading-title"><a class="title-animation" href="#">Internal Knowledge Base – A Quick Guide by Bit.ai</a></h4>
+                                                <p class="sub-title">{{ story.tags.first.name|default:"General" }}</p>
+                                                <h4 class="heading-title"><a class="title-animation" href="{% url 'story:blog_details' story.slug %}">{{ story.title|truncatewords:10 }}</a></h4>
+                                                    <li class="author"> by-{{story.author.get_full_name|default:story.author.username}}</li>
                                                 <ul class="blog-meta">
                                                     <li>
                                                         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <g clip-path="url(#clip0_4238_1235)">
                                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                            </g>
-                                                            <defs>
-                                                                <clipPath id="clip0_4238_1235">
-                                                                    <rect width="15" height="15" fill="white" />
-                                                                </clipPath>
-                                                            </defs>
-                                                        </svg>
-                                                        3 Minute Read
-                                                    </li>
-                                                    <li>
-                                                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                            <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                            <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                                        </svg>
-                                                        1.9k views
-                                                    </li>
-                                                </ul>
+                                                                </g>
+                                                                <defs>
+                                                                    <clipPath id="clip0_4238_1235">
+                                                                        <rect width="15" height="15" fill="white" />
+                                                                    </clipPath>
+                                                                </defs>
+                                                            </svg>
+                                                            {{ story.reading_time|default:"3" }} Minute Read
+                                                        </li>
+                                                        <li>
+                                                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
+                                                                <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
+                                                                <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
+                                                            </svg>
+                                                            {{ story.views_count|default:"0" }} views
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="eblog-post-list-style">
-                                            <div class="image-area">
-                                                <a href="#"><img src="{% static 'img/blog/12.jpg' %}" alt=""></a>
-                                            </div>
-                                            <div class="blog-content">
-                                                <p class="sub-title">Technology</p>
-                                                <h4 class="heading-title"><a class="title-animation" href="#">How Can A Wellness Retreat Help Reconnect You to Your</a></h4>
-                                                <ul class="blog-meta">
-                                                    <li>
-                                                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <g clip-path="url(#clip0_4238_1236)">
-                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                            </g>
-                                                            <defs>
-                                                                <clipPath id="clip0_4238_1236">
-                                                                    <rect width="15" height="15" fill="white" />
-                                                                </clipPath>
-                                                            </defs>
-                                                        </svg>
-                                                        3 Minute Read
-                                                    </li>
-                                                    <li>
-                                                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                            <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                            <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                                        </svg>
-                                                        1.9k views
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="eblog-post-list-style">
-                                            <div class="image-area">
-                                                <a href="#"><img src="{% static 'img/blog/13.jpg' %}" alt=""></a>
-                                            </div>
-                                            <div class="blog-content">
-                                                <p class="sub-title">Technology</p>
-                                                <h4 class="heading-title"><a class="title-animation" href="#">Developer Experience(DX): Importance, Metrics</a></h4>
-                                                <ul class="blog-meta">
-                                                    <li>
-                                                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <g clip-path="url(#clip0_4238_1237)">
-                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                            </g>
-                                                            <defs>
-                                                                <clipPath id="clip0_4238_1237">
-                                                                    <rect width="15" height="15" fill="white" />
-                                                                </clipPath>
-                                                            </defs>
-                                                        </svg>
-                                                        3 Minute Read
-                                                    </li>
-                                                    <li>
-                                                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                            <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                            <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                                        </svg>
-                                                        1.9k views
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="eblog-post-list-style">
-                                            <div class="image-area">
-                                                <a href="#"><img src="{% static 'img/blog/14.jpg' %}" alt=""></a>
-                                            </div>
-                                            <div class="blog-content">
-                                                <p class="sub-title">Technology</p>
-                                                <h4 class="heading-title"><a class="title-animation" href="#">How to Create Wikis Employee
-                                                        Onboarding & Training?</a></h4>
-                                                <ul class="blog-meta">
-                                                    <li>
-                                                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <g clip-path="url(#clip0_4238_1238)">
-                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                            </g>
-                                                            <defs>
-                                                                <clipPath id="clip0_4238_1238">
-                                                                    <rect width="15" height="15" fill="white" />
-                                                                </clipPath>
-                                                            </defs>
-                                                        </svg>
-                                                        3 Minute Read
-                                                    </li>
-                                                    <li>
-                                                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                            <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                            <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                                        </svg>
-                                                        1.9k views
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        {% empty %}
+                                            {% if not page_obj %}
+                                                <p>No additional stories available.</p>
+                                            {% endif %}
+                                        {% endfor %}
                                     </div>
                                 </div>
-                            </div>
-                            <div class="featured-post latest-news">
-                                <div class="section-title-area">
-                                    <h3 class="section-title">Latest News</h3>
-                                </div>
-                                <div class="small-post latest-news">
-                                    <div class="eblog-post-list-style">
-                                        <div class="image-area">
-                                            <a href="#"><img src="{% static 'img/blog/15.jpg' %}" alt=""></a>
-                                        </div>
-                                        <div class="blog-content">
-                                            <p class="sub-title">Technology</p>
-                                            <h4 class="heading-title"><a class="title-animation" href="#">Top 12 AI Assistants of 2024 for Maximized Potential!</a></h4>
-                                            <ul class="blog-meta">
-                                                <li>
-                                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g clip-path="url(#clip0_4238_1239)">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                        </g>
-                                                        <defs>
-                                                            <clipPath id="clip0_4238_1239">
-                                                                <rect width="15" height="15" fill="white" />
-                                                            </clipPath>
-                                                        </defs>
-                                                    </svg>
-                                                    3 Minute Read
-                                                </li>
-                                                <li>
-                                                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                        <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                        <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                                    </svg>
-                                                    1.9k views
-                                                </li>
-                                            </ul>
-                                            <p class="desc">At the same time, many technologists appreciate the ability to define their own
-                                                learning adventure, especially those with more advanced or niche skill sets...</p>
-                                            <a href="#" class="read-more-btn">Read More</a>
-                                        </div>
+                              </div>
+                              <!-- end stories area -->
+
+                              <!-- start latest News area -->
+                                <div class="featured-post latest-news">
+                                    <div class="section-title-area">
+                                        <h3 class="section-title">Latest News</h3>
                                     </div>
-                                    <div class="eblog-post-list-style">
-                                        <div class="image-area">
-                                            <a href="#"><img src="{% static 'img/blog/16.jpg' %}" alt=""></a>
-                                        </div>
-                                        <div class="blog-content">
-                                            <p class="sub-title">Technology</p>
-                                            <h4 class="heading-title"><a class="title-animation" href="#">Global smartphone shipments grew 7.8% YoY in Q1 2024: IDC</a></h4>
-                                            <ul class="blog-meta">
-                                                <li>
-                                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g clip-path="url(#clip0_4238_1240)">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                        </g>
-                                                        <defs>
-                                                            <clipPath id="clip0_4238_1240">
-                                                                <rect width="15" height="15" fill="white" />
-                                                            </clipPath>
-                                                        </defs>
-                                                    </svg>
-                                                    3 Minute Read
-                                                </li>
-                                                <li>
-                                                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                        <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                        <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                                    </svg>
-                                                    1.9k views
-                                                </li>
-                                            </ul>
-                                            <p class="desc">At the same time, many technologists appreciate the ability to define their own
-                                                learning adventure, especially those with more advanced or niche skill sets...</p>
-                                            <a href="#" class="read-more-btn">Read More</a>
-                                        </div>
+                                    <div class="small-post latest-news" id="latest-news-container">
+                                        {% for story in latest_news_page_obj %}
+                                            <div class="eblog-post-list-style" style="margin-bottom: 30px;">
+                                                <!-- Fixed Image -->
+                                                <div class="image-area" style="margin-bottom: 15px;">
+                                                    <a href="{% url 'story:blog_details' story.slug %}">
+                                                        <img src="{{ story.image.url }}" alt="{{ story.title }}"
+                                                        style="width: 100%; max-width: 600px; height: 300px;
+                                                        object-fit: cover; display: block; margin: 0 auto;">
+                                                    </a>
+                                                </div>
+                                                <!-- Content area -->
+                                                <div class="blog-content" style="max-width: 600px; margin: 0 auto;">
+                                                    <p class="sub-title" style="font-size: 14px; color: #888; margin-bottom: 6px;">
+                                                        {{ story.tags.first.name|default:"Latest News" }}
+                                                    </p>
+                                                    <h6 class="heading-title"
+                                                        style="font-size: 22px; font-weight: 600; line-height: 1.4; margin: 0 0 12px;">
+                                                        <a class="title-animation" href="{% url 'story:blog_details' story.slug %}"
+                                                        style="color: #222; text-decoration: none; transition: color 0.3s;">
+                                                            {{ story.title|truncatewords:10 }}
+                                                        </a>
+                                                    </h6>
+                                                    <ul class="blog-meta"
+                                                        style="display: flex; gap: 20px; font-size: 14px; color: #666; margin: 0 0 15px; padding: 0; list-style: none;">
+                                                        <li>⏱ {{ story.reading_time|default:"3" }} min read</li>
+                                                        <li>👁 {{ story.views_count|default:"0" }} views</li>
+                                                    </ul>
+                                                    <a href="{% url 'story:column_layout_grid' %}?category=latest">
+                                                    {% comment %} <a href="{% url 'story:column_layout_grid' story.slug %}"> {% endcomment %}
+                                                    
+                                                    {% comment %} class="read-more-btn"
+                                                    style="font-size: 14px; color: #007bff; text-decoration: none; font-weight: 500;"> {% endcomment %}
+                                                    Read More →
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        {% empty %}
+                                            <p>No latest news available.</p>
+                                        {% endfor %}
                                     </div>
-                                    <div class="eblog-post-list-style">
-                                        <div class="image-area">
-                                            <a href="#"><img src="{% static 'img/blog/17.jpg' %}" alt=""></a>
-                                        </div>
-                                        <div class="blog-content">
-                                            <p class="sub-title">Technology</p>
-                                            <h4 class="heading-title"><a class="title-animation" href="#">Stuffcool Revel Magnetic Qi2 15W Wireless Charger launched</a></h4>
-                                            <ul class="blog-meta">
-                                                <li>
-                                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g clip-path="url(#clip0_4238_1241)">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                        </g>
-                                                        <defs>
-                                                            <clipPath id="clip0_4238_1241">
-                                                                <rect width="15" height="15" fill="white" />
-                                                            </clipPath>
-                                                        </defs>
-                                                    </svg>
-                                                    3 Minute Read
-                                                </li>
-                                                <li>
-                                                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                        <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                        <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                                    </svg>
-                                                    1.9k views
-                                                </li>
-                                            </ul>
-                                            <p class="desc">At the same time, many technologists appreciate the ability to define their own
-                                                learning adventure, especially those with more advanced or niche skill sets...</p>
-                                            <a href="#" class="read-more-btn">Read More</a>
-                                        </div>
+
+                                    <div class="button-area" style="text-align: center; margin-top: 25px;">
+                                      {% if latest_news_page_obj.has_next %}
+                                        <a href="{% url 'story:column_layout_grid' %}?latest_news_page={{ latest_news_page_obj.next_page_number }}"
+                                        class="tp-btn btn-primary" 
+                                        style="padding: 10px 25px;">
+                                            Load More
+                                        </a>
+                                    {% endif %}
                                     </div>
                                 </div>
-                                <div class="button-area">
-                                    <a href="#" class="tp-btn btn-primary">Load More</a>
-                                </div>
-                            </div>
                         </div>
-                    </div>
+                        </div>
+                    <!-- latest news end area -->
+                    
+                    <!-- Start featuur Post area -->
                     <div class="col-xl-3 tp-sticky-column-item">
                         <div class="eblog-right-sidebar">
                             <div class="eblog-right-side-post feature">
-                                <p class="title">Feature Post</p>
+                                <p class="title">
+                                <a href="{% url 'story:blog_details' featured_post.slug %}">
+                                Feature Post</p>
                                 <div class="featured-post sidebar">
                                     <div class="image-area">
-                                        <a href="#">
-                                            <img src="{% static 'img/blog/18.jpg' %}" alt="">
+                                        <a href="{% url 'story:blog_details' featured_post.slug %}">
+                                            <a href="{% url 'story:blog_details' featured_post.slug %}">
+                                                <img src="{{ featured_post.image.url }}" alt="{{ featured_post.title }}">
+                                             {% comment %} <img src="{{ story.image.url }}" alt="{{ story.title }}"> {% endcomment %}
                                         </a>
                                     </div>
                                     <div class="blog-content">
@@ -806,7 +482,7 @@
                                                         </clipPath>
                                                     </defs>
                                                 </svg>
-                                                3 Minute Read
+                                                {{ featured_post.reading_time|default:"3" }}-Minute Read
                                             </li>
                                             <li>
                                                 <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -814,161 +490,123 @@
                                                     <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
                                                     <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
                                                 </svg>
-                                                1.9k views
+                                                {{ featured_post.views_count|default:"0" }}-views
                                             </li>
                                         </ul>
-                                        <h5 class="heading-title"><a class="title-animation" href="#">Efficient Rules to Organize
-                                                Your Working Relationship </a></h5>
-                                        <p class="author"><em>by</em> Dany</p>
-                                        <a href="#" class="read-more-btn">Read More</a>
+                                        <h5 class="heading-title"><a class="title-animation" href="{% url 'story:blog_details' featured_post.slug %}">
+                                            {{ featured_post.title|truncatewords:10}}</a></h5>
+                                        <p class="author"><em>by</em> {{ featured_post.author.get_full_name|default:featured_post.author.username }}</p>
+                                        <a href="{% url 'story:blog_details' featured_post.slug %}" 
                                     </div>
                                 </div>
                             </div>
+                            <!-- end feature post -->
+                            <!-- start popular post area -->
                             <div class="eblog-right-side-post popular">
-                                <p class="title">Popular Post</p>
+                                <p class="title">Popular Posts</p>
                                 <div class="small-post">
-                                    <div class="eblog-post-list-style">
-                                        <div class="image-area">
-                                            <a href="#"><img src="{% static 'img/blog/19.jpg' %}" alt=""></a>
-                                        </div>
-                                        <div class="blog-content">
-                                            <h4 class="heading-title"><a class="title-animation" href="#">Google Pixel 8a surfaces in press renders ahead</a></h4>
-                                            <ul class="blog-meta">
-                                                <li>
-                                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g clip-path="url(#clip0_4238_1243)">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                        </g>
-                                                        <defs>
-                                                            <clipPath id="clip0_4238_1243">
-                                                                <rect width="15" height="15" fill="white" />
-                                                            </clipPath>
-                                                        </defs>
-                                                    </svg>
-                                                    3 Minute Read
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="eblog-post-list-style">
-                                        <div class="image-area">
-                                            <a href="#"><img src="{% static 'img/blog/20.jpg' %}" alt=""></a>
-                                        </div>
-                                        <div class="blog-content">
-                                            <h4 class="heading-title"><a class="title-animation" href="#">Samsung, Qualcomm &
-                                                    up to produce 20% </a></h4>
-                                            <ul class="blog-meta">
-                                                <li>
-                                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g clip-path="url(#clip0_4238_1244)">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                        </g>
-                                                        <defs>
-                                                            <clipPath id="clip0_4238_1244">
-                                                                <rect width="15" height="15" fill="white" />
-                                                            </clipPath>
-                                                        </defs>
-                                                    </svg>
-                                                    3 Minute Read
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="eblog-post-list-style">
-                                        <div class="image-area">
-                                            <a href="#"><img src="{% static 'img/blog/21.jpg' %}" alt=""></a>
-                                        </div>
-                                        <div class="blog-content">
-                                            <h4 class="heading-title"><a class="title-animation" href="#">How Can A Retreat Help
-                                                    Reconnect You to Your</a></h4>
-                                            <ul class="blog-meta">
-                                                <li>
-                                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g clip-path="url(#clip0_4238_1245)">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                        </g>
-                                                        <defs>
-                                                            <clipPath id="clip0_4238_1245">
-                                                                <rect width="15" height="15" fill="white" />
-                                                            </clipPath>
-                                                        </defs>
-                                                    </svg>
-                                                    3 Minute Read
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="eblog-post-list-style">
-                                        <div class="image-area">
-                                            <a href="#"><img src="{% static 'img/blog/22.jpg' %}" alt=""></a>
-                                        </div>
-                                        <div class="blog-content">
-                                            <h4 class="heading-title"><a class="title-animation" href="#">Slack’s AI tools are now
-                                                    available to all paying</a></h4>
-                                            <ul class="blog-meta">
-                                                <li>
-                                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g clip-path="url(#clip0_4238_1246)">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                        </g>
-                                                        <defs>
-                                                            <clipPath id="clip0_4238_1246">
-                                                                <rect width="15" height="15" fill="white" />
-                                                            </clipPath>
-                                                        </defs>
-                                                    </svg>
-                                                    3 Minute Read
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="eblog-right-side-post category">
-                                <p class="title">Browse Category</p>
-                                <div class="category-area">
-                                    <ul class="category-wrapper">
-                                        <li>
+                                    {% for post in popular_posts %}
+                                        <div class="eblog-post-list-style">
                                             <div class="image-area">
-                                                <a href="#"><img src="{% static 'img/category/category-01.jpg' %}" alt=""></a>
-                                                <p class="text"><a href="#">Artificial Intelligent</a></p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="image-area">
-                                                <a href="#"><img src="{% static 'img/category/category-02.jpg' %}" alt=""></a>
-                                                <p class="text"><a href="#">Bitcoin </a></p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="image-area">
-                                                <a href="#"><img src="{% static 'img/category/category-03.jpg' %}" alt=""></a>
-                                                <p class="text"><a href="#">Gadgets</a></p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                                          {% if post.image %}
+                                       <a href="{% url 'story:blog_details' post.slug %}">
+                                   <img src="{{ post.image.url }}" alt="{{ post.title|default:'No title' }}">
+                                  </a>
+                               {% else %}
+                            <a href="{% url 'story:blog_details' post.slug %}">
+                            <img src="/static/images/placeholder.jpg" alt="No image">
+                        </a>
+                    {% endif %}
+                    </div>
+                     <div class="blog-content">
+                        <h6 class="heading-title">
+                        <a class="title-animation" href="{% url 'story:blog_details' post.slug %}">
+                            {{ post.title|truncatewords:4|default:'Untitled' }}
+                            </a>
+                        </h6>
+                        <ul class="blog-meta">
+                        <li>👁 {{ post.weekly_views|default:0 }} views </li>
+                        </ul>
+                    </div>
+                 </div>
+               {% empty %}
+                <p>No popular posts available.</p>
+                {% endfor %}
+                </div>
+                </div>
+                <!-- end popular post area -->
+                <div class="eblog-right-side-post category">
+                    <p class="title">Tags</p>
+                    <div class="category-area">
+                        <ul class="category-wrapper">
+                            {% for tag in top_tags %}
+                                <li class="tag-item">
+                                    <a href="{% url 'story:blog_details' tag.slug %}" class="tag-link">{{ tag.name }}</a>
+                                </li>
+                            {% empty %}
+                                <li><p>No tags available.</p></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <style>
+                .category-area {
+                    background-color: #f8f8f8; /* Light background to make section look fuller */
+                    padding: 15px;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for prominence */
+                }
+
+                .category-wrapper {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .tag-item {
+                    margin-bottom: 10px; /* Space between tags */
+                }
+
+                .tag-link {
+                    display: block; /* Full-width for line-wise display */
+                    padding: 10px 20px;
+                    background-color: #e0e0e0; /* Gray background for tags */
+                    color: #333;
+                    text-decoration: none;
+                    border-radius: 20px; /* Pill-shaped */
+                    font-size: 16px; /* Larger text for fuller look */
+                    font-weight: 500; /* Bolder text */
+                    text-align: center; /* Centered text */
+                    transition: all 0.3s ease; /* Smooth hover transition */
+                }
+
+                .tag-link:hover, .tag-link:active {
+                    background-color: #104d29ff; /* Brown background on hover/click */
+                    color: #fff; /* White text on hover/click */
+                    transform: scale(1.05); /* Slight scale-up effect */
+                }
+                </style>
                             <div class="eblog-right-side-post social-area">
                                 <p class="title">Follow Me</p>
                                 <div class="social-area">
                                     <ul class="social-wrapper">
                                         <li>
-                                            <a href="#">
+                                            <a href="https://www.facebook.com/">
                                                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M12.3166 2.21191H2.98031C2.82634 2.21306 2.67901 2.27473 2.57013 2.38361C2.46125 2.49248 2.39958 2.63982 2.39844 2.79379V12.13C2.39958 12.284 2.46125 12.4313 2.57013 12.5402C2.67901 12.6491 2.82634 12.7108 2.98031 12.7119H8.00719V8.65191H6.64219V7.06379H8.00719V5.89566C8.00719 4.53941 8.83406 3.80004 10.0503 3.80004C10.4572 3.80004 10.8641 3.80004 11.2709 3.86129V5.27441H10.4353C9.77469 5.27441 9.64781 5.58941 9.64781 6.04879V7.05941H11.2228L11.0172 8.64754H9.64781V12.7119H12.3166C12.4705 12.7108 12.6179 12.6491 12.7267 12.5402C12.8356 12.4313 12.8973 12.284 12.8984 12.13V2.79379C12.8973 2.63982 12.8356 2.49248 12.7267 2.38361C12.6179 2.27473 12.4705 2.21306 12.3166 2.21191Z" fill="#00C89A" />
                                                 </svg>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="https://www.instagram.com/accounts/login/?hl=en">
                                                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M9.76988 3.1885C9.21631 3.16321 9.05023 3.15788 7.64844 3.15788V3.15783C6.24664 3.15783 6.08057 3.16321 5.527 3.18846C5.19408 3.19242 4.86432 3.25357 4.55212 3.36923C4.32571 3.4566 4.12009 3.59039 3.94849 3.762C3.77689 3.9336 3.64311 4.13922 3.55576 4.36564C3.44009 4.67784 3.37894 5.0076 3.37498 5.34052C3.34969 5.89409 3.34436 6.06016 3.34436 7.46196C3.34436 8.86375 3.34974 9.02983 3.37498 9.5834C3.37894 9.91631 3.44009 10.2461 3.55576 10.5583C3.64312 10.7847 3.7769 10.9903 3.9485 11.1619C4.1201 11.3335 4.32571 11.4673 4.55212 11.5546C4.86432 11.6703 5.19408 11.7315 5.527 11.7354C6.08052 11.7607 6.24651 11.766 7.64844 11.766C9.05036 11.766 9.21635 11.7607 9.76988 11.7354C10.1028 11.7315 10.4326 11.6703 10.7448 11.5546C10.9712 11.4673 11.1768 11.3335 11.3484 11.1619C11.52 10.9903 11.6538 10.7847 11.7411 10.5583C11.8568 10.2461 11.9179 9.91631 11.9219 9.5834C11.9472 9.02983 11.9525 8.86375 11.9525 7.46196C11.9525 6.06016 11.9471 5.89409 11.9219 5.34052C11.9179 5.0076 11.8568 4.67784 11.7411 4.36564C11.6538 4.13923 11.52 3.93362 11.3484 3.76202C11.1768 3.59042 10.9712 3.45664 10.7448 3.36928C10.4326 3.25361 10.1028 3.19246 9.76988 3.1885ZM5.48386 2.2435C6.04382 2.21795 6.22263 2.21191 7.64844 2.21191C9.07425 2.21191 9.25306 2.21795 9.81279 2.24372C10.2483 2.25244 10.6792 2.33496 11.0872 2.48776C11.436 2.62262 11.7527 2.82886 12.0172 3.09326C12.2816 3.35767 12.4879 3.6744 12.6228 4.02316C12.7756 4.43104 12.8581 4.86187 12.8668 5.29734C12.8924 5.8573 12.8984 6.0361 12.8984 7.46191C12.8984 8.88773 12.8924 9.06653 12.8671 9.62627C12.8583 10.0618 12.7758 10.4927 12.623 10.9007C12.4881 11.2495 12.2819 11.5662 12.0174 11.8307C11.753 12.0951 11.4362 12.3014 11.0874 12.4363C10.6795 12.5891 10.2486 12.6716 9.81301 12.6803C9.25306 12.7059 9.07425 12.7119 7.64844 12.7119C6.22263 12.7119 6.04382 12.7059 5.48408 12.6805C5.04854 12.6718 4.61764 12.5893 4.20969 12.4365C3.86088 12.3016 3.54411 12.0953 3.27967 11.8309C3.01522 11.5665 2.80895 11.2497 2.67406 10.9009C2.52126 10.4929 2.43875 10.062 2.43002 9.62649C2.40447 9.06653 2.39844 8.88773 2.39844 7.46191C2.39844 6.0361 2.40447 5.8573 2.43002 5.29756C2.43874 4.86202 2.52126 4.43111 2.67406 4.02316C2.80895 3.67436 3.01522 3.35759 3.27967 3.09314C3.54411 2.8287 3.86088 2.62243 4.20969 2.48754C4.61757 2.33476 5.0484 2.25224 5.48386 2.2435ZM10.4509 5.28942C10.7988 5.28942 11.0809 5.00736 11.0809 4.65942C11.0809 4.31148 10.7988 4.02942 10.4509 4.02942C10.1029 4.02942 9.82088 4.31148 9.82088 4.65942C9.82088 5.00736 10.1029 5.28942 10.4509 5.28942ZM7.64842 4.76599C7.11521 4.76599 6.59398 4.92411 6.15063 5.22034C5.70728 5.51658 5.36173 5.93763 5.15768 6.43025C4.95363 6.92288 4.90024 7.46494 5.00426 7.98791C5.10829 8.51088 5.36505 8.99125 5.74209 9.36829C6.11913 9.74532 6.5995 10.0021 7.12247 10.1061C7.64543 10.2101 8.1875 10.1567 8.68013 9.9527C9.17275 9.74865 9.5938 9.4031 9.89004 8.95975C10.1863 8.5164 10.3444 7.99516 10.3444 7.46195C10.3444 6.74694 10.0603 6.06121 9.55476 5.55562C9.04917 5.05003 8.36344 4.76599 7.64842 4.76599ZM7.64842 9.21195C7.30231 9.21195 6.96396 9.10932 6.67618 8.91703C6.38839 8.72473 6.16409 8.45142 6.03164 8.13165C5.89918 7.81188 5.86453 7.46001 5.93205 7.12055C5.99957 6.78108 6.16625 6.46926 6.41099 6.22452C6.65573 5.97977 6.96755 5.8131 7.30702 5.74558C7.64648 5.67806 7.99835 5.71271 8.31812 5.84516C8.63789 5.97762 8.9112 6.20192 9.1035 6.48971C9.29579 6.77749 9.39843 7.11584 9.39843 7.46195C9.39843 7.92608 9.21405 8.3712 8.88586 8.69939C8.55767 9.02758 8.11255 9.21195 7.64842 9.21195Z" fill="white" />
                                                 </svg>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="https://x.com/home">
                                                 <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <g clip-path="url(#clip0_4219_1420)">
                                                         <path d="M6.57925 4.69623L10.2219 0.461914H9.35873L6.19579 4.13851L3.66956 0.461914H0.755859L4.57601 6.02158L0.755859 10.4619H1.61911L4.95925 6.5793L7.62713 10.4619H10.5408L6.57904 4.69623H6.57925ZM5.39691 6.07056L5.00985 5.51695L1.93015 1.11175H3.25604L5.7414 4.66688L6.12846 5.2205L9.35913 9.84163H8.03324L5.39691 6.07078V6.07056Z" fill="white" />
@@ -1001,18 +639,59 @@
                             <div class="eblog-right-side-post newsletter">
                                 <p class="title">Subscribe News Letter</p>
                                 <div class="newsletter-area">
-                                    <form action="#">
+                                    <form id="subscription-form" action="{% url 'subscriptions:subscribe' %}" method="post">
+                                        {% csrf_token %}
                                         <div class="form-inner">
                                             <div class="single-input-wrapper">
-                                                <input type="email" name="email" placeholder="Your mail address" required>
+                                                {{ form.email }}
                                             </div>
                                             <div class="single-input-wrapper">
                                                 <button type="submit" class="subscribe-btn tp-btn">Subscribe</button>
                                             </div>
                                         </div>
+                                        <div id="subscription-message" style="color: #28a745; display: none;"></div> <!-- Success message -->
+                                        <div id="subscription-error" style="color: #dc3545; display: none;"></div> <!-- Error message -->
                                     </form>
                                 </div>
                             </div>
+
+                            <script>
+                            document.getElementById('subscription-form').addEventListener('submit', function(event) {
+                                event.preventDefault(); // Prevent default form submission
+
+                                const form = this;
+                                const formData = new FormData(form);
+                                const messageDiv = document.getElementById('subscription-message');
+                                const errorDiv = document.getElementById('subscription-error');
+
+                                fetch(form.action, {
+                                    method: 'POST',
+                                    body: formData,
+                                    headers: {
+                                        'X-Requested-With': 'XMLHttpRequest' // Indicate AJAX request
+                                    },
+                                    credentials: 'same-origin' // Include CSRF token
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        errorDiv.style.display = 'none';
+                                        messageDiv.textContent = data.message;
+                                        messageDiv.style.display = 'block';
+                                        form.reset(); // Clear the form
+                                    } else {
+                                        messageDiv.style.display = 'none';
+                                        errorDiv.textContent = data.message || Object.values(data.errors).join(', ');
+                                        errorDiv.style.display = 'block';
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    errorDiv.textContent = 'An error occurred. Please try again.';
+                                    errorDiv.style.display = 'block';
+                                });
+                            });
+                            </script>
                             <div class="eblog-right-side-post ad">
                                 <div class="eblog-ad-area">
                                     <img src="{% static 'img/banner/ad.jpg' %}" alt="">
@@ -1025,5 +704,4 @@
         </div>
     </section>
     <!-- End Feature Post Area -->
-
 {% endblock %}

@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
+from .forms import CustomUserCreationForm
 from .models import UserProfile
+
 
 class UserProfileInline(admin.StackedInline):
     model = UserProfile
@@ -9,20 +11,24 @@ class UserProfileInline(admin.StackedInline):
     verbose_name_plural = 'User Profile'
     fk_name = 'user'
 
-class UserAdmin(BaseUserAdmin):
+
+class CustomUserAdmin(BaseUserAdmin):
+    add_form = CustomUserCreationForm
     inlines = (UserProfileInline,)
     list_display = ('username', 'email', 'first_name', 'last_name', 'get_user_type', 'is_staff', 'is_active')
     list_filter = ('profile__user_type', 'is_staff', 'is_active')
     search_fields = ('username', 'first_name', 'last_name', 'email')
-    
+
     def get_user_type(self, obj):
         return obj.profile.get_user_type_display()
     get_user_type.short_description = 'User Type'
     get_user_type.admin_order_field = 'profile__user_type'
 
-# Re-register UserAdmin
+
+# Re-register UserAdmin (Only once)
 admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+admin.site.register(User, CustomUserAdmin)
+
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
@@ -30,7 +36,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     list_filter = ['user_type', 'is_verified', 'created_at']
     search_fields = ['user__username', 'user__email', 'specialization']
     readonly_fields = ['created_at', 'updated_at']
-    
+
     fieldsets = (
         ('User Information', {
             'fields': ('user', 'user_type', 'bio', 'avatar')

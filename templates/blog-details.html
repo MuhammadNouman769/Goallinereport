@@ -17,7 +17,7 @@
                         <div class="meta">
                             <a href="{% url 'main:home' %}" class="prev">Home</a>
                             <img src="static/img/icon/chevron-right.svg" alt="">
-                            <a href="{% url 'story:story_list' %}" class="next">Stories</a>
+                            <a href="{% url 'story:column_layout_grid' %}" class="next">Stories</a>
                             <img src="static/img/icon/chevron-right.svg" alt="">
                             <a href="{% url 'story:blog_details' slug=story.slug %}"  class="last">  {{ story.title|truncatewords:4 }} </a>
                             {% comment %} <a href="#" class="last">Story Details</a> {% endcomment %}
@@ -70,7 +70,7 @@
                                                     </clipPath>
                                                 </defs>
                                             </svg>
-                                            {{ story.published_at|date:"d M, Y" }}
+                                            {{ story.published_at|date:"M d, Y, g:i A" }}
                                         </li>
                                         <li>
                                             <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,7 +79,6 @@
                                            
                                               <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
                                             </svg> {{ story.story_views.count }}.views  <svg width="15" height="15" ...>...</svg> {{ story.read_time|default:"3" }} Minute Read
-                                            
                                         </li>
                                     </ul>
                                     <div class="blog-meta eblog-social">
@@ -130,20 +129,19 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <h4 class="heading title"><a class= "title-animation">{{ story.title }}
-                                </a>
-                            </h4>
-                                
+                                <h4 class="heading title"><a class= "title-animation">{{ story.title }} </a></h4>
                                 <!-- Tags Section - Added after heading -->
                                 <div class="blog-tags-section mb--20">
                                     <div class="tags-wrapper">
                                         <span class="tags-label">Tags:</span>
                                         <div class="tags-list">
-                                            <a href="https://www.youtube.com/" class="tag-item">Football</a>
-                                            <a href="#" class="tag-item">Sports</a>
-                                            <a href="#" class="tag-item">Premier League</a>
-                                            <a href="#" class="tag-item">Champions League</a>
-                                            <a href="#" class="tag-item">Transfer News</a>
+                                          {% for tag in story.tags.all %}
+                                            <a href="{% url 'story:stories_by_tag' tag.slug %}" class="tag-item">
+                                                {{tag.name}}
+                                            </a>
+                                          {% empty %}
+                                        {{ story.tags.all }}
+                                          {% endfor %}
                                         </div>
                                     </div>
                                 </div>
@@ -152,7 +150,11 @@
                                   {% for chapter in chapters %}
                               
                                 <div class="image-area mb--30">
-                                       <img src="{{ chapter.image.url }}">
+                                       {% if chapter.image %}
+                                            <img src="{{ chapter.image.url }}" alt="Chapter Image">
+                                        {% else %}
+                                            <img src="{% static 'default.jpg' %}" alt="">
+                                        {% endif %}
                                          <h3 class="heading-title two"><a class="title-animation">{{ chapter.title }}
                                          </a>
                                         </h3>
@@ -304,7 +306,7 @@
                                     <button type="submit" class="subscribe-btn tp-btn btn-primary">Post A Comment</button>
                                 </div>
                                 {% else %}
-                                <p class="desc">Please <a href="{% url 'login' %}">login</a> to post a comment.</p>
+                                <p class="desc">Please <a href="{% url 'accounts:login' %}">login</a> to post a comment.</p>
                                 {% endif %}
                             </div>
                         </form>
@@ -517,31 +519,35 @@
                     });
                     </script>
 
+                     <!-- Start featuur Post area -->
                     <div class="col-xl-3 tp-sticky-column-item">
                         <div class="eblog-right-sidebar">
                             <div class="eblog-right-side-post feature">
-                                <p class="title">Feature Post</p>
+                                <p class="title">
+                                    <a href="{% url 'story:blog_details' featured_post.slug %}">
+                                        Feature Post</p>
                                 <div class="featured-post sidebar">
                                     <div class="image-area">
-                                        <a href="#">
-                                            
-                                            <img src="{% static 'img/blog/44.jpg' %}" alt="blog image">
+                                        <a href="{% url 'story:blog_details' featured_post.slug %}">
+                                            <a href="{% url 'story:blog_details' featured_post.slug %}">
+                                                <img src="{{ featured_post.image.url }}" alt="{{ featured_post.title }}">
+                                             {% comment %} <img src="{{ story.image.url }}" alt="{{ story.title }}"> {% endcomment %}
                                         </a>
                                     </div>
                                     <div class="blog-content">
                                         <ul class="blog-meta">
                                             <li>
                                                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <g clip-path="url(#clip0_4238_1231)">
+                                                    <g clip-path="url(#clip0_4238_1242)">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
                                                     </g>
                                                     <defs>
-                                                        <clipPath id="clip0_4238_1231">
+                                                        <clipPath id="clip0_4238_1242">
                                                             <rect width="15" height="15" fill="white" />
                                                         </clipPath>
                                                     </defs>
                                                 </svg>
-                                                3 Minute Read
+                                                {{ featured_post.reading_time|default:"3" }}-Minute Read
                                             </li>
                                             <li>
                                                 <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -549,141 +555,94 @@
                                                     <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
                                                     <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
                                                 </svg>
-                                                1.9k views
+                                                {{ featured_post.views_count|default:"0" }}-views
                                             </li>
                                         </ul>
-                                        <h5 class="heading-title"><a class="title-animation" href="#">So Long, Winter: These Are The <br> 7 Best Trends of Spring 2024</a></h5>
-                                        <p class="author"><em>by</em> Dany</p>
-                                        <a href="#" class="text-btn color-two">Read More</a>
+                                        <h5 class="heading-title"><a class="title-animation" href="{% url 'story:blog_details' featured_post.slug %}">
+                                            {{ featured_post.title|truncatewords:10}}</a></h5>
+                                        <p class="author"><em>by</em> {{ featured_post.author.get_full_name|default:featured_post.author.username }}</p>
+                                        <a href="{% url 'story:blog_details' featured_post.slug %}" 
                                     </div>
                                 </div>
                             </div>
-                            <div class="eblog-right-side-post popular">
-                                <p class="title">Popular Post</p>
-                                <div class="small-post">
-                                    <div class="eblog-post-list-style">
-                                        <div class="image-area">
-                                            <a href="#">
-                                            <img src="{% static 'img/blog/45.jpg' %}" alt="">
-                                        </a>
+                            <!-- end feature post -->
 
+                        <!-- start popular post area -->
+                        <div class="eblog-right-side-post popular">
+                            <p class="title">Popular Post</p>
+                            <div class="small-post">
+                                {% for post in popular_posts %}
+                                    <div class="eblog-post-list-style">
+                                        <div class="image-area">
+                                            <a href="{% url 'story:blog_details' post.slug %}">
+                                                <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                                            </a>
                                         </div>
                                         <div class="blog-content">
-                                            <h4 class="heading-title"><a class="title-animation" href="#">The Lazy Girl’s Guide to Always Put Together</a></h4>
+                                            <h6 class="heading-title"><a class="title-animation" href="{% url 'story:blog_details' post.slug %}">{{ post.title|truncatewords:4 }}</a></h6>
                                             <ul class="blog-meta">
-                                                <li>
-                                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g clip-path="url(#clip0_4238_1232)">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                        </g>
-                                                        <defs>
-                                                            <clipPath id="clip0_4238_1232">
-                                                                <rect width="15" height="15" fill="white" />
-                                                            </clipPath>
-                                                        </defs>
-                                                    </svg>
-                                                    3 Minute Read
-                                                </li>
+                                                <li>👁 {{ post.weekly_views|default:0 }} views </li> 
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="eblog-post-list-style">
-                                        <div class="image-area">
-                                            <a href="#"><img src="{% static '/img/blog/46.jpg' %}" alt=""></a>
+                                {% empty %}
+                                    <p>No popular posts available.</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- end popular post area -->
+   <div class="eblog-right-side-post category">
+    <p class="title">Tags</p>
+    <div class="category-area">
+        <ul class="category-wrapper">
+            {% for tag in top_tags %}
+                <li class="tag-item">
+                    <a href="{% url 'story:blog_details' tag.slug %}" class="tag-link">{{ tag.name }}</a>
+                </li>
+            {% empty %}
+                <li><p>No tags available.</p></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 
-                                        </div>
-                                        <div class="blog-content">
-                                            <h4 class="heading-title"><a class="title-animation" href="#">The Everygirl’s Spring 2024 Capsule Wardrobe</a></h4>
-                                            <ul class="blog-meta">
-                                                <li>
-                                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g clip-path="url(#clip0_4238_1233)">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                        </g>
-                                                        <defs>
-                                                            <clipPath id="clip0_4238_1233">
-                                                                <rect width="15" height="15" fill="white" />
-                                                            </clipPath>
-                                                        </defs>
-                                                    </svg>
-                                                    3 Minute Read
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="eblog-post-list-style">
-                                        <div class="image-area">
-                                            <a href="#"><img src="{% static '/img/blog/47.jpg' %}" alt=""></a>
-                                        </div>
-                                        <div class="blog-content">
-                                            <h4 class="heading-title"><a class="title-animation" href="#">7 Wardrobe Staples Thats Are Better Secondhand</a></h4>
-                                            <ul class="blog-meta">
-                                                <li>
-                                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g clip-path="url(#clip0_4238_1234)">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                        </g>
-                                                        <defs>
-                                                            <clipPath id="clip0_4238_1234">
-                                                                <rect width="15" height="15" fill="white" />
-                                                            </clipPath>
-                                                        </defs>
-                                                    </svg>
-                                                    3 Minute Read
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="eblog-post-list-style">
-                                        <div class="image-area">
-                                            <a href="#"><img src="{% static '/img/blog/48.jpg' %}" alt=""></a>
-                                        </div>
-                                        <div class="blog-content">
-                                            <h4 class="heading-title"><a class="title-animation" href="#">Apple introduces sustainable repair options with used</a></h4>
-                                            <ul class="blog-meta">
-                                                <li>
-                                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g clip-path="url(#clip0_4238_1235)">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                        </g>
-                                                        <defs>
-                                                            <clipPath id="clip0_4238_1235">
-                                                                <rect width="15" height="15" fill="white" />
-                                                            </clipPath>
-                                                        </defs>
-                                                    </svg>
-                                                    3 Minute Read
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="eblog-right-side-post category2">
-                                <p class="title">Browse Category</p>
-                                <div class="category-area">
-                                    <ul class="category-wrapper">
-                                        <li>
-                                            <div class="image-area">
-                                                <a href="#"><img src="{% static '/img/category/category-04.jpg' %}" alt=""></a>
-                                                <p class="text"><a href="#">Fashion</a></p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="image-area">
-                                                <a href="#"><img src="{% static '/img/category/category-05.jpg' %}" alt=""></a>
-                                                <p class="text"><a href="#">Life Style </a></p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="image-area">
-                                                <a href="#"><img src="{% static '/img/category/category-06.jpg' %}" alt=""></a>
-                                                <p class="text"><a href="#">Travel</a></p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+<style>
+.category-area {
+    background-color: #f8f8f8; /* Light background to make section look fuller */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for prominence */
+}
+
+.category-wrapper {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tag-item {
+    margin-bottom: 10px; /* Space between tags */
+}
+
+.tag-link {
+    display: block; /* Full-width for line-wise display */
+    padding: 10px 20px;
+    background-color: #e0e0e0; /* Gray background for tags */
+    color: #333;
+    text-decoration: none;
+    border-radius: 20px; /* Pill-shaped */
+    font-size: 16px; /* Larger text for fuller look */
+    font-weight: 500; /* Bolder text */
+    text-align: center; /* Centered text */
+    transition: all 0.3s ease; /* Smooth hover transition */
+}
+
+.tag-link:hover, .tag-link:active {
+    background-color: #104d29ff; /* Brown background on hover/click */
+    color: #fff; /* White text on hover/click */
+    transform: scale(1.05); /* Slight scale-up effect */
+}
+</style>
                             <div class="eblog-right-side-post social-area">
                                 <p class="title">Follow Me</p>
                                 <div class="social-area area-2">
@@ -760,74 +719,51 @@
         </div>
     </section>
     <!-- End Feature Post Area -->
-
-    <!-- Start Blog Area -->
-    <section class="eblog-bottom-post-area tp-section-gap">
-        <div class="container">
-            <h3 class="section-title text-center">You Might Like This</h3>
-            <div class="section-inner">
-                <div class="row g-5">
+<!-- Start Blog Area -->
+<section class="eblog-bottom-post-area tp-section-gap">
+    <div class="container">
+        <h3 class="section-title text-center">You Might Like This</h3>
+        <div class="section-inner">
+            <div class="row g-5">
+                {% for story in recommended_stories %}
                     <div class="col-xl-3 col-lg-6 col-md-6">
                         <div class="eblog-featured-news style-two small">
                             <div class="image-area">
-                                <a href="#"><img src="{% static '/img/blog/38.jpg' %}" alt=""></a>
+                                <a href="{% url 'story:blog_details' story.slug %}">
+                                    {% if story.image %}
+                                        <img src="{{ story.image.url }}" alt="{{ story.title }}">
+                                    {% else %}
+                                        <img src="{% static 'img/blog/default.jpg' %}" alt="{{ story.title }}">
+                                    {% endif %}
+                                </a>
                             </div>
                             <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
+                                <p class="tag mb--15">
+                                    {% with first_tag=story.tags.first %}
+                                        {{ first_tag.name|default:"No Tag" }}
+                                    {% endwith %}
+                                </p>
+                                <h4 class="heading-title ml--0 mb--10 text-start">
+                                    <a class="title-animation text-center" href="{% url 'story:blog_details' story.slug %}">{{ story.title|truncatewords:5 }}</a>
+                                </h4>
                                 <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
+                                    <li class="author">
+                                        <span>BY</span> {{ story.author.get_full_name|default:story.author.username }} - {{ story.published_at|date:"M d, Y, g:i A" }}
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static '/img/blog/39.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
+                {% empty %}
+                    <div class="col-12">
+                        <p class="text-center">No recommended stories available.</p>
                     </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static '/img/blog/40.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static '/img/blog/41.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Fashion</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br> Place Relationship </a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
-    </section>
-    <!-- End Blog Area -->
+    </div>
+</section>
+<!-- End Blog Area -->
 
     <!-- Start Newsletter Area -->
     <section class="eblog-newsletter-area tp-section-gap">

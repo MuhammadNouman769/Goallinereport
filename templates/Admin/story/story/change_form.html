@@ -1,0 +1,183 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls %}
+
+{% block content %}
+  <style>
+    .sidebar-box {
+      flex: 1;
+      background: #ffffff;
+      padding: 20px;
+      border-left: 1px solid #eee;
+      border-radius: 7px;
+      box-shadow: -3px 0 12px rgba(0,0,0,0.08);
+    }
+
+    .sidebar-box h5 {
+      margin-bottom: 18px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #2c3e50;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .action-button {
+      padding: 8px 10px;
+      width: 100%;
+      border: none;
+      border-radius: 4px;
+      font-weight: 400;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .action-button.default {
+      background: linear-gradient(135deg, #4a90e2, #357ABD);
+      color: #fff;
+    }
+    .action-button.default:hover {
+      background: linear-gradient(135deg, #357ABD, #2c5aa0);
+      transform: translateY(-2px);
+    }
+
+    .action-button.success {
+      background: linear-gradient(135deg, #28a745, #218838);
+      color: #fff;
+    }
+    .action-button.success:hover {
+      background: linear-gradient(135deg, #218838, #1e7e34);
+      transform: translateY(-2px);
+    }
+
+    .action-button.info {
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+    }
+    .action-button.info:hover {
+      background: linear-gradient(135deg, #0056b3, #004085);
+      transform: translateY(-2px);
+    }
+
+    .action-button.danger {
+      background: linear-gradient(135deg, #dc3545, #c82333);
+      color: #fff;
+    }
+    .action-button.danger:hover {
+      background: linear-gradient(135deg, #c82333, #a71d2a);
+      transform: translateY(-2px);
+    }
+
+    .action-button.disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+      background: #ccc !important;
+      color: #666 !important;
+      box-shadow: none;
+    }
+
+    /* Custom styling for StoryChapterInline content */
+    .tabular.inline-related .field-content .django-ckeditor-widget {
+      width: 700px !important;  /* Fixed at 500px */
+      min-height: 300px !important;
+    }
+    .tabular.inline-related th.field-content,
+    .tabular.inline-related td.field-content {
+      width: 40% !important;  /* Column width */
+      vertical-align: top !important;
+      padding: 10px !important;
+    }
+  </style>
+
+  <div style="display: flex; width: 100%;">
+    <!-- Main form content -->
+    <div style="flex: 7; padding-right: 20px;">
+      <form id="story_form" {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="" method="post">
+        {% csrf_token %}
+        {{ block.super }}
+      </form>
+    </div>
+
+    <!-- Right sidebar for editor buttons -->
+    {% if show_buttons %}
+      <div class="sidebar-box">
+        <h5> Quick Actions</h5>
+        <div class="button-group">
+          <!-- Save as Draft -->
+          <button type="submit" form="story_form" class="action-button default">
+            💾 Save as Draft
+          </button>
+
+          <!-- Submit for Review -->
+          <form action="{% url 'admin:story_submit_for_review' story_id|default:'0' %}" method="post" class="action-form">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="submit_for_review">
+            <input type="submit" value="✅ Submit for Review" class="action-button success" {% if not story_id or story_id == '0' %}disabled class="disabled"{% endif %}>
+          </form>
+
+          <!-- View before Publish -->
+          {% if story_id and story_id != '0' and story_slug %}
+            <a href="{% url 'story:blog_details' slug=story_slug %}" target="_blank" class="action-button info">
+              👀 View before Publish
+            </a>
+          {% else %}
+            <a class="action-button info disabled" title="Save the story first to enable this action.">
+              👀 View before Publish
+            </a>
+          {% endif %}
+
+          <!-- Edit Story -->
+          {% if story_id and story_id != '0' %}
+            <a href="{% url 'admin:story_edit' story_id %}" class="action-button info">
+              ✏️ Edit Story
+            </a>
+          {% else %}
+            <a class="action-button info disabled" title="Save the story first to enable this action.">
+              ✏️ Edit Story
+            </a>
+          {% endif %}
+
+          <!-- Delete -->
+          <form action="{% url 'admin:story_delete' story_id|default:'0' %}" method="post" class="action-form">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="delete">
+            <input type="submit" value="🗑 Delete" class="action-button danger" {% if not story_id or story_id == '0' %}disabled class="disabled"{% endif %}>
+          </form>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block submit_buttons_bottom %}
+  {% if not show_buttons %}
+    {{ block.super }}
+  {% endif %}
+{% endblock %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Disable buttons in add view (where story_id is '0' or undefined)
+    if (!'{{ story_id }}' || '{{ story_id }}' === '0' || !'{{ story_slug }}') {
+      document.querySelectorAll('.action-form input[type="submit"]').forEach(button => {
+        button.disabled = true;
+        button.classList.add('disabled');
+        button.title = "Save the story first to enable this action.";
+      });
+      document.querySelectorAll('.preview-button').forEach(button => {
+        button.classList.add('disabled');
+        button.title = "Save the story first to enable this action.";
+        button.removeAttribute('href');
+      });
+    }
+  });
+</script>

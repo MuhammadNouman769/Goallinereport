@@ -13,11 +13,11 @@
                     <!-- bread crumb inner wrapper -->
                     <div class="breadcrumb-inner text-center">
                         <div class="meta">
-                            <a href="#" class="prev">Home</a>
+                            <a href="{% url 'main:home' %}" class="prev">Home</a>
                             <img src="{% static 'img/icon/chevron-right.svg' %}" alt="">
-                            <a href="#" class="next">Blog</a>
+                             <a href="{% url 'story:column_layout_grid' %}" class="next">Stories</a>
                             <img src="{% static 'img/icon/chevron-right.svg' %}" alt="">
-                            <a href="#" class="last">Column Layout Grid</a>
+                            <a href="#" class="last" id="breadcrumbLast">Column Layout Grid</a>
                         </div>
                     </div>
                     <!-- bread crumb inner wrapper end -->
@@ -25,264 +25,144 @@
             </div>
         </div>
     </div>
-    <!-- rts breadcrumba area end -->
-    <!-- End Breadcrumb Area -->
-
-    <!-- Start Blog Grid Area -->
-    <section class="eblog-blog-grid-area tp-section-gap">
+        <!-- Search Topic Heading -->
+     
+        
+        {% if query %}
+    <div class="search-topic-heading" id="searchTopicHeading">
         <div class="container">
-            <div class="section-inner">
-                <div class="row g-5">
-                    <!-- Blog Grid Items -->
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/38.jpg' %}" alt=""></a>
+            <div class="row">
+                    <!-- 👇 Category / Tag Heading -->
+            {% if category %}
+                <h2 class="mb-4">{{ category|title }}</h2>
+            {% elif tag %}
+                <h2 class="mb-4">Stories Tagged: {{ tag.name }}</h2>
+            {% endif %}
+
+                <div class="col-lg-12">
+                    <div class="search-topic-inner text-center">
+                        <h2 class="search-topic-title">
+                            Search Results for: <span>{{ query }}</span>
+                        </h2>
+                        <p class="search-topic-subtitle">
+                            Found <span>{{ results_count }}</span> results
+                        </p>
+
+                        <!-- 👇 Show titles only if 3 or less -->
+                        {% if results_count <= 3 %}
+                            <div class="search-result-titles mt-3">
+                                {% for story in page_obj %}
+                                    <p class="result-title">
+                                        <a href="{% url 'story:blog_details' slug=story.slug %}">
+                                            {{ story.title }}
+                                        </a>
+                                    </p>
+                                {% empty %}
+                                    <p>No stories found for "{{ query }}"</p>
+                                {% endfor %}
                             </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Technology</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Blog Post Title 1</a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/39.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Business</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Blog Post Title 2</a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/40.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Lifestyle</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Blog Post Title 3</a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/41.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Technology</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Blog Post Title 4</a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/42.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Business</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Blog Post Title 5</a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/43.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Lifestyle</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Blog Post Title 6</a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/38.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Technology</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Blog Post Title 7</a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/39.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Business</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Blog Post Title 8</a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/40.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Lifestyle</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Blog Post Title 9</a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/41.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Technology</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Blog Post Title 10</a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/42.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Business</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Blog Post Title 11</a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/43.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Lifestyle</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Blog Post Title 12</a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/38.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Technology</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Blog Post Title 13</a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/39.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Business</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Blog Post Title 14</a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/40.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Lifestyle</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Blog Post Title 15</a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="eblog-featured-news style-two small">
-                            <div class="image-area">
-                                <a href="#"><img src="{% static 'img/blog/41.jpg' %}" alt=""></a>
-                            </div>
-                            <div class="blog-content text-left">
-                                <p class="tag mb--15">Technology</p>
-                                <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Blog Post Title 16</a></h4>
-                                <ul class="blog-meta justify-content-start m--0">
-                                    <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Load More Button -->
-                    <div class="col-lg-12">
-                        <div class="button-area">
-                            <a href="#" class="tp-btn btn-secondary m-auto">Load More</a>
-                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- End Blog Grid Area -->
+    </div>
+    {% endif %}
+    <!-- Start Blog Grid Area -->
+   <!-- Start Blog Grid Area -->
+{% if not ajax %}
+<section class="eblog-blog-grid-area tp-section-gap">
+  <div class="container">
+{% endif %}
+
+{% if page_obj %}
+  <div class="section-inner">
+    <div class="row g-5" id="storyContainer">
+      {% for story in page_obj %}
+        <div class="col-xl-3 col-lg-4 col-md-6 story-card" data-title="{{ story.title }}">
+          <div class="eblog-featured-news style-two small">
+            <div class="image-area">
+              <a href="{% url 'story:blog_details' slug=story.slug %}">
+                <img src="{{ story.image.url }}" alt="{{ story.title }}" class="card-image">
+              </a>
+              {% if tag %}
+                <a href="{% url 'story:stories_by_tag' tag.slug %}" class="tag-badge">{{ tag.name }}</a>
+              {% endif %}
+            </div>
+
+            <div class="blog-content text-left">
+              <h4 class="heading-title ml--0 mb--10 text-start">
+                <a class="title-animation text-center" href="{% url 'story:blog_details' slug=story.slug %}">
+                  {{ story.title|truncatewords:8 }}
+                </a>
+              </h4>
+
+              <ul class="blog-meta justify-content-start m--0">
+                <li class="author">
+                by {% if story.author.first_name or story.author.last_name %}
+                    {{ story.author.first_name }} {{ story.author.last_name }} -
+                    {{ story.published_at|date:"M d, Y, g:i A" }}
+                  {% else %}
+                    {{ story.author.username }}
+                  {% endif %}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% if not ajax %}
+    {% if page_obj.has_next %}
+      <div class="col-lg-12">
+        <div class="button-area text-center mt-4 mb-5"> <br>
+          <button id="loadMoreBtn"
+                  data-next-page="?page={{ page_obj.next_page_number }}{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag.slug }}{% endif %}{% if query %}&q={{ query|urlencode }}{% endif %}"
+                  class="tp-btn btn-secondary m-auto"> 
+            Load More
+          </button>
+        </div>
+      </div>
+    {% endif %}
+  </div> <!-- /.container -->
+</section>
+{% endif %}
+
+<!-- JS -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const loadBtn = document.getElementById('loadMoreBtn');
+  const container = document.getElementById('storyContainer');
+
+  if (loadBtn) {
+    loadBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const url = this.getAttribute('data-next-page');
+      if (!url) return;
+
+      fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+        .then(res => res.json())
+        .then(data => {
+          const tmp = document.createElement('div');
+          tmp.innerHTML = data.html || '';
+
+          Array.from(tmp.children).forEach(node => container.appendChild(node));
+
+          if (data.has_next) {
+            this.setAttribute('data-next-page',
+              url.replace(/page=\d+/, 'page=' + data.next_page));
+          } else {
+            this.remove();
+          }
+        })
+        .catch(err => console.error('Load more failed', err));
+    });
+  }
+});
+</script>
+<!-- End Blog Grid Area -->
+
 {% endblock %}
